@@ -5,7 +5,6 @@ int test_map(t_common *d_list)
     malloc_raw_map(d_list);
     print_map(d_list->map);
     minimap(d_list);
-    write (1, "BINGO\n", 8);
     for (int i = 0; i < d_list->map->raw_height * d_list->map->scale; i++)
     {
         for (int j = 0; j < d_list->map->raw_length * d_list->map->scale; j++)
@@ -14,8 +13,8 @@ int test_map(t_common *d_list)
         }
         printf("\n");
     }
+    write (1, "BINGO\n", 8);
     return (1);
-
 }
 
 int malloc_raw_map(t_common *d_list)

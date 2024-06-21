@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:40:35 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/21 16:59:08 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:37:20 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	scale_mmap(t_common *dlist, int i, int j, int scale)
 		jj = 0;
 		while (jj < scale)
 		{
-			dlist->map->minimap[i + ii][j + jj] = dlist->map->raw_map[i][j];
+			dlist->map->minimap[scale * i + ii][scale * j + jj] = dlist->map->raw_map[i][j];
 			jj++;
 		}
 		ii++;
@@ -61,24 +61,22 @@ static void	fill_mmap(t_common *dlist, int scale)
 
 int		minimap(t_common *dlist)
 {
-	t_map	*mmap;
 	int		i;
 	int		j;
 
 
-	mmap = dlist->map;
-	mmap->scale = 3;
-	mmap->minimap = malloc(sizeof(int *) * mmap->scale * mmap->raw_height);
-	if (!mmap->minimap)
+	dlist->map->scale = 3;
+	dlist->map->minimap = malloc(sizeof(int *) * dlist->map->scale * dlist->map->raw_height);
+	if (!dlist->map->minimap)
 		return (0);
 	i = 0;
-	while (i < mmap->scale * mmap->raw_length)
+	while (i < dlist->map->scale * dlist->map->raw_length)
 	{
-		mmap->minimap[i] = malloc(sizeof(int) * mmap->scale * mmap->raw_length);
-		if (!mmap->minimap[i])
-			return (free_mmap(mmap->minimap));
+		dlist->map->minimap[i] = malloc(sizeof(int) * dlist->map->scale * dlist->map->raw_length);
+		if (!dlist->map->minimap[i])
+			return (free_mmap(dlist->map->minimap));
 		i++;
 	}
-	fill_mmap(dlist, mmap->scale);
+	fill_mmap(dlist, dlist->map->scale);
 	return (1);
 }
