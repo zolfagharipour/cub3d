@@ -36,6 +36,7 @@ typedef struct s_map
 	int		**raw_map;
 	int		raw_length;
 	int		raw_height;
+	int		scale;
 	int		**minimap;
 }	t_map;
 
