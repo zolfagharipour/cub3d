@@ -19,6 +19,7 @@ void	init_map(t_map *map)
 	map->minimap = NULL,
 	map->raw_length = 0;
 	map->raw_height = 0;
+	map->scale = 0;
 }
 
 void	init_mlx(t_mlx *mlx)
