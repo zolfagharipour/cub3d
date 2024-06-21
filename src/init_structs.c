@@ -1,14 +1,24 @@
 #include "cubid.h"
 
-void	init_structs(t_common *d_list)
+int	init_structs(t_common *d_list)
 {
-	t_mlx	mlx;
-	t_map	map;
-
-	d_list->map = &map;
-	d_list->mlx = &mlx;
+	d_list->map = (t_map *)malloc(sizeof(t_map));
+	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	if (!d_list->map || !d_list->mlx)
+		return 0;
 	init_mlx(d_list->mlx);
 	init_map(d_list->map);
+	if (init_mlx_functions(d_list) == 0)
+		return 0;
+	return 1;
+}
+
+void	init_map(t_map *map)
+{
+	map->raw_map = NULL,
+	map->minimap = NULL,
+	map->raw_length = 0;
+	map->raw_height = 0;
 }
 
 void	init_mlx(t_mlx *mlx)
@@ -24,39 +34,23 @@ void	init_mlx(t_mlx *mlx)
     mlx->shift_y = 0;
 }
 
-int	init_struct(t_mlx *mlx)
+int	init_mlx_functions(t_common *d_list)
 {
+	t_mlx *mlx;
+	mlx = d_list->mlx;
 	mlx->ptr = mlx_init();
 	if (!mlx->ptr)
 		return (0);
 	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, "MINIMAP");
 	if (!mlx->win)
-		return (cleanup(mlx), 0);
+		return (cleanup(d_list), 0);
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
-		return (cleanup(mlx), 0);
+		return (cleanup(d_list), 0);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp,
 			&mlx->line_length, &mlx->endian);
 	if (!mlx->addr)
-		return (cleanup(mlx), 0);
+		return (cleanup(d_list), 0);
 	return (1);
 }
 
-int	cleanup(t_mlx *mlx)
-{
-	if (mlx)
-	{
-		if (mlx->img)
-			mlx_destroy_image(mlx->ptr, mlx->img);
-		if (mlx->win)
-			mlx_destroy_window(mlx->ptr, mlx->win);
-		if (mlx->ptr)
-			mlx_destroy_display(mlx->ptr);
-		if (mlx->ptr)
-			free(mlx->ptr);
-		if (mlx->loop)
-			free(mlx->loop);
-		exit(1);
-	}
-	return (0);
-}

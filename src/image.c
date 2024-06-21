@@ -1,16 +1,16 @@
 #include "cubid.h"
 
-void	put_image(t_mlx *mlx)
+void	put_image(t_common *d_list, t_mlx *mlx)
 {
 	if (mlx->img)
 		mlx_destroy_image(mlx->ptr, mlx->img);
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (mlx->img == NULL)
-		cleanup(mlx);
+		cleanup(d_list);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp,
 			&mlx->line_length, &mlx->endian);
 	if (mlx->addr == NULL)
-		cleanup(mlx);
+		cleanup(d_list);
     put_red_square(mlx);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 }
@@ -23,8 +23,10 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	move_window(int keycode, t_mlx *mlx)
+void	move_window(int keycode, t_common *d_list)
 {
+	t_mlx	*mlx;
+	mlx = d_list->mlx;
 	double	adjusted;
 
 	adjusted = 10;
@@ -37,5 +39,5 @@ void	move_window(int keycode, t_mlx *mlx)
 		mlx->shift_x -= adjusted;
 	else if (keycode == XK_Right)
 		mlx->shift_x += adjusted;
-	put_image(mlx);
+	put_image(d_list, mlx);
 }

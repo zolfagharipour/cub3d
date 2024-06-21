@@ -1,29 +1,40 @@
-NAME	=	cubid3d
-INC		=	cubid.h
-CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
+NAME = cub3d
+CC = cc
 MLXFLAG	=	-lmlx -lXext -lX11 -g -lm
-AR		=	ar rc
-RM		=	rm -f
+#CFLAGS = -Wall -Wextra -Werror -g -I include/
+CFLAGS = -g -I include/
 
-SRC		=	main.c setup_window_minimap.c events.c draw_red_square.c image.c
+RM = rm -rf
+# ***************************************************************************
 
-OBJ		=	$(SRC:.c=.o)
+SRCS = 	src/draw_red_square.c src/events.c src/image.c src/init_structs.c \
+		src/main.c src/cleanup.c src/raw_map.c
 
-.PHONY:		all clean fclean re
+OBJDIR = ./obj
+OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
 
-all:		$(NAME)
+.PHONY: all clean fclean re $(OBJDIR)
 
-$(NAME):	$(OBJ)
-			$(CC) $(OBJ) -o $(NAME)	$(MLXFLAG)
+all: $(OBJDIR) $(NAME)
 
-%.o: %.c	$(INC)
-			$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS)
+	@make --no-print-directory -C ./libft > /dev/null
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLXFLAG) ./libft/libft.a -lreadline
+	@echo "\033[1;32m\n\nFZ3D IS READY TO USE - use wisely\n\033[0m"
 
 clean:
-			$(RM) $(OBJ)
+	@make --no-print-directory -C ./libft fclean > /dev/null
+	@$(RM) $(OBJDIR) $(OBJS)
+	@echo "\033[0;91mCleaning was successful\033[0m"
 
-fclean:		clean
-			$(RM) $(NAME)
+$(OBJDIR)/%.o: src/%.c
+	@mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-re:			clean all
+fclean: clean
+	@$(RM) $(NAME)
+
+re: fclean all
+
+test : all
+	clear; valgrind --leak-check=full --track-origins=yes --track-fds=yes --show-reachable=yes --show-leak-kinds=all --error-limit=no --suppressions=./cub3d.supp ./$(NAME)
