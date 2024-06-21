@@ -64,21 +64,21 @@ int		minimap(t_common *dlist)
 	t_map	*mmap;
 	int		i;
 	int		j;
-	int		scale = 3;
 
-	mmap->scale = scale;
+
 	mmap = dlist->map;
-	mmap->minimap = malloc(sizeof(int *) * scale * mmap->raw_height);
+	mmap->scale = 3;
+	mmap->minimap = malloc(sizeof(int *) * mmap->scale * mmap->raw_height);
 	if (!mmap->minimap)
 		return (0);
 	i = 0;
-	while (i < scale * mmap->raw_length)
+	while (i < mmap->scale * mmap->raw_length)
 	{
-		mmap->minimap[i] = malloc(sizeof(int) * scale * mmap->raw_length);
+		mmap->minimap[i] = malloc(sizeof(int) * mmap->scale * mmap->raw_length);
 		if (!mmap->minimap[i])
 			return (free_mmap(mmap->minimap));
 	}
-	fill_mmap(dlist, scale);
+	fill_mmap(dlist, mmap->scale);
 	return (1);
 }
 
