@@ -10,10 +10,13 @@
 # include <math.h>
 # include "../libft/libft.h"
 
-# define HEIGHT 500
-# define WIDTH 500
+# define HEIGHT 800
+# define WIDTH 800
 # define W_SQUARE 20
-# define RED 0xFF0000
+# define RED 0xec956c
+# define LBLUE 0xADD8E6
+# define DBLUE 0x547eae
+
 
 typedef struct s_mlx
 {
@@ -52,7 +55,7 @@ int		init_structs(t_common *d_list);
 void	init_mlx(t_mlx *mlx);
 void	init_map(t_map *map);
 int		init_mlx_functions(t_common *d_list);
-void    put_red_square(t_mlx *mlx);
+void    put_red_square(t_common *d_list);
 void	put_image(t_common *d_list, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 

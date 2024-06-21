@@ -64,8 +64,7 @@ int		minimap(t_common *dlist)
 	int		i;
 	int		j;
 
-
-	dlist->map->scale = 3;
+	dlist->map->scale = 20;
 	dlist->map->minimap = malloc(sizeof(int *) * dlist->map->scale * dlist->map->raw_height);
 	if (!dlist->map->minimap)
 		return (0);

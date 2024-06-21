@@ -1,16 +1,65 @@
 #include "cubid.h"
 
-void put_red_square(t_mlx *mlx)
+int calc_color(int x, int y, t_common *d_list)
 {
-    int start_x = (WIDTH - W_SQUARE) / 2 + mlx->shift_x;
-    int start_y = (HEIGHT - W_SQUARE) / 2 + mlx->shift_y;
+    if (d_list->map->minimap[x][y] == 0)
+        return LBLUE;
+    else if  (d_list->map->minimap[x][y] == 1)
+        return DBLUE;
+    else
+        return 0x0000000;
+}
 
-    for (int y = 0; y < W_SQUARE; y++)
+void put_red_square(t_common *d_list)
+{
+    t_mlx   *mlx;
+
+    mlx = d_list->mlx;
+    int start_x = (WIDTH - d_list->map->scale) / 2 + mlx->shift_x;
+    int start_y = (HEIGHT - d_list->map->scale) / 2  + mlx->shift_y;
+
+    for (int y = 0; y < d_list->map->raw_height * d_list->map->scale; y++)
     {
-        for (int x = 0; x < W_SQUARE; x++)
+        for (int x = 0; x < d_list->map->raw_length * d_list->map->scale; x++)
+        {
+            my_mlx_pixel_put(mlx, x, y, calc_color(x, y, d_list));
+        }
+    }
+    for (int y = 0; y < d_list->map->scale; y++)
+    {
+        for (int x = 0; x < d_list->map->scale; x++)
         {
             my_mlx_pixel_put(mlx, start_x + x, start_y + y, RED);
         }
     }
 }
 
+// int	c_rgb(int r, int g, int b)
+// {
+// 	return (r << 16 | g << 8 | b);
+// }
+
+// void	mix_colors(t_list *mlx, int i, int color)
+// {
+// 	if (color == BLUE)
+// 	{
+// 		if (i == mlx->max_iter)
+// 			mlx->col = c_rgb(1, 30, 60);
+// 		else
+// 			mlx->col = c_rgb((i * 1) % 255, (i * 2 + 10) % 255, (i * 5) % 255);
+// 	}
+// 	else if (color == RED)
+// 	{
+// 		if (i == mlx->max_iter)
+// 			mlx->col = c_rgb(48, 1, 1);
+// 		else
+// 			mlx->col = c_rgb((i * 5 + 50) % 255, (i * 2) % 255, (i * 2) % 255);
+// 	}
+// 	else if (color == GREEN)
+// 	{
+// 		if (i == mlx->max_iter)
+// 			mlx->col = c_rgb(1, 70, 20);
+// 		else
+// 			mlx->col = c_rgb((i * 1) % 255, (i * 5) % 255, (i * 2) % 255);
+// 	}
+// }
