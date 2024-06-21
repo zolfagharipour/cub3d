@@ -1,0 +1,41 @@
+#include "cubid.h"
+
+void	put_image(t_mlx *mlx)
+{
+	if (mlx->img)
+		mlx_destroy_image(mlx->ptr, mlx->img);
+	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+	if (mlx->img == NULL)
+		cleanup(mlx);
+	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp,
+			&mlx->line_length, &mlx->endian);
+	if (mlx->addr == NULL)
+		cleanup(mlx);
+    put_red_square(mlx);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+}
+
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+void	move_window(int keycode, t_mlx *mlx)
+{
+	double	adjusted;
+
+	adjusted = 10;
+
+	if (keycode == XK_Up)
+		mlx->shift_y -= adjusted;
+	else if (keycode == XK_Down)
+		mlx->shift_y += adjusted;
+	else if (keycode == XK_Left)
+		mlx->shift_x -= adjusted;
+	else if (keycode == XK_Right)
+		mlx->shift_x += adjusted;
+	put_image(mlx);
+}
