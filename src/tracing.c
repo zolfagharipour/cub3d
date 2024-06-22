@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/22 13:00:26 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/22 13:14:35 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,36 @@ void    first_step(t_rc *rc)
     rc->ray[1] = rc->pos[1];
 }
 
-int    step_x(t_rc *rc)
+int    step_x(t_rc *rc, int i)
 {
     if (rc->dir < 0.5 && rc->dir > 1.5)
     {
         rc->steps[0] + 1;
         rc->ray[0] + 1;
+        rc->hit[i][3] = W;
     }
     else if (rc->dir > 0.5 && rc->dir < 1.5)
     {
         rc->steps[0] - 1;
         rc->ray[0] - 1;
+        rc->hit[i][3] = E;
     }
 }
 
-int    step_y(t_rc *rc)
+int    step_y(t_rc *rc, int i)
 {
     if (rc->dir < 1)
     {
         rc->steps[1] + 1;
         rc->ray[1] + 1;
+        rc->hit[i][3] = S;
     }
     else if (rc->dir > 1)
         return (-1);
     {
         rc->steps[1] - 1;
         rc->ray[1] - 1;
+        rc->hit[i][3] = N;
     }
 }
 
@@ -84,11 +88,14 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
     while(d_list->map->raw_map[rc->ray[0]][rc->ray[1]] == 0)
     {
         if (lenght_x(rc) > lenght_y(rc))
-            step_x(rc);
+            step_x(rc, pixel);
         else
-            step_y(rc);
+            step_y(rc, pixel);
     }
-    d_list->rc->hit[pixel][0] = max(lenght_x(rc), lenght_y(rc));
+    d_list->rc->hit[pixel][0] = rc->pos[0] + rc->steps[0];
+    d_list->rc->hit[pixel][1] = rc->pos[1] + rc->steps[1];
+    d_list->rc->hit[pixel][2] = max(lenght_x(rc), lenght_y(rc));
+    
 }
 
 void    tracer(t_common *d_list)

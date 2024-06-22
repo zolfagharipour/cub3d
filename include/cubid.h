@@ -16,6 +16,10 @@
 # define RED 0xec956c
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
+# define N 0;
+# define S 1;
+# define E 2;
+# define W 3;
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -45,13 +49,6 @@ typedef struct s_map
 	int		**minimap;
 }	t_map;
 
-typedef struct s_hook
-{
-	double		pos[2];
-	double		dir;
-} t_hook;
-
-
 typedef struct	s_raycaster
 {
 	double		pos[2];
@@ -59,7 +56,7 @@ typedef struct	s_raycaster
 	double		dir;
 	int			steps[2];
 	int			ray[2];
-	double		hit[WIDTH][2];
+	double		hit[WIDTH][4];
 	int			length[2];
 } t_rc;
 
@@ -75,6 +72,7 @@ int		main(void);
 int		init_structs(t_common *d_list);
 void	init_mlx(t_mlx *mlx);
 void	init_map(t_map *map);
+void	init_rc(t_rc *rc);
 int		init_mlx_functions(t_common *d_list);
 void    put_red_square(t_common *d_list);
 void	put_image(t_common *d_list, t_mlx *mlx);
