@@ -16,7 +16,9 @@
 # define RED 0xec956c
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
-
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 typedef struct s_mlx
 {
@@ -43,10 +45,29 @@ typedef struct s_map
 	int		**minimap;
 }	t_map;
 
+typedef struct s_hook
+{
+	double		pos[2];
+	double		dir;
+} t_hook;
+
+
+typedef struct	s_raycaster
+{
+	double		pos[2];
+	double		look;
+	double		dir;
+	int			steps[2];
+	int			ray[2];
+	double		hit[WIDTH][2];
+	int			length[2];
+} t_rc;
+
 typedef struct s_common
 {
 	t_mlx	*mlx;
 	t_map 	*map;
+	t_rc	*rc;
 } t_common;
 
 //setup
