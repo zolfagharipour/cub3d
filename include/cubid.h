@@ -12,6 +12,8 @@
 
 # define HEIGHT 800
 # define WIDTH 800
+# define TRUE 1
+# define FALSE 0
 # define W_SQUARE 20
 # define RED 0xec956c
 # define LBLUE 0xADD8E6
@@ -41,6 +43,8 @@ typedef struct s_map
 	int		raw_height;
 	int		scale;
 	int		**minimap;
+	int		player_x;
+	int		player_y;	
 }	t_map;
 
 typedef struct s_common
@@ -64,6 +68,7 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int test_map(t_common *d_list);
 int malloc_raw_map(t_common *d_list);
 void print_map(t_map *map);
+void find_the_players_position(t_common *d_list);
 
 
 //cleanup
@@ -76,6 +81,8 @@ void    cleanup_d_list(t_common *d_list);
 void	events(t_common *d_list);
 int		key_press(int keycode, t_common *d_list);
 void	move_window(int keycode, t_common *d_list);
+int	exceeds_boundaries(int keycode, t_common *d_list, int px_move);
+
 
 
 //mohamad

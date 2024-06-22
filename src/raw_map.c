@@ -4,6 +4,7 @@ int test_map(t_common *d_list)
 {
     //read_map_from_file(d_list);
     malloc_raw_map(d_list);
+    find_the_players_position(d_list);
     print_map(d_list->map);
     minimap(d_list);
     for (int i = 0; i < d_list->map->raw_height * d_list->map->scale; i++)

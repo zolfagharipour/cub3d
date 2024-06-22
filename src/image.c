@@ -23,21 +23,70 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+int	exceeds_boundaries_of_image(int keycode, t_common *d_list, int px_move)
+{
+	t_mlx	*mlx;
+	int		scale_factor;
+
+	mlx = d_list->mlx;
+	scale_factor = d_list->map->scale;
+	if (keycode == XK_Up && mlx->shift_y - px_move < -scale_factor)
+		return (TRUE);
+	else if (keycode == XK_Down && mlx->shift_y + px_move > d_list->map->raw_height * scale_factor - scale_factor * 2)
+		return (TRUE);
+	else if (keycode == XK_Left && mlx->shift_x - px_move < -scale_factor)
+		return (TRUE);
+	else if (keycode == XK_Right && mlx->shift_x + px_move > d_list->map->raw_length * scale_factor - scale_factor * 2)
+		return (TRUE);
+	return (FALSE);
+}
+
+// int	player_run_into_walls(int keycode, t_common *d_list, int px_move)
+// {
+// 	t_map	*map;
+// 	int		new_x;
+// 	int		new_y;
+
+// 	map = d_list->map;
+
+// 	// Calculate the new position based on the keycode
+// 	new_x = map->player_x * map->scale;
+// 	new_y = map->player_y * map->scale;
+// 	if (keycode == XK_Up)
+// 		new_y -= 1;
+// 	else if (keycode == XK_Down)
+// 		new_y += (1 + map->scale);
+// 	else if (keycode == XK_Left)
+// 		new_x -= 1;
+// 	else if (keycode == XK_Right)
+// 		new_x += (1 + map->scale);
+
+// 	// Check if the new position is a wall
+// 	if (map->minimap[new_y][new_x] == 1)
+// 		return (TRUE);
+
+// 	return (FALSE);
+// }
+
+
 void	move_window(int keycode, t_common *d_list)
 {
 	t_mlx	*mlx;
+	double	px_move;
+
 	mlx = d_list->mlx;
-	double	adjusted;
-
-	adjusted = 10;
-
+	px_move = 10;
+	if (exceeds_boundaries_of_image(keycode, d_list, px_move) == TRUE)
+		return ;
+	// if (player_run_into_walls(keycode, d_list, px_move) == TRUE)
+	// 	return;
 	if (keycode == XK_Up)
-		mlx->shift_y -= adjusted;
+		mlx->shift_y -= px_move;
 	else if (keycode == XK_Down)
-		mlx->shift_y += adjusted;
+		mlx->shift_y += px_move;
 	else if (keycode == XK_Left)
-		mlx->shift_x -= adjusted;
+		mlx->shift_x -= px_move;
 	else if (keycode == XK_Right)
-		mlx->shift_x += adjusted;
+		mlx->shift_x += px_move;
 	put_image(d_list, mlx);
 }

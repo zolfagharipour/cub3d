@@ -2,21 +2,20 @@
 
 int calc_color(int x, int y, t_common *d_list)
 {
-    if (d_list->map->minimap[x][y] == 0)
-        return LBLUE;
-    else if  (d_list->map->minimap[x][y] == 1)
+    if  (d_list->map->minimap[x][y] == 1)
         return DBLUE;
     else
-        return 0x0000000;
+        return LBLUE;
 }
 
+//print maze and player
 void put_red_square(t_common *d_list)
 {
     t_mlx   *mlx;
 
     mlx = d_list->mlx;
-    int start_x = (WIDTH - d_list->map->scale) / 2 + mlx->shift_x;
-    int start_y = (HEIGHT - d_list->map->scale) / 2  + mlx->shift_y;
+    int start_x = (d_list->map->player_x * d_list->map->scale) + mlx->shift_x;
+    int start_y = (d_list->map->player_y * d_list->map->scale) + mlx->shift_y;
 
     for (int y = 0; y < d_list->map->raw_height * d_list->map->scale; y++)
     {
@@ -30,6 +29,22 @@ void put_red_square(t_common *d_list)
         for (int x = 0; x < d_list->map->scale; x++)
         {
             my_mlx_pixel_put(mlx, start_x + x, start_y + y, RED);
+        }
+    }
+}
+
+void find_the_players_position(t_common *d_list)
+{
+    for (int i = 0; i < d_list->map->raw_height; i++)
+    {
+        for (int j = 0; j < d_list->map->raw_length; j++)
+        {
+            if (d_list->map->raw_map[i][j] == 2)
+            {
+                d_list->map->player_x = j;
+                d_list->map->player_y = i;
+                return ;
+            }
         }
     }
 }

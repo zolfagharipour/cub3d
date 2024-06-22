@@ -20,6 +20,8 @@ void	init_map(t_map *map)
 	map->raw_length = 0;
 	map->raw_height = 0;
 	map->scale = 0;
+	map->player_x = 0;
+	map->player_y = 0;
 }
 
 void	init_mlx(t_mlx *mlx)
