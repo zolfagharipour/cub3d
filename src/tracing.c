@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/23 22:37:44 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/23 22:50:47 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,9 +194,9 @@ void    tracer(t_common *d_list)
     
 
     i = 0;
-    screen_width = 5;
-    screen_dis = 10;
-    pixle_width = 10.0 / (WIDTH);
+    screen_width = 50;
+    screen_dis = 100;
+    pixle_width = screen_dis / (WIDTH);
     angle = atan(screen_width / screen_dis) / M_PI;
     d_list->rc->dir = d_list->rc->look + angle;
 // angle = 0.5 / WIDTH;

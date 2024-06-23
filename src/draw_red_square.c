@@ -36,9 +36,10 @@ void put_red_square(t_common *d_list)
     for (int i = 0; i < WIDTH; i++)
     { 
         my_mlx_pixel_put(mlx, d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale, RED);
-        // printf("%f:\t%f\n",  d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale);
+        double p1[2] = {d_list->rc->pos[0] * d_list->map->scale, d_list->rc->pos[1] * d_list->map->scale};
+        double p2[2] = {d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale};
+    	line(d_list, p1, p2, RED);
     }
-
 }
 
 // int	c_rgb(int r, int g, int b)

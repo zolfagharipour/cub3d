@@ -101,6 +101,8 @@ void	move_window(int keycode, t_common *d_list);
 //mohamad
 int		minimap(t_common *d_list);
 void    tracer(t_common *d_list);
+void    line(t_common *d_list, double p1[2], double p2[2], int color);
+
 
 
 #endif
