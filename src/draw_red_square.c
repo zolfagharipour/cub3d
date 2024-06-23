@@ -15,8 +15,8 @@ void put_red_square(t_common *d_list)
     t_mlx   *mlx;
 
     mlx = d_list->mlx;
-    int start_x = (WIDTH - d_list->map->scale) / 2 + mlx->shift_x;
-    int start_y = (HEIGHT - d_list->map->scale) / 2  + mlx->shift_y;
+    int start_x = d_list->map->scale + mlx->shift_x;
+    int start_y = d_list->map->scale + mlx->shift_y;
 
 
     for (int y = 0; y < d_list->map->raw_height * d_list->map->scale; y++)
@@ -36,7 +36,7 @@ void put_red_square(t_common *d_list)
     for (int i = 0; i < WIDTH; i++)
     { 
         my_mlx_pixel_put(mlx, d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale, RED);
-        printf("%f:\t%f\n",  d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale);
+        // printf("%f:\t%f\n",  d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale);
     }
 
 }

@@ -30,27 +30,27 @@ void	move_window(int keycode, t_common *d_list)
 	mlx = d_list->mlx;
 	double	adjusted;
 
-	adjusted = 10;
+	adjusted = d_list->map->scale / 10;
 
 	if (keycode == XK_Up)
 	{
 		mlx->shift_y -= adjusted;
-		d_list->rc->pos[1] += 0.1;
+		d_list->rc->pos[1] -= 0.1;
 	}
 	else if (keycode == XK_Down)
 	{
 		mlx->shift_y += adjusted;
-		d_list->rc->pos[1] -= 0.1;
+		d_list->rc->pos[1] += 0.1;
 	}
 	else if (keycode == XK_Left)
 	{
-		d_list->rc->pos[0] -= 0.1;
 		mlx->shift_x -= adjusted;
+		d_list->rc->pos[0] -= 0.1;
 	}
 	else if (keycode == XK_Right)
 	{
-		d_list->rc->pos[0] += 0.1;
 		mlx->shift_x += adjusted;
+		d_list->rc->pos[0] += 0.1;
 	}
 	put_image(d_list, mlx);
 }

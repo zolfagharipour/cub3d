@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/23 14:50:28 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:51:02 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,24 @@ void    first_step(t_rc *rc)
     rc->ray[1] = rc->pos[1];
 }
 
+void    second_step(t_rc *rc)
+{
+    if (rc->dir == 0.5 || rc->dir == 1.5)
+        rc->steps[0] = 10000.0;
+    else if (rc->dir == 0.0 || rc->dir == 1.0)
+        rc->steps[1] = 10000.0;
+}
+
 void    step_x(t_rc *rc, int i)
 {
-    if (rc->dir < 0.5 && rc->dir > 1.5)
+    if (rc->steps[0] == 0)
+        return ;
+    if (rc->steps[0] > 0)
     {
         rc->steps[0] += 1;
         rc->hit[i][3] = W;
     }
-    else if (rc->dir > 0.5 && rc->dir < 1.5)
+    else
     {
         rc->steps[0] -= 1;
         rc->hit[i][3] = E;
@@ -58,46 +68,49 @@ void    step_x(t_rc *rc, int i)
 
 void    step_y(t_rc *rc, int i)
 {
-    if (rc->dir < 1)
+    if (rc->steps[1] == 0)
+        return ;
+    if (rc->steps[1] < 1)
     {
-        rc->steps[1] + 1;
+        rc->steps[1] -= 1;
         rc->hit[i][3] = S;
     }
-    else if (rc->dir > 1)
+    else
     {
-        rc->steps[1] - 1;
+        rc->steps[1] += 1;
         rc->hit[i][3] = N;
     }
+    // printf("Y: %f\n", rc->steps[1]);
 }
 
-double  lenght_x(t_rc *rc)
+double  length_x(t_rc *rc)
 {
     if (rc->dir < 0.5)
-        return abs(rc->steps[0] / cos(rc->dir * M_PI));
+        return fabs(rc->steps[0] / cos(rc->dir * M_PI));
     else if (rc->dir < 1.0)
-        return abs(rc->steps[0] / cos((1 - rc->dir) * M_PI));
+        return fabs(rc->steps[0] / cos((1.0 - rc->dir) * M_PI));
     else if (rc->dir < 1.5)
-        return abs(rc->steps[0] / cos((rc->dir - 1) * M_PI));
+        return fabs(rc->steps[0] / cos((rc->dir - 1.0) * M_PI));
     else if (rc->dir < 2.0)
-        return abs(rc->steps[0] / cos((2 - rc->dir) * M_PI));
+        return fabs(rc->steps[0] / cos((2.0 - rc->dir) * M_PI));
 }
 
 
-double  lenght_y(t_rc *rc)
+double  length_y(t_rc *rc)
 {
     if (rc->dir < 0.5)
-        return abs(rc->steps[1] / tan(rc->dir * M_PI));
+        return fabs(rc->steps[1] / tan(rc->dir * M_PI));
     else if (rc->dir < 1.0)
-        return abs(rc->steps[1] / tan((1 - rc->dir) * M_PI));
+        return fabs(rc->steps[1] / tan((1.0 - rc->dir) * M_PI));
     else if (rc->dir < 1.5)
-        return abs(rc->steps[1] / tan((rc->dir - 1) * M_PI));
+        return fabs(rc->steps[1] / tan((rc->dir - 1.0) * M_PI));
     else if (rc->dir < 2.0)
-        return abs(rc->steps[1] / tan((2 - rc->dir) * M_PI));
+        return fabs(rc->steps[1] / tan((2.0 - rc->dir) * M_PI));
 }
 
 void    move_ray(t_rc *rc)
 {
-    if (lenght_x(rc) < lenght_y(rc))
+    if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
     {
         if (rc->dir < 0.5 || rc->dir > 1.5)
             rc->ray[0] += 1;
@@ -107,59 +120,54 @@ void    move_ray(t_rc *rc)
     else
     {
         if (rc->dir < 1)
-            rc->ray[1] - 1;
+            rc->ray[1] -= 1;
         else
-            rc->ray[1] + 1;
+            rc->ray[1] += 1;
     }
 }
 
-double  hit_x(double x, double angle)
+double  hit_xy(double b, double c)
 {
-    if (angle < 0.5)
-        return (x * tan(angle * M_PI));
-    else if (angle < 1.0)
-        return abs(x * tan((1 - angle) * M_PI));
-    else if (angle < 1.5)
-        return abs(x * tan((angle - 1) * M_PI));
-    else if (angle < 2.0)
-        return abs(x * tan((2 - angle) * M_PI));
-}
+    double  a;
 
-double  hit_y(double y, double angle)
-{
-    if (angle < 0.5)
-        return (y / tan(angle * M_PI));
-    else if (angle < 1.0)
-        return abs(y / tan((1 - angle) * M_PI));
-    else if (angle < 1.5)
-        return abs(y / tan((angle - 1) * M_PI));
-    else if (angle < 2.0)
-        return abs(y / tan((2 - angle) * M_PI));
+    a = pow(c, 2) - pow(b, 2);
+    printf("A %f\n", sqrt(a));
+    return (sqrt(a));
 }
-
 
 void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
 {
     first_step(rc);
+    second_step(rc);
     move_ray(rc);
+    int i = 0;
     while(d_list->map->raw_map[rc->ray[0]][rc->ray[1]] == 0)
     {
-        if (lenght_x(rc) < lenght_y(rc))
+        
+        if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
             step_x(rc, pixel);
         else
             step_y(rc, pixel);
-        move_ray;
+        move_ray(rc);
+        i ++;
     }
-    if (lenght_x(rc) < lenght_y(rc))
+
+        
+    if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
     {
         d_list->rc->hit[pixel][0] = rc->pos[0] + rc->steps[0];
-        d_list->rc->hit[pixel][1] = hit_x(d_list->rc->hit[pixel][0], rc->dir);
+        d_list->rc->hit[pixel][1] = rc->pos[1] + hit_xy(rc->steps[0], length_x(rc));
     }
     else
     {
         d_list->rc->hit[pixel][1] = rc->pos[1] + rc->steps[1];
-        d_list->rc->hit[pixel][0] = hit_y(d_list->rc->hit[pixel][1], rc->dir);
+        d_list->rc->hit[pixel][0] = rc->pos[0] + hit_xy(rc->steps[1], length_y(rc));
     }
+    
+    printf("x %f\ty %f\n", length_x(rc), length_y(rc));
+    printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
+    printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);
+    
 }
 
 void    tracer(t_common *d_list)
@@ -168,16 +176,17 @@ void    tracer(t_common *d_list)
     double  angle;
 
     i = 0;
-    d_list->rc->dir = d_list->rc->look - 0.2618;
-    if (d_list->rc->dir < 0)
-        d_list->rc->dir += 2;
-    angle = 30 / WIDTH * 0.0174533;
+    d_list->rc->dir = d_list->rc->look + 0.5;
+    // d_list->rc->dir = d_list->rc->look + (1 / 12);
+    if (d_list->rc->dir > 2)
+        d_list->rc->dir -= 2;
+    angle = 1.0 / (WIDTH);
     while (i < WIDTH)
     {
         shoot_ray(d_list, d_list->rc, i);
+        d_list->rc->dir -= angle;
         i++;
-        d_list->rc->dir += angle;
-        if (d_list->rc->dir > 2)
-            d_list->rc->dir -= 2;
+        if (d_list->rc->dir < 0)
+            d_list->rc->dir += 2;
     }
 }

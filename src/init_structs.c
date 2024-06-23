@@ -39,9 +39,9 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_rc(t_rc *rc)
 {
-	rc->look = 1.0;
-	rc->pos[0] = 1;
-	rc->pos[1] = 1;
+	rc->look = 0;
+	rc->pos[0] = 1.5;
+	rc->pos[1] = 1.5;
 }
 
 int	init_mlx_functions(t_common *d_list)
