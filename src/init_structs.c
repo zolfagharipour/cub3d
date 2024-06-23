@@ -39,7 +39,7 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_rc(t_rc *rc)
 {
-	rc->dir = 1.0;
+	rc->look = 1.0;
 	rc->pos[0] = 1;
 	rc->pos[1] = 1;
 }

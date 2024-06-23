@@ -13,7 +13,8 @@
 # define HEIGHT 800
 # define WIDTH 800
 # define W_SQUARE 20
-# define RED 0xec956c
+# define ORANGE 0xec956c
+# define RED 0xFF0000
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
 # define N 0;
@@ -54,7 +55,7 @@ typedef struct	s_raycaster
 	double		pos[2];
 	double		look;
 	double		dir;
-	int			steps[2];
+	double		steps[2];
 	int			ray[2];
 	double		hit[WIDTH][4];
 	int			length[2];
@@ -99,5 +100,7 @@ void	move_window(int keycode, t_common *d_list);
 
 //mohamad
 int		minimap(t_common *d_list);
+void    tracer(t_common *d_list);
+
 
 #endif

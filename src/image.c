@@ -11,6 +11,7 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 			&mlx->line_length, &mlx->endian);
 	if (mlx->addr == NULL)
 		cleanup(d_list);
+	tracer(d_list);
     put_red_square(d_list);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 }
@@ -32,12 +33,24 @@ void	move_window(int keycode, t_common *d_list)
 	adjusted = 10;
 
 	if (keycode == XK_Up)
+	{
 		mlx->shift_y -= adjusted;
+		d_list->rc->pos[1] += 0.1;
+	}
 	else if (keycode == XK_Down)
+	{
 		mlx->shift_y += adjusted;
+		d_list->rc->pos[1] -= 0.1;
+	}
 	else if (keycode == XK_Left)
+	{
+		d_list->rc->pos[0] -= 0.1;
 		mlx->shift_x -= adjusted;
+	}
 	else if (keycode == XK_Right)
+	{
+		d_list->rc->pos[0] += 0.1;
 		mlx->shift_x += adjusted;
+	}
 	put_image(d_list, mlx);
 }
