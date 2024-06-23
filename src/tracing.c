@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/23 18:51:02 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/23 19:43:02 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,13 +155,25 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
         
     if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
     {
-        d_list->rc->hit[pixel][0] = rc->pos[0] + rc->steps[0];
-        d_list->rc->hit[pixel][1] = rc->pos[1] + hit_xy(rc->steps[0], length_x(rc));
+        if (rc->dir < 0.5 || rc->dir > 1.5)
+            d_list->rc->hit[pixel][0] = rc->ray[0];
+        else
+            d_list->rc->hit[pixel][0] = rc->ray[0] + 1;
+        if (rc->dir < 1.0)
+            d_list->rc->hit[pixel][1] = rc->pos[1] - hit_xy(rc->steps[0], length_x(rc));
+        else
+            d_list->rc->hit[pixel][1] = rc->pos[1] + hit_xy(rc->steps[0], length_x(rc));
     }
     else
     {
-        d_list->rc->hit[pixel][1] = rc->pos[1] + rc->steps[1];
-        d_list->rc->hit[pixel][0] = rc->pos[0] + hit_xy(rc->steps[1], length_y(rc));
+        if (rc->dir < 1.0)
+            d_list->rc->hit[pixel][1] = rc->ray[1] + 1;
+        else
+            d_list->rc->hit[pixel][1] = rc->ray[1];
+        if (rc->dir < 0.5 || rc->dir > 1.5)
+            d_list->rc->hit[pixel][0] = rc->pos[0] + hit_xy(rc->steps[1], length_y(rc));
+        else
+            d_list->rc->hit[pixel][0] = rc->pos[0] - hit_xy(rc->steps[1], length_y(rc));
     }
     
     printf("x %f\ty %f\n", length_x(rc), length_y(rc));
@@ -180,7 +192,7 @@ void    tracer(t_common *d_list)
     // d_list->rc->dir = d_list->rc->look + (1 / 12);
     if (d_list->rc->dir > 2)
         d_list->rc->dir -= 2;
-    angle = 1.0 / (WIDTH);
+    angle = 2.0 / (WIDTH);
     while (i < WIDTH)
     {
         shoot_ray(d_list, d_list->rc, i);
