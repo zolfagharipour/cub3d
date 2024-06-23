@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/23 19:43:02 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/23 22:37:44 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ double  hit_xy(double b, double c)
     double  a;
 
     a = pow(c, 2) - pow(b, 2);
-    printf("A %f\n", sqrt(a));
+    // printf("A %f\n", sqrt(a));
     return (sqrt(a));
 }
 
@@ -176,9 +176,9 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][0] = rc->pos[0] - hit_xy(rc->steps[1], length_y(rc));
     }
     
-    printf("x %f\ty %f\n", length_x(rc), length_y(rc));
-    printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
-    printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);
+    // printf("x %f\ty %f\n", length_x(rc), length_y(rc));
+    // printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
+    // printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);
     
 }
 
@@ -186,19 +186,38 @@ void    tracer(t_common *d_list)
 {
     int     i;
     double  angle;
+    double  pixle_width;
+    double  screen_width;
+    double  screen_dis;
+
+    double  sum = 0;
+    
 
     i = 0;
-    d_list->rc->dir = d_list->rc->look + 0.5;
-    // d_list->rc->dir = d_list->rc->look + (1 / 12);
+    screen_width = 5;
+    screen_dis = 10;
+    pixle_width = 10.0 / (WIDTH);
+    angle = atan(screen_width / screen_dis) / M_PI;
+    d_list->rc->dir = d_list->rc->look + angle;
+// angle = 0.5 / WIDTH;
+// d_list->rc->dir = d_list->rc->look + 0.5;
     if (d_list->rc->dir > 2)
         d_list->rc->dir -= 2;
-    angle = 2.0 / (WIDTH);
     while (i < WIDTH)
     {
-        shoot_ray(d_list, d_list->rc, i);
+        screen_width -= pixle_width;
+        angle = (d_list->rc->dir - d_list->rc->look - atan(screen_width / screen_dis) / M_PI);
+        if (angle >= 2)
+            angle -= 2;
+
+        
+        sum += fabs(angle);
+    printf("dir: %f\tang: %f\n", d_list->rc->dir, angle);
         d_list->rc->dir -= angle;
+        shoot_ray(d_list, d_list->rc, i);
         i++;
         if (d_list->rc->dir < 0)
             d_list->rc->dir += 2;
     }
+    printf("sum %f\n", sum);
 }
