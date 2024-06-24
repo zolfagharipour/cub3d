@@ -13,10 +13,15 @@ int	key_press(int keycode, t_common *d_list)
 {
 	if (keycode == XK_Escape)
 		cleanup(d_list);
-    else if (keycode == XK_Up || keycode == XK_Down || keycode == XK_Left
-		|| keycode == XK_Right)
+    else if (keycode == XK_w || keycode == XK_s || keycode == XK_a
+		|| keycode == XK_d)
 	{
 		move_window(keycode, d_list);
+		return (0);
+	}
+	else if (keycode == XK_Left || keycode == XK_Right)
+	{
+		rotate_player(keycode, d_list);
 		return (0);
 	}
 	return (0);

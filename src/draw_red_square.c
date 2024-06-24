@@ -17,8 +17,8 @@ void put_red_square(t_common *d_list)
     t_mlx   *mlx;
 
     mlx = d_list->mlx;
-    int start_x = d_list->map->scale + mlx->shift_x;
-    int start_y = d_list->map->scale + mlx->shift_y;
+    double start_x = d_list->rc->pos[0] * d_list->map->scale - 6;
+    double start_y = d_list->rc->pos[1] * d_list->map->scale - 6;
 
 
     for (int y = 0; y < d_list->map->raw_height * d_list->map->scale; y++)
@@ -28,9 +28,9 @@ void put_red_square(t_common *d_list)
             my_mlx_pixel_put(mlx, x, y, calc_color(x, y, d_list));
         }
     }
-    for (int y = 0; y < d_list->map->scale/2; y++)
+    for (int y = 0; y < 12; y++)
     {
-        for (int x = 0; x < d_list->map->scale/2; x++)
+        for (int x = 0; x < 12; x++)
         {
             my_mlx_pixel_put(mlx, start_x + x, start_y + y, ORANGE);
         }

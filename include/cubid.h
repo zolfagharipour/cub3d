@@ -52,7 +52,8 @@ typedef struct s_map
 	int		scale;
 	int		**minimap;
 	int		player_x;
-	int		player_y;	
+	int		player_y;
+	int		player_size;	
 }	t_map;
 
 typedef struct	s_raycaster
@@ -102,7 +103,7 @@ void	events(t_common *d_list);
 int		key_press(int keycode, t_common *d_list);
 void	move_window(int keycode, t_common *d_list);
 int	exceeds_boundaries(int keycode, t_common *d_list, int px_move);
-
+void	rotate_player(int keycode, t_common *d_list);
 
 
 //mohamad

@@ -86,25 +86,34 @@ void	move_window(int keycode, t_common *d_list)
 
 	adjusted = d_list->map->scale / 10;
 
-	if (keycode == XK_Up)
+	if (keycode == XK_w)
 	{
 		mlx->shift_y -= adjusted;
 		d_list->rc->pos[1] -= 0.1;
 	}
-	else if (keycode == XK_Down)
+	else if (keycode == XK_s)
 	{
 		mlx->shift_y += adjusted;
 		d_list->rc->pos[1] += 0.1;
 	}
-	else if (keycode == XK_Left)
+	else if (keycode == XK_a)
 	{
 		mlx->shift_x -= adjusted;
 		d_list->rc->pos[0] -= 0.1;
 	}
-	else if (keycode == XK_Right)
+	else if (keycode == XK_d)
 	{
 		mlx->shift_x += adjusted;
 		d_list->rc->pos[0] += 0.1;
 	}
 	put_image(d_list, mlx);
+}
+
+void	rotate_player(int keycode, t_common *d_list)
+{
+	if (keycode == XK_Left)
+		d_list->rc->look -= 0.05;
+	else if (keycode == XK_Right)
+		d_list->rc->look += 0.05;
+	put_image(d_list, d_list->mlx);
 }
