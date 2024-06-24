@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/24 15:44:25 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:27:36 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
         i ++;
     }
 
-        
+    double angle = d_list->rc->dir - d_list->rc->look;
     if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
     {
         if (rc->dir < 0.5 || rc->dir > 1.5)
@@ -162,7 +162,7 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][1] = rc->pos[1] - hit_xy(rc->steps[0], length_x(rc));
         else
             d_list->rc->hit[pixel][1] = rc->pos[1] + hit_xy(rc->steps[0], length_x(rc));
-        d_list->rc->hit[pixel][2] = length_x(rc);
+        d_list->rc->hit[pixel][2] = length_x(rc) * fabs(cos(angle));
     }
     else
     {
@@ -174,12 +174,12 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][0] = rc->pos[0] + hit_xy(rc->steps[1], length_y(rc));
         else
             d_list->rc->hit[pixel][0] = rc->pos[0] - hit_xy(rc->steps[1], length_y(rc));
-        d_list->rc->hit[pixel][2] = length_y(rc);
+        d_list->rc->hit[pixel][2] = length_y(rc) * fabs(cos(angle));
     }
     
-    printf("Dir %f\tlenX %f\tlenY %f\n", rc->dir, length_x(rc), length_y(rc));
-    printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
-    printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);
+    // printf("Dir %f\tlenX %f\tlenY %f\n", rc->dir, length_x(rc), length_y(rc));
+    // printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
+    // printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);
     
 }
 
@@ -192,8 +192,8 @@ void    caster(t_common *d_list)
     double  screen_dis;
 
     i = 0;
-    screen_width = 50;
-    screen_dis = 100;
+    screen_width = 5;
+    screen_dis = 86.6025403784;
     pixle_width = screen_dis / (WIDTH);
     angle = asin(screen_width / screen_dis) / M_PI;
     d_list->rc->dir = d_list->rc->look + angle;

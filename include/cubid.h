@@ -19,10 +19,10 @@
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
-# define N 0
-# define S 1
-# define E 2
-# define W 3
+# define N 16761035
+# define S 11393254
+# define E 9498256
+# define W 16776960
 # define SMALL_ANGLE 1e-2
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
