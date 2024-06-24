@@ -42,6 +42,9 @@ typedef struct s_mlx
 	int			x;
 	int			shift_x;
 	int			shift_y;
+	int			player_running;
+	int			move_keys[4];
+	int			last_movement_key;
 }	t_mlx;
 
 typedef struct s_map
@@ -104,6 +107,8 @@ int		key_press(int keycode, t_common *d_list);
 void	move_window(int keycode, t_common *d_list);
 int	exceeds_boundaries(int keycode, t_common *d_list, int px_move);
 void	rotate_player(int keycode, t_common *d_list);
+int	key_release(int keycode, t_common *d_list);
+
 
 
 //mohamad

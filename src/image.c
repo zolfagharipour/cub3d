@@ -75,37 +75,29 @@ void	move_window(int keycode, t_common *d_list)
 {
 	t_mlx	*mlx;
 	double	px_move;
+	double	move;
 	int		adjusted;
 
 	mlx = d_list->mlx;
 	px_move = 10;
+	move = 0.1;
 	if (exceeds_boundaries_of_image(keycode, d_list, px_move) == TRUE)
 		return ;
 	// if (player_run_into_walls(keycode, d_list, px_move) == TRUE)
 	// 	return;
-
-	adjusted = d_list->map->scale / 10;
-
+	if (d_list->mlx->player_running == TRUE)
+	{
+		px_move = 20;
+		move = 0.3;
+	}
 	if (keycode == XK_w)
-	{
-		mlx->shift_y -= adjusted;
-		d_list->rc->pos[1] -= 0.1;
-	}
+		d_list->rc->pos[1] -= move;
 	else if (keycode == XK_s)
-	{
-		mlx->shift_y += adjusted;
-		d_list->rc->pos[1] += 0.1;
-	}
+		d_list->rc->pos[1] += move;
 	else if (keycode == XK_a)
-	{
-		mlx->shift_x -= adjusted;
-		d_list->rc->pos[0] -= 0.1;
-	}
+		d_list->rc->pos[0] -= move;
 	else if (keycode == XK_d)
-	{
-		mlx->shift_x += adjusted;
-		d_list->rc->pos[0] += 0.1;
-	}
+		d_list->rc->pos[0] += move;
 	put_image(d_list, mlx);
 }
 
