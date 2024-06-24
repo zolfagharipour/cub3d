@@ -12,7 +12,7 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	if (mlx->addr == NULL)
 		cleanup(d_list);
 	caster(d_list);
-	draw_walls(d_list); 
+	draw_walls(d_list);
     put_red_square(d_list);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 }

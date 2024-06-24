@@ -46,6 +46,8 @@ void	init_rc(t_rc *rc)
 	rc->look = 0;
 	rc->pos[0] = 1.5;
 	rc->pos[1] = 1.5;
+	rc->tmp[0] = 0;
+	rc->tmp[1] = 0;
 }
 
 int	init_mlx_functions(t_common *d_list)

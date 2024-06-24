@@ -10,8 +10,8 @@
 # include <math.h>
 # include "../libft/libft.h"
 
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 1500
+# define WIDTH 1500
 # define TRUE 1
 # define FALSE 0
 # define W_SQUARE 20
@@ -64,6 +64,7 @@ typedef struct	s_raycaster
 	double		steps[2];
 	int			ray[2];
 	double		hit[WIDTH][4];
+	double		tmp[2];
 } t_rc;
 
 typedef struct s_common
