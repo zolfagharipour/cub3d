@@ -9,7 +9,7 @@ RM = rm -rf
 
 SRCS = 	src/draw_red_square.c src/events.c src/image.c src/init_structs.c \
 		src/main.c src/cleanup.c src/raw_map.c src/minimap.c \
-		src/tracing.c src/line.c
+		src/caster.c src/line.c
 
 OBJDIR = ./obj
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))

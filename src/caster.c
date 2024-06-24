@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tracing.c                                          :+:      :+:    :+:   */
+/*   caster.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/23 22:50:47 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:33:03 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void    second_step(t_rc *rc)
 
 void    step_x(t_rc *rc, int i)
 {
-    if (rc->steps[0] == 0)
-        return ;
+    // if (rc->steps[0] == 0)
+    //     return ;
     if (rc->steps[0] > 0)
     {
         rc->steps[0] += 1;
@@ -68,9 +68,9 @@ void    step_x(t_rc *rc, int i)
 
 void    step_y(t_rc *rc, int i)
 {
-    if (rc->steps[1] == 0)
-        return ;
-    if (rc->steps[1] < 1)
+    // if (rc->steps[1] == 0)
+    //     return ;
+    if (rc->steps[1] < 0)
     {
         rc->steps[1] -= 1;
         rc->hit[i][3] = S;
@@ -80,32 +80,44 @@ void    step_y(t_rc *rc, int i)
         rc->steps[1] += 1;
         rc->hit[i][3] = N;
     }
-    // printf("Y: %f\n", rc->steps[1]);
 }
 
 double  length_x(t_rc *rc)
 {
+    double  dir;
+    
     if (rc->dir < 0.5)
-        return fabs(rc->steps[0] / cos(rc->dir * M_PI));
+        dir = rc->dir * M_PI;
     else if (rc->dir < 1.0)
-        return fabs(rc->steps[0] / cos((1.0 - rc->dir) * M_PI));
+        dir = (1.0 - rc->dir) * M_PI;    
     else if (rc->dir < 1.5)
-        return fabs(rc->steps[0] / cos((rc->dir - 1.0) * M_PI));
+        dir = (rc->dir - 1.0) * M_PI;
     else if (rc->dir < 2.0)
-        return fabs(rc->steps[0] / cos((2.0 - rc->dir) * M_PI));
+        dir = (2.0 - rc->dir) * M_PI;
+    return fabs(rc->steps[0] / cos(dir));
 }
 
 
 double  length_y(t_rc *rc)
 {
+    double  sing;
+    double  dir;
+
     if (rc->dir < 0.5)
-        return fabs(rc->steps[1] / tan(rc->dir * M_PI));
+        // dir = rc->dir * M_PI;
+        return fabs(rc->steps[1] / sin(rc->dir * M_PI));
     else if (rc->dir < 1.0)
-        return fabs(rc->steps[1] / tan((1.0 - rc->dir) * M_PI));
+        // dir = (1.0 - rc->dir) * M_PI;
+        return fabs(rc->steps[1] / sin((1.0 - rc->dir) * M_PI));
     else if (rc->dir < 1.5)
-        return fabs(rc->steps[1] / tan((rc->dir - 1.0) * M_PI));
+        // dir = (rc->dir - 1.0) * M_PI;
+        return fabs(rc->steps[1] / sin((rc->dir - 1.0) * M_PI));
     else if (rc->dir < 2.0)
-        return fabs(rc->steps[1] / tan((2.0 - rc->dir) * M_PI));
+    // dir = (2.0 - rc->dir) * M_PI;
+        return fabs(rc->steps[1] / sin((2.0 - rc->dir) * M_PI));
+
+    // return (rc->steps[1] * (1/dir - dir/3 - pow(dir, 3)/45));
+    
 }
 
 void    move_ray(t_rc *rc)
@@ -131,7 +143,7 @@ double  hit_xy(double b, double c)
     double  a;
 
     a = pow(c, 2) - pow(b, 2);
-    // printf("A %f\n", sqrt(a));
+    // printf("B %f\tC %f\tA %f\n", b, c, sqrt(a));
     return (sqrt(a));
 }
 
@@ -176,13 +188,13 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][0] = rc->pos[0] - hit_xy(rc->steps[1], length_y(rc));
     }
     
-    // printf("x %f\ty %f\n", length_x(rc), length_y(rc));
-    // printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
-    // printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);
+    printf("Dir %f\tlenX %f\tlenY %f\n", rc->dir, length_x(rc), length_y(rc));
+    printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
+    printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);
     
 }
 
-void    tracer(t_common *d_list)
+void    caster(t_common *d_list)
 {
     int     i;
     double  angle;
@@ -190,34 +202,30 @@ void    tracer(t_common *d_list)
     double  screen_width;
     double  screen_dis;
 
-    double  sum = 0;
-    
-
     i = 0;
     screen_width = 50;
     screen_dis = 100;
     pixle_width = screen_dis / (WIDTH);
-    angle = atan(screen_width / screen_dis) / M_PI;
+    angle = asin(screen_width / screen_dis) / M_PI;
     d_list->rc->dir = d_list->rc->look + angle;
-// angle = 0.5 / WIDTH;
-// d_list->rc->dir = d_list->rc->look + 0.5;
+    
+    // d_list->rc->dir = d_list->rc->look + 0.5;
+    // angle = 2.0 / WIDTH;
+
     if (d_list->rc->dir > 2)
         d_list->rc->dir -= 2;
     while (i < WIDTH)
     {
         screen_width -= pixle_width;
-        angle = (d_list->rc->dir - d_list->rc->look - atan(screen_width / screen_dis) / M_PI);
+        angle = (d_list->rc->dir - d_list->rc->look - asin(screen_width / screen_dis) / M_PI);
         if (angle >= 2)
             angle -= 2;
-
-        
-        sum += fabs(angle);
-    printf("dir: %f\tang: %f\n", d_list->rc->dir, angle);
         d_list->rc->dir -= angle;
-        shoot_ray(d_list, d_list->rc, i);
-        i++;
         if (d_list->rc->dir < 0)
             d_list->rc->dir += 2;
+        
+    // printf("dir: %f\sing: %f\n", d_list->rc->dir, angle);
+        shoot_ray(d_list, d_list->rc, i);
+        i++;
     }
-    printf("sum %f\n", sum);
 }

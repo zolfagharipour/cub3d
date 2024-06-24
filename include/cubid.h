@@ -17,10 +17,11 @@
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
-# define N 0;
-# define S 1;
-# define E 2;
-# define W 3;
+# define N 0
+# define S 1
+# define E 2
+# define W 3
+# define SMALL_ANGLE 1e-2
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -58,7 +59,6 @@ typedef struct	s_raycaster
 	double		steps[2];
 	int			ray[2];
 	double		hit[WIDTH][4];
-	int			length[2];
 } t_rc;
 
 typedef struct s_common
@@ -100,7 +100,7 @@ void	move_window(int keycode, t_common *d_list);
 
 //mohamad
 int		minimap(t_common *d_list);
-void    tracer(t_common *d_list);
+void    caster(t_common *d_list);
 void    line(t_common *d_list, double p1[2], double p2[2], int color);
 
 
