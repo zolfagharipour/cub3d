@@ -4,8 +4,11 @@ int calc_color(int x, int y, t_common *d_list)
 {
     if  (d_list->map->minimap[x][y] == 1)
         return DBLUE;
+    // else if  (d_list->map->minimap[x][y] == 0)
+    //     return LBLUE;
     else
         return LBLUE;
+    // return RED;
 }
 
 //print maze and player
@@ -24,9 +27,9 @@ void put_red_square(t_common *d_list)
             my_mlx_pixel_put(mlx, x, y, calc_color(x, y, d_list));
         }
     }
-    for (int y = 0; y < d_list->map->scale; y++)
+    for (int y = 0; y < d_list->map->scale/2; y++)
     {
-        for (int x = 0; x < d_list->map->scale; x++)
+        for (int x = 0; x < d_list->map->scale/2; x++)
         {
             my_mlx_pixel_put(mlx, start_x + x, start_y + y, RED);
         }
