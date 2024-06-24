@@ -14,7 +14,8 @@
 # define WIDTH 800
 # define TRUE 1
 # define FALSE 0
-# define W_SQUARE 20
+//definition square size can be amended
+# define SQUARE 8
 # define ORANGE 0xec956c
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6

@@ -24,7 +24,7 @@ void	init_map(t_map *map)
 	map->player_x = 0;
 	map->player_y = 0;
 	map->player_size = 0;
-	map->scale = 50;
+	map->scale = 30;
 	map->player_size = map->scale/2;
 }
 
