@@ -4,10 +4,12 @@ int	init_structs(t_common *d_list)
 {
 	d_list->map = (t_map *)malloc(sizeof(t_map));
 	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	d_list->rc = (t_rc *)malloc(sizeof(t_rc));
 	if (!d_list->map || !d_list->mlx)
 		return 0;
 	init_mlx(d_list->mlx);
 	init_map(d_list->map);
+	init_rc(d_list->rc);
 	if (init_mlx_functions(d_list) == 0)
 		return 0;
 	return 1;
@@ -35,6 +37,13 @@ void	init_mlx(t_mlx *mlx)
 	mlx->y = 0;
     mlx->shift_x = 0;
     mlx->shift_y = 0;
+}
+
+void	init_rc(t_rc *rc)
+{
+	rc->look = 0;
+	rc->pos[0] = 1.5;
+	rc->pos[1] = 1.5;
 }
 
 int	init_mlx_functions(t_common *d_list)

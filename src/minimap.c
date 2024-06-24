@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:40:35 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/21 17:37:20 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:06:50 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		minimap(t_common *dlist)
 	int		i;
 	int		j;
 
-	dlist->map->scale = 20;
+	dlist->map->scale = 50;
 	dlist->map->minimap = malloc(sizeof(int *) * dlist->map->scale * dlist->map->raw_height);
 	if (!dlist->map->minimap)
 		return (0);
