@@ -102,6 +102,7 @@ void	move_window(int keycode, t_common *d_list);
 int		minimap(t_common *d_list);
 void    caster(t_common *d_list);
 void    line(t_common *d_list, double p1[2], double p2[2], int color);
+void	draw_walls(t_common *d_list);
 
 
 

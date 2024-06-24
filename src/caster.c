@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/24 14:33:03 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:44:25 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void    first_step(t_rc *rc)
         rc->steps[0] = 1 - modf(rc->pos[0], &trash);
         rc->steps[1] = 1 - modf(rc->pos[1], &trash);
     }
-    //  CHECK THIS!!
     rc->ray[0] = rc->pos[0];
     rc->ray[1] = rc->pos[1];
 }
@@ -52,8 +51,6 @@ void    second_step(t_rc *rc)
 
 void    step_x(t_rc *rc, int i)
 {
-    // if (rc->steps[0] == 0)
-    //     return ;
     if (rc->steps[0] > 0)
     {
         rc->steps[0] += 1;
@@ -68,8 +65,6 @@ void    step_x(t_rc *rc, int i)
 
 void    step_y(t_rc *rc, int i)
 {
-    // if (rc->steps[1] == 0)
-    //     return ;
     if (rc->steps[1] < 0)
     {
         rc->steps[1] -= 1;
@@ -100,24 +95,17 @@ double  length_x(t_rc *rc)
 
 double  length_y(t_rc *rc)
 {
-    double  sing;
     double  dir;
 
     if (rc->dir < 0.5)
-        // dir = rc->dir * M_PI;
-        return fabs(rc->steps[1] / sin(rc->dir * M_PI));
+        dir = rc->dir * M_PI;
     else if (rc->dir < 1.0)
-        // dir = (1.0 - rc->dir) * M_PI;
-        return fabs(rc->steps[1] / sin((1.0 - rc->dir) * M_PI));
+        dir = (1.0 - rc->dir) * M_PI;    
     else if (rc->dir < 1.5)
-        // dir = (rc->dir - 1.0) * M_PI;
-        return fabs(rc->steps[1] / sin((rc->dir - 1.0) * M_PI));
+        dir = (rc->dir - 1.0) * M_PI;
     else if (rc->dir < 2.0)
-    // dir = (2.0 - rc->dir) * M_PI;
-        return fabs(rc->steps[1] / sin((2.0 - rc->dir) * M_PI));
-
-    // return (rc->steps[1] * (1/dir - dir/3 - pow(dir, 3)/45));
-    
+        dir = (2.0 - rc->dir) * M_PI;
+    return fabs(rc->steps[1] / sin(dir));
 }
 
 void    move_ray(t_rc *rc)
@@ -127,7 +115,7 @@ void    move_ray(t_rc *rc)
         if (rc->dir < 0.5 || rc->dir > 1.5)
             rc->ray[0] += 1;
         else
-           rc->ray[0] -= 1;
+            rc->ray[0] -= 1;
     }
     else
     {
@@ -143,7 +131,6 @@ double  hit_xy(double b, double c)
     double  a;
 
     a = pow(c, 2) - pow(b, 2);
-    // printf("B %f\tC %f\tA %f\n", b, c, sqrt(a));
     return (sqrt(a));
 }
 
@@ -175,6 +162,7 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][1] = rc->pos[1] - hit_xy(rc->steps[0], length_x(rc));
         else
             d_list->rc->hit[pixel][1] = rc->pos[1] + hit_xy(rc->steps[0], length_x(rc));
+        d_list->rc->hit[pixel][2] = length_x(rc);
     }
     else
     {
@@ -186,6 +174,7 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][0] = rc->pos[0] + hit_xy(rc->steps[1], length_y(rc));
         else
             d_list->rc->hit[pixel][0] = rc->pos[0] - hit_xy(rc->steps[1], length_y(rc));
+        d_list->rc->hit[pixel][2] = length_y(rc);
     }
     
     printf("Dir %f\tlenX %f\tlenY %f\n", rc->dir, length_x(rc), length_y(rc));
@@ -223,8 +212,6 @@ void    caster(t_common *d_list)
         d_list->rc->dir -= angle;
         if (d_list->rc->dir < 0)
             d_list->rc->dir += 2;
-        
-    // printf("dir: %f\sing: %f\n", d_list->rc->dir, angle);
         shoot_ray(d_list, d_list->rc, i);
         i++;
     }
