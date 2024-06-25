@@ -10,8 +10,8 @@
 # include <math.h>
 # include "../libft/libft.h"
 
-# define HEIGHT 1500
-# define WIDTH 1500
+# define HEIGHT 800
+# define WIDTH 800
 # define TRUE 1
 # define FALSE 0
 # define W_SQUARE 20
