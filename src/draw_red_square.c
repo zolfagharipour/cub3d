@@ -4,11 +4,8 @@ int calc_color(int x, int y, t_common *d_list)
 {
     if  (d_list->map->minimap[x][y] == 1)
         return DBLUE;
-    // else if  (d_list->map->minimap[x][y] == 0)
-    //     return LBLUE;
     else
         return LBLUE;
-    // return RED;
 }
 
 //print maze and player
@@ -57,40 +54,11 @@ void find_the_players_position(t_common *d_list)
         {
             if (d_list->map->raw_map[i][j] == 2)
             {
-                d_list->map->player_x = j;
-                d_list->map->player_y = i;
+                d_list->rc->pos[0] = i + 0.5;
+                d_list->rc->pos[1] = j + 0.5;
                 return ;
             }
         }
     }
 }
 
-// int	c_rgb(int r, int g, int b)
-// {
-// 	return (r << 16 | g << 8 | b);
-// }
-
-// void	mix_colors(t_list *mlx, int i, int color)
-// {
-// 	if (color == BLUE)
-// 	{
-// 		if (i == mlx->max_iter)
-// 			mlx->col = c_rgb(1, 30, 60);
-// 		else
-// 			mlx->col = c_rgb((i * 1) % 255, (i * 2 + 10) % 255, (i * 5) % 255);
-// 	}
-// 	else if (color == RED)
-// 	{
-// 		if (i == mlx->max_iter)
-// 			mlx->col = c_rgb(48, 1, 1);
-// 		else
-// 			mlx->col = c_rgb((i * 5 + 50) % 255, (i * 2) % 255, (i * 2) % 255);
-// 	}
-// 	else if (color == GREEN)
-// 	{
-// 		if (i == mlx->max_iter)
-// 			mlx->col = c_rgb(1, 70, 20);
-// 		else
-// 			mlx->col = c_rgb((i * 1) % 255, (i * 5) % 255, (i * 2) % 255);
-// 	}
-// }

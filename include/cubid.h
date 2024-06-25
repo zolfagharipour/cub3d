@@ -15,7 +15,7 @@
 # define TRUE 1
 # define FALSE 0
 //definition square size can be amended
-# define SQUARE 8
+# define SQUARE 12
 # define ORANGE 0xec956c
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6

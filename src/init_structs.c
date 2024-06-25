@@ -25,7 +25,7 @@ void	init_map(t_map *map)
 	map->player_y = 0;
 	map->player_size = 0;
 	map->scale = 30;
-	map->player_size = map->scale/2;
+	map->player_size = map->scale / 2;
 }
 
 void	init_mlx(t_mlx *mlx)
@@ -44,8 +44,10 @@ void	init_mlx(t_mlx *mlx)
 void	init_rc(t_rc *rc)
 {
 	rc->look = 0;
-	rc->pos[0] = 1.5;
-	rc->pos[1] = 1.5;
+	// rc->pos[0] = 1.5;
+	// rc->pos[1] = 1.5;
+	rc->pos[0] = 0;
+	rc->pos[1] = 0;
 }
 
 int	init_mlx_functions(t_common *d_list)
