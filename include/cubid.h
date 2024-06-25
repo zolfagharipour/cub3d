@@ -93,6 +93,8 @@ int		error_arguments(int argc, char **argv);
 int determine_map_size(t_common *d_list);
 int read_map_from_file(t_common *d_list);
 int fill_raw_map(t_common *d_list);
+void find_the_players_position(t_common *d_list);
+
 
 
 

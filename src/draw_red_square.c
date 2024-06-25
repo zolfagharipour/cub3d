@@ -40,19 +40,5 @@ void put_red_square(t_common *d_list)
     // }
 }
 
-void find_the_players_position(t_common *d_list)
-{
-    for (int i = 0; i < d_list->map->raw_height; i++)
-    {
-        for (int j = 0; j < d_list->map->raw_length; j++)
-        {
-            if (d_list->map->raw_map[i][j] == 2)
-            {
-                d_list->rc->pos[0] = i + 0.5;
-                d_list->rc->pos[1] = j + 0.5;
-                return ;
-            }
-        }
-    }
-}
+
 

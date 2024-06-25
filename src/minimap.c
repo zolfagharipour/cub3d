@@ -79,3 +79,23 @@ int		minimap(t_common *dlist)
 	fill_mmap(dlist, dlist->map->scale);
 	return (1);
 }
+
+// //optional
+//  int i;
+
+//     // Allocate memory for the rows
+//     dlist->map->minimap = malloc(sizeof(int *) * dlist->map->scale * dlist->map->raw_height);
+//     if (!dlist->map->minimap)
+//         return (0);
+
+//     // Allocate memory for each row
+//     for (i = 0; i < dlist->map->scale * dlist->map->raw_height; i++)
+//     {
+//         dlist->map->minimap[i] = malloc(sizeof(int) * dlist->map->scale * dlist->map->raw_length);
+//         if (!dlist->map->minimap[i])
+//             return (free_mmap(dlist->map->minimap));
+//     }
+
+//     // Fill the minimap
+//     fill_mmap(dlist, dlist->map->scale);
+//     return (1);
