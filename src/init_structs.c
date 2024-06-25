@@ -1,6 +1,6 @@
 #include "cubid.h"
 
-int	init_structs(t_common *d_list)
+int	init_structs(t_common *d_list, char *file)
 {
 	d_list->map = (t_map *)malloc(sizeof(t_map));
 	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx));
@@ -8,14 +8,14 @@ int	init_structs(t_common *d_list)
 	if (!d_list->map || !d_list->mlx)
 		return 0;
 	init_mlx(d_list->mlx);
-	init_map(d_list->map);
+	init_map(d_list->map, file);
 	init_rc(d_list->rc);
 	if (init_mlx_functions(d_list) == 0)
 		return 0;
 	return 1;
 }
 
-void	init_map(t_map *map)
+void	init_map(t_map *map, char *file)
 {
 	map->raw_map = NULL,
 	map->minimap = NULL,
@@ -24,8 +24,11 @@ void	init_map(t_map *map)
 	map->player_x = 0;
 	map->player_y = 0;
 	map->player_size = 0;
-	map->scale = 30;
+	map->scale = 10;
 	map->player_size = map->scale / 2;
+	map->file = ft_strdup(file);
+	if (!map->file)
+		return ;
 }
 
 void	init_mlx(t_mlx *mlx)

@@ -4,10 +4,20 @@ int	cleanup(t_common *d_list)
 {
 	cleanup_mlx(d_list->mlx);
     cleanup_map(d_list->map);
+    //cleanup_rc(d_list->rc);
     cleanup_d_list(d_list);
 	exit (1);
     return (0);
 }
+
+// void    cleanup_rc(t_rc *rc)
+// {
+//     if (rc)
+//     {
+//         free(rc);
+//         rc = NULL;
+//     }
+// }
 
 void    cleanup_mlx(t_mlx *mlx)
 {
@@ -42,6 +52,8 @@ void    cleanup_map(t_map *map)
         free(map->raw_map);
         map->raw_map = NULL;
     }
+    if (map && map->file)
+        free(map->file);
 }
 }
 
@@ -57,5 +69,10 @@ void    cleanup_d_list(t_common *d_list)
         free(d_list->mlx);
         d_list->mlx = NULL;
     }
+    // if (d_list->rc)
+    // {
+    //     free(d_list->rc);
+    //     d_list->rc = NULL;
+    // }
     d_list = NULL;
 }

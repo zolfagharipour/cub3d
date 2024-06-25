@@ -9,6 +9,7 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include "../libft/libft.h"
+# include <fcntl.h>
 
 # define HEIGHT 800
 # define WIDTH 800
@@ -43,9 +44,7 @@ typedef struct s_mlx
 	int			x;
 	int			shift_x;
 	int			shift_y;
-	int			player_running;
-	int			move_keys[4];
-	int			last_movement_key;
+	//int			player_running;
 }	t_mlx;
 
 typedef struct s_map
@@ -55,9 +54,11 @@ typedef struct s_map
 	int		raw_height;
 	int		scale;
 	int		**minimap;
+	char	*file;
 	int		player_x;
 	int		player_y;
 	int		player_size;	
+	int		fd;
 }	t_map;
 
 typedef struct	s_raycaster
@@ -78,15 +79,21 @@ typedef struct s_common
 } t_common;
 
 //setup
-int		main(void);
-int		init_structs(t_common *d_list);
+int		init_structs(t_common *d_list, char *file);
 void	init_mlx(t_mlx *mlx);
-void	init_map(t_map *map);
+void	init_map(t_map *map, char *file);
 void	init_rc(t_rc *rc);
 int		init_mlx_functions(t_common *d_list);
 void    put_red_square(t_common *d_list);
 void	put_image(t_common *d_list, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+int		error_arguments(int argc, char **argv);
+
+//read_from_file
+int determine_map_size(t_common *d_list);
+int read_map_from_file(t_common *d_list);
+int fill_raw_map(t_common *d_list);
+
 
 
 //testing
@@ -101,6 +108,8 @@ int		cleanup(t_common *d_list);
 void    cleanup_mlx(t_mlx *mlx);
 void    cleanup_map(t_map *map);;
 void    cleanup_d_list(t_common *d_list);
+void    cleanup_rc(t_rc *rc);
+
 
 //events
 void	events(t_common *d_list);

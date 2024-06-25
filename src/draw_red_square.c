@@ -31,19 +31,13 @@ void put_red_square(t_common *d_list)
             my_mlx_pixel_put(mlx, start_x + x, start_y + y, ORANGE);
         }
     }
-    for (int i = 0; i < WIDTH; i++)
-    {
-        my_mlx_pixel_put(mlx, d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale, RED);
-        double p1[2] = {d_list->rc->pos[0] * d_list->map->scale, d_list->rc->pos[1] * d_list->map->scale};
-        double p2[2] = {d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale};
-    	line(d_list, p1, p2, RED);
-
-
-        double p3[2] = {p1[0] + 20, p1[1] + 10};
-        double p4[2] = {p1[0] + 20, p1[1] - 10};
-    	line(d_list, p1, p3, 0);
-    	line(d_list, p1, p4, 0);
-    }
+    // for (int i = 0; i < WIDTH; i++)
+    // {
+    //     my_mlx_pixel_put(mlx, d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale, RED);
+    //     double p1[2] = {d_list->rc->pos[0] * d_list->map->scale, d_list->rc->pos[1] * d_list->map->scale};
+    //     double p2[2] = {d_list->rc->hit[i][0] * d_list->map->scale, d_list->rc->hit[i][1] * d_list->map->scale};
+    // 	line(d_list, p1, p2, RED);
+    // }
 }
 
 void find_the_players_position(t_common *d_list)
