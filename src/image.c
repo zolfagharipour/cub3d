@@ -71,55 +71,42 @@ int	exceeds_boundaries_of_image(int keycode, t_common *d_list, int px_move)
 // }
 
 
-void	move_window(int keycode, t_common *d_list)
-{
-	t_mlx	*mlx;
-	double	px_move;
-	int		adjusted;
+// void	move_window(int keycode, t_common *d_list)
+// {
+// 	t_mlx	*mlx;
+// 	double	px_move;
+// 	int		adjusted;
 
-	mlx = d_list->mlx;
-	px_move = 10;
-	if (exceeds_boundaries_of_image(keycode, d_list, px_move) == TRUE)
-		return ;
-	// if (player_run_into_walls(keycode, d_list, px_move) == TRUE)
-	// 	return;
+// 	mlx = d_list->mlx;
+// 	px_move = 10;
+// 	if (exceeds_boundaries_of_image(keycode, d_list, px_move) == TRUE)
+// 		return ;
+// 	// if (player_run_into_walls(keycode, d_list, px_move) == TRUE)
+// 	// 	return;
 
-	adjusted = d_list->map->scale / 10;
+// 	adjusted = d_list->map->scale / 10;
 
-	if (keycode == XK_w)
-	{
-		mlx->shift_y -= adjusted;
-		d_list->rc->pos[1] -= 0.1;
-	}
-	else if (keycode == XK_s)
-	{
-		mlx->shift_y += adjusted;
-		d_list->rc->pos[1] += 0.1;
-	}
-	else if (keycode == XK_a)
-	{
-		mlx->shift_x -= adjusted;
-		d_list->rc->pos[0] -= 0.1;
-	}
-	else if (keycode == XK_d)
-	{
-		mlx->shift_x += adjusted;
-		d_list->rc->pos[0] += 0.1;
-	}
-	put_image(d_list, mlx);
-}
+// 	if (keycode == XK_w)
+// 	{
+// 		mlx->shift_y -= adjusted;
+// 		d_list->rc->pos[1] -= 0.1;
+// 	}
+// 	else if (keycode == XK_s)
+// 	{
+// 		mlx->shift_y += adjusted;
+// 		d_list->rc->pos[1] += 0.1;
+// 	}
+// 	else if (keycode == XK_a)
+// 	{
+// 		mlx->shift_x -= adjusted;
+// 		d_list->rc->pos[0] -= 0.1;
+// 	}
+// 	else if (keycode == XK_d)
+// 	{
+// 		mlx->shift_x += adjusted;
+// 		d_list->rc->pos[0] += 0.1;
+// 	}
+// 	put_image(d_list, mlx);
+// }
 
-void	rotate_player(int keycode, t_common *d_list)
-{
-	if (keycode == XK_Left)
-		d_list->rc->look -= 0.05;
-	else if (keycode == XK_Right)
-		d_list->rc->look += 0.05;
 
-	if (d_list->rc->look >= 2.0)
-		d_list->rc->look -= 2.0;
-	else if (d_list->rc->look < 0.0)
-		d_list->rc->look += 2.0;
-		// printf ("look %f\n", d_list->rc->look);
-	put_image(d_list, d_list->mlx);
-}
