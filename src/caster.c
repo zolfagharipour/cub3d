@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/25 12:44:22 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:34:20 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ double  pyth(double b, double c)
 
 void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
 {
-        printf ("dir: %f\n", d_list->rc->dir);
     first_step(rc);
     second_step(rc);
     move_ray(rc);
@@ -221,6 +220,7 @@ void    caster(t_common *d_list)
 
     if (d_list->rc->dir >= 2.0)
         d_list->rc->dir -= 2.0;
+    
     while (i < WIDTH)
     {
         screen_width -= pixle_width;

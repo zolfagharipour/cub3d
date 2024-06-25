@@ -43,7 +43,7 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_rc(t_rc *rc)
 {
-	rc->look = 0;
+	rc->look = 0.0;
 	rc->pos[0] = 1.5;
 	rc->pos[1] = 1.5;
 	rc->tmp[0] = 0;

@@ -14,7 +14,7 @@
 # define WIDTH 800
 # define TRUE 1
 # define FALSE 0
-# define W_SQUARE 20
+# define MOVING_DIS 0.1
 # define ORANGE 0xec956c
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6
@@ -59,6 +59,7 @@ typedef struct s_map
 typedef struct	s_raycaster
 {
 	double		pos[2];
+	double		move[2];
 	double		look;
 	double		dir;
 	double		steps[2];
@@ -111,6 +112,7 @@ void	rotate_player(int keycode, t_common *d_list);
 int		minimap(t_common *d_list);
 void    caster(t_common *d_list);
 void    line(t_common *d_list, double p1[2], double p2[2], int color);
+double	calc_dir(double dir);
 void	draw_walls(t_common *d_list);
 
 
