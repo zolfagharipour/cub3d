@@ -39,41 +39,41 @@ int	player_run_into_walls(int keycode, t_common *d_list, float move)
 }
 
 
-void	move_window(int keycode, t_common *d_list)
-{
-	t_mlx	*mlx;
-	double	px_move;
-	float	move;
-	int		adjusted;
+// void	move_window(int keycode, t_common *d_list)
+// {
+// 	t_mlx	*mlx;
+// 	double	px_move;
+// 	float	move;
+// 	int		adjusted;
 
-	mlx = d_list->mlx;
-	move = 0.1;
-	if (player_run_into_walls(keycode, d_list, move) == TRUE)
-		return ;
-	// if (d_list->mlx->player_running == TRUE)
-	// 	move = 0.3;
-	if (keycode == XK_w)
-		d_list->rc->pos[1] -= move;
-	else if (keycode == XK_s)
-		d_list->rc->pos[1] += move;
-	else if (keycode == XK_a)
-		d_list->rc->pos[0] -= move;
-	else if (keycode == XK_d)
-		d_list->rc->pos[0] += move;
-	put_image(d_list, mlx);
-}
+// 	mlx = d_list->mlx;
+// 	move = 0.1;
+// 	if (player_run_into_walls(keycode, d_list, move) == TRUE)
+// 		return ;
+// 	// if (d_list->mlx->player_running == TRUE)
+// 	// 	move = 0.3;
+// 	if (keycode == XK_w)
+// 		d_list->rc->pos[1] -= move;
+// 	else if (keycode == XK_s)
+// 		d_list->rc->pos[1] += move;
+// 	else if (keycode == XK_a)
+// 		d_list->rc->pos[0] -= move;
+// 	else if (keycode == XK_d)
+// 		d_list->rc->pos[0] += move;
+// 	put_image(d_list, mlx);
+// }
 
-void	rotate_player(int keycode, t_common *d_list)
-{
-	if (keycode == XK_Left)
-		d_list->rc->look -= 0.05;
-	else if (keycode == XK_Right)
-		d_list->rc->look += 0.05;
+// void	rotate_player(int keycode, t_common *d_list)
+// {
+// 	if (keycode == XK_Left)
+// 		d_list->rc->look -= 0.05;
+// 	else if (keycode == XK_Right)
+// 		d_list->rc->look += 0.05;
 
-	if (d_list->rc->look >= 2.0)
-		d_list->rc->look -= 2.0;
-	else if (d_list->rc->look < 0.0)
-		d_list->rc->look += 2.0;
-		// printf ("look %f\n", d_list->rc->look);
-	put_image(d_list, d_list->mlx);
-}
+// 	if (d_list->rc->look >= 2.0)
+// 		d_list->rc->look -= 2.0;
+// 	else if (d_list->rc->look < 0.0)
+// 		d_list->rc->look += 2.0;
+// 		// printf ("look %f\n", d_list->rc->look);
+// 	put_image(d_list, d_list->mlx);
+// }
