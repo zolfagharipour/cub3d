@@ -1,5 +1,11 @@
 #include "cubid.h"
 
+void	draw_image(t_common *d_list)
+{
+	draw_minimap(d_list);
+	draw_player(d_list);
+}
+
 void	put_image(t_common *d_list, t_mlx *mlx)
 {
 	if (mlx->img)
@@ -12,8 +18,9 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	if (mlx->addr == NULL)
 		cleanup(d_list);
 	//caster(d_list);
-    put_red_square(d_list);
-	// draw_walls(d_list);
+    //put_red_square(d_list);
+	draw_image(d_list);
+	//draw_walls(d_list);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 }
 

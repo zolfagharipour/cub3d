@@ -1,4 +1,4 @@
-// #include "cubid.h"
+#include "cubid.h"
 
 // int arg_error(int argc, char **argv)
 // {

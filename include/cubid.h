@@ -16,15 +16,17 @@
 # define TRUE 1
 # define FALSE 0
 //definition square size can be amended
-# define SQUARE 12
+# define SQUARE 10
 # define ORANGE 0xec956c
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
-# define N 0
-# define S 1
-# define E 2
-# define W 3
+# define DDBLUE 0x0
+# define N 2
+# define S 3
+# define E 4
+# define W 5
+# define RESIDUUM 6
 # define SMALL_ANGLE 1e-2
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -57,7 +59,10 @@ typedef struct s_map
 	char	*file;
 	int		player_x;
 	int		player_y;
-	int		player_size;	
+	int		player_size;
+	int		s_square;	
+	int		player_found;
+	int		previous_line_valid;
 	int		fd;
 }	t_map;
 
@@ -95,14 +100,17 @@ int read_map_from_file(t_common *d_list);
 int fill_raw_map(t_common *d_list);
 void find_the_players_position(t_common *d_list);
 
-
-
-
 //testing
 int test_map(t_common *d_list);
 int malloc_raw_map(t_common *d_list);
 void print_map(t_map *map);
 void find_the_players_position(t_common *d_list);
+
+//image
+void	draw_image(t_common *d_list);
+void    draw_minimap(t_common *d_list);
+void    draw_player(t_common *d_list);
+
 
 
 //cleanup
@@ -111,15 +119,15 @@ void    cleanup_mlx(t_mlx *mlx);
 void    cleanup_map(t_map *map);;
 void    cleanup_d_list(t_common *d_list);
 void    cleanup_rc(t_rc *rc);
+void    p_error(char *str, t_common *d_list);
 
 
 //events
 void	events(t_common *d_list);
 int		key_press(int keycode, t_common *d_list);
 void	move_window(int keycode, t_common *d_list);
-int	exceeds_boundaries(int keycode, t_common *d_list, int px_move);
 void	rotate_player(int keycode, t_common *d_list);
-int	key_release(int keycode, t_common *d_list);
+int		key_release(int keycode, t_common *d_list);
 
 
 

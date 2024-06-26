@@ -8,7 +8,10 @@ int main(int argc, char **argv)
         return (0);
     if (init_structs(&d_list, argv[1]) == 0)
       return (0);
-    read_map_from_file(&d_list);
+    if (!read_map_from_file(&d_list))
+      return (0);
+    if (init_mlx_functions(&d_list) == 0)
+      return 0;
    // test_map(&d_list);
     if (minimap(&d_list) == 0)
       return (cleanup(&d_list), 0);

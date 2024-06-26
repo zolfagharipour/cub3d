@@ -16,3 +16,10 @@ int error_arguments(int argc, char **argv)
     close(fd);
     return 1;
 }
+
+void    p_error(char *str, t_common *d_list)
+{
+    ft_printf("Error\n%s\n", str);
+    cleanup(d_list);
+    exit(0);
+}

@@ -5,6 +5,7 @@ int	cleanup(t_common *d_list)
 	cleanup_mlx(d_list->mlx);
     cleanup_map(d_list->map);
     //cleanup_rc(d_list->rc);
+    close (d_list->map->fd);
     cleanup_d_list(d_list);
 	exit (1);
     return (0);
