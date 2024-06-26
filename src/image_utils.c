@@ -8,7 +8,7 @@ void    fill_pixel(int x, int y, int ii, int jj, t_common *d_list)
     if (d_list->map->raw_map[y][x] == 1)
         my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DBLUE);
     else if (d_list->map->raw_map[y][x] == RESIDUUM)
-        my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DBLUE);
+        my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DDBLUE);
     else
         my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, LBLUE);
 }

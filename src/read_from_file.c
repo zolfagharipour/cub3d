@@ -60,6 +60,9 @@ int fill_raw_map(t_common *d_list)
     while (line && i < map->raw_height)
     {
         j = 0;
+        for (int k = 0; k < map->raw_length; k++) {
+            map->raw_map[i][k] = RESIDUUM;
+        }
         while (line[j] && j < map->raw_length)
         {
             if (line[j] == '1')
@@ -119,11 +122,11 @@ void    check_map_scale_factor(t_common *d_list)
 
     reduction = 0;
     map = d_list->map;
-    if (map->raw_length * map->scale >= WIDTH / 2 ||
-        map->raw_height * map->scale >= HEIGHT / 2)
+    if (map->raw_length * map->scale >= WIDTH / -100 ||
+        map->raw_height * map->scale >= HEIGHT / -100)
         {
-            while ((map->raw_length * map->scale >= WIDTH / 2 ||
-                map->raw_height * map->scale >= HEIGHT / 2) && map->scale > 2)
+            while ((map->raw_length * map->scale >= WIDTH -100 ||
+                map->raw_height * map->scale >= HEIGHT -100) && map->scale > 2)
             {
                 map->scale = map->scale - 2;
                 reduction++;
@@ -160,7 +163,7 @@ int validate_map_line(char *line, t_common *d_list)
     digit_sequence_start = 0;
     while (line[i] && line[i] != '\n')
     {
-        if (ft_isdigit(line[i]))
+        if (line[i] == '0' || line[i] == '1')
             digit_sequence_start = 1;
         else if (line[i] == ' ')
         {
@@ -175,10 +178,10 @@ int validate_map_line(char *line, t_common *d_list)
                 d_list->map->player_found = 1;
         }
         else
-            return (write (1, &line[i], 2), p_error("Invalid character in map", d_list), 0);
+            return (p_error("Invalid character in map", d_list), 0);
         i++;
     }
-    d_list->map->previous_line_valid = 1;
+    //d_list->map->previous_line_valid = 1;
     return (1);
 }
 
