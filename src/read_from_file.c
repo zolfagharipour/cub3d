@@ -122,11 +122,11 @@ void    check_map_scale_factor(t_common *d_list)
 
     reduction = 0;
     map = d_list->map;
-    if (map->raw_length * map->scale >= WIDTH / -100 ||
-        map->raw_height * map->scale >= HEIGHT / -100)
+    if (map->raw_length * map->scale >= WIDTH / 2 ||
+        map->raw_height * map->scale >= HEIGHT / 2)
         {
-            while ((map->raw_length * map->scale >= WIDTH -100 ||
-                map->raw_height * map->scale >= HEIGHT -100) && map->scale > 2)
+            while ((map->raw_length * map->scale >= WIDTH / 2 ||
+                map->raw_height * map->scale >= HEIGHT / 2) && map->scale > 2)
             {
                 map->scale = map->scale - 2;
                 reduction++;
