@@ -36,7 +36,7 @@ void	init_map(t_map *map, char *file)
 	map->player_y = 0;
 	map->player_size = 0;
 	map->s_square = 10;
-	map->scale = 30;
+	map->scale = 25;
 	map->player_size = map->scale / 2;
 	map->file = ft_strdup(file);
 	map->player_found = 0;

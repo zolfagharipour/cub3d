@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:11 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 15:03:34 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:25:43 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ int read_map_from_file(t_common *d_list)
 
 void find_the_players_position(t_common *d_list)
 {
-    for (int i = 0; i < d_list->map->raw_height; i++)
+    for (int x = 0; x < d_list->map->raw_length; x++)
     {
-        for (int j = 0; j < d_list->map->raw_length; j++)
+        for (int y = 0; y < d_list->map->raw_height; y++)
         {
-            if (d_list->map->raw_map[i][j] == E
-                || d_list->map->raw_map[i][j] == S
-                || d_list->map->raw_map[i][j] == W
-                || d_list->map->raw_map[i][j] == N)
+            if (d_list->map->raw_map[x][y] == E
+                || d_list->map->raw_map[x][y] == S
+                || d_list->map->raw_map[x][y] == W
+                || d_list->map->raw_map[x][y] == N)
             {
-                d_list->rc->pos[0] = i + 0.5;
-                d_list->rc->pos[1] = j + 0.5;
+                d_list->rc->pos[0] = x + 0.5;
+                d_list->rc->pos[1] = y + 0.5;
                 return ;
             }
         }
@@ -48,11 +48,11 @@ void find_the_players_position(t_common *d_list)
 
 void print_map(t_map *map)
 {
-    for (int i = 0; i < map->raw_height; i++)
+    for (int y = 0; y < map->raw_height; y++)
     {
-        for (int j = 0; j < map->raw_length; j++)
+        for (int x = 0; x < map->raw_length; x++)
         {
-            printf("%d", map->raw_map[i][j]);
+            printf("%d", map->raw_map[x][y]);
         }
         printf("\n");
     }
@@ -61,42 +61,46 @@ void print_map(t_map *map)
 int fill_raw_map(t_common *d_list)
 {
     char    *line;
-    int     i = 0;
-    int     j = 0;
+    int     x = 0;
+    int     y = 0;
     t_map   *map;
 
     //cleanup stuff
     map = d_list->map;
     map->fd = open(map->file, O_RDONLY);
+    if (map->fd < 0)
+        return (cleanup(d_list), 0);
     line = get_next_line(map->fd);
-    while (line && i < map->raw_height)
+    while (line && y < map->raw_height)
     {
-        j = 0;
-        for (int k = 0; k < map->raw_length; k++) {
-            map->raw_map[i][k] = RESIDUUM;
-        }
-        while (line[j] && j < map->raw_length)
+        printf("Processing line y %d\n", y);
+        for (x = 0; x < map->raw_length; x++)
         {
-            if (line[j] == '1')
-                map->raw_map[i][j] = 1;
-            else if (line[j] == '0')
-                map->raw_map[i][j] = 0;
-            else if (line[j] == 'N')
-                map->raw_map[i][j] = N;
-            else if (line[j] == 'S')
-                map->raw_map[i][j] = S;
-            else if (line[j] == 'W')
-                map->raw_map[i][j] = W;
-            else if (line[j] == 'E')
-                map->raw_map[i][j] = E;
+            map->raw_map[x][y] = RESIDUUM;  // Initialize the row first
+        }
+
+        x = 0;
+        while (line[x] && x < map->raw_length)
+        {
+            if (line[x] == '1')
+                map->raw_map[x][y] = 1;
+            else if (line[x] == '0')
+                map->raw_map[x][y] = 0;
+            else if (line[x] == 'N')
+                map->raw_map[x][y] = N;
+            else if (line[x] == 'S')
+                map->raw_map[x][y] = S;
+            else if (line[x] == 'W')
+                map->raw_map[x][y] = W;
+            else if (line[x] == 'E')
+                map->raw_map[x][y] = E;
             else
-                map->raw_map[i][j] = RESIDUUM;
-            j++;
+                map->raw_map[x][y] = RESIDUUM;
+            x++;
         }
         free(line);
-        line = NULL;
-        line = get_next_line( d_list->map->fd);
-        i++;
+        line = get_next_line(map->fd);
+        y++;
     }
     close(d_list->map->fd);
     return (1);
@@ -105,21 +109,37 @@ int fill_raw_map(t_common *d_list)
 
 int malloc_raw_map(t_common *d_list)
 {
-    t_map   *map;
-    int     i = 0;
+    t_map *map;
+    int i = 0;
+    int rows_y = d_list->map->raw_height;
+    int columns_x = d_list->map->raw_length;
 
     map = d_list->map;
-    map->raw_map = (int **)malloc(map->raw_height * sizeof(int *));
+    map->raw_map = (int **)malloc(columns_x * sizeof(int *));
     if (!map->raw_map)
         return (cleanup(d_list), 0);
 
-    while (i < map->raw_height)
+    i = 0;
+    while (i < columns_x)
     {
-        map->raw_map[i] = (int *)malloc(map->raw_length * sizeof(int));
-        if (map->raw_map[i] == NULL)
+        map->raw_map[i] = (int *)malloc(rows_y * sizeof(int));
+        if (!map->raw_map[i])
             return (cleanup(d_list), 0);
         i++;
     }
+    // map = d_list->map;
+    // map->raw_map = (int **)malloc(map->raw_height * sizeof(int *));
+    // if (!map->raw_map)
+    //     return (cleanup(d_list), 0);
+    // printf("malloced height/y: %d\n", map->raw_height);
+    // while (i < map->raw_height)
+    // {
+    //     map->raw_map[i] = (int *)malloc(map->raw_length * sizeof(int));
+    //     if (map->raw_map[i] == NULL)
+    //         return (cleanup(d_list), 0);
+    //     i++;
+    // }
+    // printf("malloced length/x: %d\n", map->raw_length);
     return (1);
 }
 
