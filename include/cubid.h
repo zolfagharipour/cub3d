@@ -51,8 +51,16 @@ typedef struct s_mlx
 	int			x;
 	int			shift_x;
 	int			shift_y;
-	//int			player_running;
+	//int		player_running;
 }	t_mlx;
+
+typedef struct s_texture
+{
+	void	*img;
+	char	*path[4];
+	void	*mlx;
+	int		*texture_buffer[4];
+}	t_texture;
 
 typedef struct s_map
 {
@@ -85,9 +93,10 @@ typedef struct	s_raycaster
 
 typedef struct s_common
 {
-	t_mlx	*mlx;
-	t_map 	*map;
-	t_rc	*rc;
+	t_mlx		*mlx;
+	t_map 		*map;
+	t_rc		*rc;
+	t_texture	*texture;
 } t_common;
 
 //setup
@@ -145,6 +154,12 @@ void    line(t_common *d_list, double p1[2], double p2[2], int color);
 double	calc_dir(double dir);
 void	draw_walls(t_common *d_list);
 void	move_player(t_common *d_list, double move_dir);
-int my_mlx_pixel_get(t_mlx *mlx, int x, int y, int fd);
+
+//texture prototypes
+void    init_texture(t_texture *texture);
+void    load_texture(t_common *d_list, t_texture *texture, int i);
+int		my_mlx_pixel_get(t_mlx *mlx, int x, int y);
+int check_the_textures_open(void);
+
 
 #endif

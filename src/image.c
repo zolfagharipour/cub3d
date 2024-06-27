@@ -32,6 +32,14 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	caster(d_list);
 	draw_walls(d_list);
 	draw_image(d_list);
+	for (int i = 0; i < 200; i++)
+	{
+		for (int j = 0; j < 200; j++)
+		{
+			printf ("%d\n", my_mlx_pixel_get(d_list->mlx, i, j));
+			my_mlx_pixel_put(d_list->mlx, i, j, 5537454);
+		}
+	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 }
 
@@ -65,16 +73,14 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int my_mlx_pixel_get(t_mlx *mlx, int x, int y, int fd)
+int my_mlx_pixel_get(t_mlx *mlx, int x, int y)
 {
 	char	*src;
 	unsigned int color;
 
-	// Return a default color if the coordinates are out of bound
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return 0; 
 	
-	// Get the color of the pixel at x and y
 	src = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
 	color = *(unsigned int *)src;
 	
