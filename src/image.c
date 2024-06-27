@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:19 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 13:09:01 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:11:58 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,27 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	draw_walls(d_list);
 	draw_image(d_list);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+}
+
+void	move_window(int keycode, t_common *d_list)
+{
+	t_mlx	*mlx;
+	double	px_move;
+
+	mlx = d_list->mlx;
+	px_move = 10;
+	// if (exceeds_boundaries_of_image(keycode, d_list, px_move) == TRUE)
+	// 	return ;
+
+	if (keycode == XK_w)
+		move_player(d_list, d_list->rc->look);
+	else if (keycode == XK_s)
+		move_player(d_list, d_list->rc->look + 1.0);
+	else if (keycode == XK_a)
+		move_player(d_list, d_list->rc->look + 0.5);
+	else if (keycode == XK_d)
+		move_player(d_list, d_list->rc->look - 0.5);
+	put_image(d_list, mlx);
 }
 
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
