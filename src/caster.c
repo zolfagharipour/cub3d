@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/27 16:25:04 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:43:06 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void    second_step(t_rc *rc)
 
 void    step_x(t_rc *rc, int i)
 {
-    rc->hit[i][3] = rc->tmp[1];
     if (rc->steps[0] > 0)
     {
         rc->steps[0] += 1;
@@ -207,25 +206,22 @@ void    caster(t_common *d_list)
     double  screen_dis;
 
     i = 0;
-    screen_width = 5;
-    // screen_dis = 10;
-    screen_dis = 8.66025403784;
-    pixle_width = screen_width / WIDTH;
+    screen_width = 50;
+    screen_dis = 100;
+    // screen_dis = 8.66025403784;
+    pixle_width = (2 * screen_width) / WIDTH;
     angle = asin(screen_width /screen_dis) / M_PI;
     d_list->rc->dir = d_list->rc->look + angle;
-    d_list->rc->dir = 0.08333333333;
-    printf ("begin %f------", d_list->rc->dir);
-    
-    // d_list->rc->dir = d_list->rc->look + 0.5;
-    // angle = 2.0 / WIDTH;
+
 
     if (d_list->rc->dir >= 2.0)
         d_list->rc->dir -= 2.0;
     
     while (i < WIDTH)
     {
+    printf ("%f\n", asin(screen_width / screen_dis) / M_PI);
         screen_width -= pixle_width;
-        angle = d_list->rc->dir - d_list->rc->look - (asin(screen_width / screen_dis) / M_PI);
+        angle = d_list->rc->dir - (d_list->rc->look + (asin(screen_width / screen_dis) / M_PI));
         if (angle >= 2)
             angle -= 2;
         d_list->rc->dir -= angle;
@@ -233,7 +229,6 @@ void    caster(t_common *d_list)
             d_list->rc->dir += 2;
         else if (d_list->rc->dir >= 2.0)
             d_list->rc->dir -= 2.0;
-    printf ("%f--%f\n", d_list->rc->dir, d_list->rc->look);
         shoot_ray(d_list, d_list->rc, i);
         i++;
     }
