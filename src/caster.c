@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/27 16:43:06 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:17:15 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][1] = rc->pos[1] - pyth(rc->steps[0], length_x(rc));
         else
             d_list->rc->hit[pixel][1] = rc->pos[1] + pyth(rc->steps[0], length_x(rc));
-        d_list->rc->hit[pixel][2] = length_x(rc) * fabs(cos(angle));
+        d_list->rc->hit[pixel][2] = length_x(rc) * (2 * cos(angle));
     }
     else
     {
@@ -188,7 +188,7 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][0] = rc->pos[0] + pyth(rc->steps[1], length_y(rc));
         else
             d_list->rc->hit[pixel][0] = rc->pos[0] - pyth(rc->steps[1], length_y(rc));
-        d_list->rc->hit[pixel][2] = length_y(rc) * fabs(cos(angle));
+        d_list->rc->hit[pixel][2] = length_y(rc) * (2 * cos(angle));
     }
     
     // printf("Dir %f\tlenX %f\tlenY %f\n", rc->dir, length_x(rc), length_y(rc));
@@ -206,22 +206,23 @@ void    caster(t_common *d_list)
     double  screen_dis;
 
     i = 0;
-    screen_width = 50;
-    screen_dis = 100;
-    // screen_dis = 8.66025403784;
+    screen_width = 5;
+    screen_dis = 10;
     pixle_width = (2 * screen_width) / WIDTH;
-    angle = asin(screen_width /screen_dis) / M_PI;
-    d_list->rc->dir = d_list->rc->look + angle;
+    // angle = asin(screen_width /screen_dis) / M_PI;
+    // d_list->rc->dir = d_list->rc->look + angle;
 
-
+    d_list->rc->dir = d_list->rc->look + 0.0833335;
+    angle = 0.166667 / WIDTH;
+    
     if (d_list->rc->dir >= 2.0)
         d_list->rc->dir -= 2.0;
     
     while (i < WIDTH)
     {
-    printf ("%f\n", asin(screen_width / screen_dis) / M_PI);
+    // printf ("%f\n", asin(screen_width / screen_dis) / M_PI);
         screen_width -= pixle_width;
-        angle = d_list->rc->dir - (d_list->rc->look + (asin(screen_width / screen_dis) / M_PI));
+        // angle = d_list->rc->dir - (d_list->rc->look + (asin(screen_width / screen_dis) / M_PI));
         if (angle >= 2)
             angle -= 2;
         d_list->rc->dir -= angle;
