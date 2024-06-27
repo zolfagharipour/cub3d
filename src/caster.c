@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/27 13:34:59 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:26:51 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,9 +210,11 @@ void    caster(t_common *d_list)
     screen_width = 5;
     // screen_dis = 10;
     screen_dis = 8.66025403784;
-    pixle_width = screen_dis / (WIDTH);
-    angle = asin(screen_width / screen_dis) / M_PI;
+    pixle_width = screen_width / WIDTH;
+    angle = asin(screen_width /screen_dis) / M_PI;
     d_list->rc->dir = d_list->rc->look + angle;
+    d_list->rc->dir = 0.08333333333;
+    printf ("begin %f------", d_list->rc->dir);
     
     // d_list->rc->dir = d_list->rc->look + 0.5;
     // angle = 2.0 / WIDTH;
@@ -231,7 +233,9 @@ void    caster(t_common *d_list)
             d_list->rc->dir += 2;
         else if (d_list->rc->dir >= 2.0)
             d_list->rc->dir -= 2.0;
+    printf ("%f--%f\n", d_list->rc->dir, d_list->rc->look);
         shoot_ray(d_list, d_list->rc, i);
         i++;
     }
+
 }

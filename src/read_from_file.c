@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:11 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 13:00:27 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:03:34 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void find_the_players_position(t_common *d_list)
                 || d_list->map->raw_map[i][j] == W
                 || d_list->map->raw_map[i][j] == N)
             {
-                d_list->rc->pos[0] = j + 0.5;
-                d_list->rc->pos[1] = i + 0.5;
+                d_list->rc->pos[0] = i + 0.5;
+                d_list->rc->pos[1] = j + 0.5;
                 return ;
             }
         }
