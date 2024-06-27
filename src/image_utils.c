@@ -17,9 +17,9 @@ void    fill_pixel(int x, int y, int ii, int jj, t_common *d_list)
     int pixel_x = x * d_list->map->scale + ii + d_list->map->scale/2;
     int pixel_y = y * d_list->map->scale + jj + d_list->map->scale/2;
                     
-    if (d_list->map->raw_map[y][x] == 1)
+    if (d_list->map->raw_map[x][y] == 1)
         my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DBLUE);
-    else if (d_list->map->raw_map[y][x] == RESIDUUM)
+    else if (d_list->map->raw_map[x][y] == RESIDUUM)
         my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DDBLUE);
     else
         my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, LBLUE);
@@ -34,22 +34,26 @@ void    draw_minimap(t_common *d_list)
     int      jj;
 
     mlx = d_list->mlx;
-    y = -1;
-    while (++y < d_list->map->raw_height)
+    x = 0;
+    while (x < d_list->map->raw_length)
 	{
-		x = -1;
-		while (++x < d_list->map->raw_length)
+		y = 0;
+		while (y < d_list->map->raw_height)
 		{
-	        ii = -1;
-            while (++ii < d_list->map->scale)
+	        ii = 0;
+            while (ii < d_list->map->scale)
             {
-                jj = -1;
-                while (++jj < d_list->map->scale)
+                jj = 0;
+                while (jj < d_list->map->scale)
                 {
                     fill_pixel(x, y, ii, jj, d_list);
+                    jj++;
                 }
+                ii++;
 	        }
+            x++;
 		}
+        y++;
 	}
 }
 

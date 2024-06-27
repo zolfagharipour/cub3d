@@ -118,8 +118,6 @@ void	draw_image(t_common *d_list);
 void    draw_minimap(t_common *d_list);
 void    draw_player(t_common *d_list);
 
-
-
 //cleanup
 int		cleanup(t_common *d_list);
 void    cleanup_mlx(t_mlx *mlx);
@@ -145,7 +143,6 @@ void    line(t_common *d_list, double p1[2], double p2[2], int color);
 double	calc_dir(double dir);
 void	draw_walls(t_common *d_list);
 void	move_player(t_common *d_list, double move_dir);
-
-
+int		my_mlx_pixel_get(t_mlx *mlx, int x, int y);
 
 #endif
