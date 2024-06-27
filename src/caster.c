@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/25 17:21:29 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:16:46 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ void    step_x(t_rc *rc, int i)
     if (rc->steps[0] > 0)
     {
         rc->steps[0] += 1;
-        rc->tmp[0] = W;
+        rc->tmp[0] = WW;
     }
     else
     {
         rc->steps[0] -= 1;
-        rc->tmp[0] = E;
+        rc->tmp[0] = EE;
     }
 }
 
@@ -77,12 +77,12 @@ void    step_y(t_rc *rc, int i)
     if (rc->steps[1] < 0)
     {
         rc->steps[1] -= 1;
-        rc->tmp[1] = S;
+        rc->tmp[1] = SO;
     }
     else
     {
         rc->steps[1] += 1;
-        rc->tmp[1] = N;
+        rc->tmp[1] = NN;
     }
 }
 

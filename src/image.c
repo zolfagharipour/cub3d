@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:19 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 13:11:58 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:17:34 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	move_window(int keycode, t_common *d_list)
 
 	mlx = d_list->mlx;
 	px_move = 10;
-	// if (exceeds_boundaries_of_image(keycode, d_list, px_move) == TRUE)
-	// 	return ;
+
 
 	if (keycode == XK_w)
 		move_player(d_list, d_list->rc->look);

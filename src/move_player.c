@@ -86,3 +86,17 @@ void	move_player(t_common *d_list, double move_dir)
 		d_list->rc->pos[1] -= sin (move_dir* M_PI) * (MOVING_DIS);
 
 }
+void	rotate_player(int keycode, t_common *d_list)
+{
+	if (keycode == XK_Left)
+		d_list->rc->look -= 0.05;
+	else if (keycode == XK_Right)
+		d_list->rc->look += 0.05;
+
+	if (d_list->rc->look >= 2.0)
+		d_list->rc->look -= 2.0;
+	else if (d_list->rc->look < 0.0)
+		d_list->rc->look += 2.0;
+		// printf ("look %f\n", d_list->rc->look);
+	put_image(d_list, d_list->mlx);
+}
