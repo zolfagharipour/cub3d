@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:50:02 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/27 13:19:09 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:33:31 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	draw_walls(t_common *d_list)
 		}
 		p1[0] = i;
 		p2[0] = i;
+		printf("%f\n", d_list->rc->hit[i][3]);
 		line (d_list, p1, p2, d_list->rc->hit[i][3]);
 		i++;
 	}

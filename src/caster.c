@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/27 13:16:46 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:34:59 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,29 @@ void    first_step(t_rc *rc)
     {
         rc->steps[0] = 1 - modf(rc->pos[0], &trash);
         rc->steps[1] = -modf(rc->pos[1], &trash);
-        rc->tmp[0] = W;
-        rc->tmp[1] = S;
+        rc->tmp[0] = WW;
+        rc->tmp[1] = SO;
     }
     else if (rc->dir < 1)
     {
         rc->steps[0] = -modf(rc->pos[0], &trash);
         rc->steps[1] = -modf(rc->pos[1], &trash);
-        rc->tmp[0] = E;
-        rc->tmp[1] = S;
+        rc->tmp[0] = EE;
+        rc->tmp[1] = SO;
     }
     else if (rc->dir < 1.5)
     {
         rc->steps[0] = -modf(rc->pos[0], &trash);
         rc->steps[1] = 1 - modf(rc->pos[1], &trash);
-        rc->tmp[0] = E;
-        rc->tmp[1] = N;
+        rc->tmp[0] = EE;
+        rc->tmp[1] = NN;
     }
     else if (rc->dir < 2)
     {
         rc->steps[0] = 1 - modf(rc->pos[0], &trash);
         rc->steps[1] = 1 - modf(rc->pos[1], &trash);
-        rc->tmp[0] = W;
-        rc->tmp[1] = N;
+        rc->tmp[0] = WW;
+        rc->tmp[1] = NN;
     }
     rc->ray[0] = rc->pos[0];
     rc->ray[1] = rc->pos[1];
@@ -89,8 +89,7 @@ void    step_y(t_rc *rc, int i)
 double  length_x(t_rc *rc)
 {
     double  dir;
-    // if (rc->dir < 0 || rc->dir >= 2)
-    //     printf ("bad dir: %f\n", rc->dir);
+
     if (rc->dir < 0.5)
         dir = rc->dir * M_PI;
     else if (rc->dir < 1.0)
