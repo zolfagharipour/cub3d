@@ -1,9 +1,0 @@
-1. i need fmarg to create a program which give a valid minimap to my function and receive a HD		array to display on screen.
-
-2.	i need a function which:
-{
-	recieves a map and turns it into 2D minimap;
-	it 
-}
-
-

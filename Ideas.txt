@@ -1,6 +1,0 @@
-1.	instead of calculating the whole page, moving right and left, calculate one pixle and shift the rest.
-2.	use Fixed point numbers.
-3.	
-
-doesnt work because x & y switched
-sth is dependent on square shape -> minimap, calc color, draw_red_dot

@@ -144,6 +144,7 @@ void    caster(t_common *d_list);
 void    line(t_common *d_list, double p1[2], double p2[2], int color);
 double	calc_dir(double dir);
 void	draw_walls(t_common *d_list);
+void	move_player(t_common *d_list, double move_dir);
 
 
 

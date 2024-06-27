@@ -1,25 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 20:28:49 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 12:51:41 by mzolfagh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cubid.h"
 
 int	check_entire_square(t_common *d_list, int new_x, int new_y)
 {
-	double upper_left_x = new_x - d_list->map->s_square / 2;
-    double upper_left_y = new_y - d_list->map->s_square / 2;
+	double upper_left_x = new_x - SQUARE / 2;
+    double upper_left_y = new_y - SQUARE / 2;
 
-	for (int y = - 2; y < d_list->map->s_square + 2; y++)
+	for (int y = - 2; y < SQUARE + 2; y++)
     {
-        for (int x = -1; x < d_list->map->s_square + 2; x++)
+        for (int x = -1; x < SQUARE + 2; x++)
         {
 			if  (d_list->map->minimap[(int)upper_left_x + x][(int)upper_left_y + y] == 1)
             	return TRUE;
@@ -28,33 +16,73 @@ int	check_entire_square(t_common *d_list, int new_x, int new_y)
 	return FALSE;
 }
 
-void	move_window(int keycode, t_common *d_list)
+double	calc_dir(double dir)
 {
-	t_mlx	*mlx;
-	double	px_move;
-	float	move;
-	int		adjusted;
-
-	mlx = d_list->mlx;
-	move = 0.1;
-	// if (d_list->mlx->player_running == TRUE)
-	// 	move = 0.3;
-	if (keycode == XK_w)
-		d_list->rc->pos[1] -= move;
-	else if (keycode == XK_s)
-		d_list->rc->pos[1] += move;
-	else if (keycode == XK_a)
-		d_list->rc->pos[0] -= move;
-	else if (keycode == XK_d)
-		d_list->rc->pos[0] += move;
-	put_image(d_list, mlx);
+	double	rdir;
+	if (dir >= 2)
+		rdir -= 2;
+	else if (dir < 0)
+		rdir += 2;
+	if (dir < 0.5)
+		rdir = dir;
+	else if (dir < 1.0)
+		rdir = 1.0 - dir;
+	else if (dir < 1.5)
+		rdir = dir - 1;
+	else if (dir < 2.0)
+		rdir = 2 - dir;
+	return (rdir);
 }
 
-void	rotate_player(int keycode, t_common *d_list)
+
+
+int	move_check_x(t_common *d_list, double move_dir)
 {
-	if (keycode == XK_Left)
-		d_list->rc->look -= 0.05;
-	else if (keycode == XK_Right)
-		d_list->rc->look += 0.05;
-	put_image(d_list, d_list->mlx);
+	double	trash;
+	int		pos[2];
+
+	pos[0] = d_list->rc->pos[0];
+	pos[1] = d_list->rc->pos[1];
+
+	if (cos(move_dir * M_PI) > 0 && d_list->map->raw_map[pos[0] + 1][pos[1]] == 1
+		&& modf(d_list->rc->pos[0], &trash) > 0.8)
+	{
+		printf("p %f\n", cos(move_dir));
+		printf("Dir %f\n", move_dir);
+		printf("X %f\t%f\n", d_list->rc->pos[0], modf(d_list->rc->pos[0], &trash));
+		return (FALSE);
+	}
+	if (cos(move_dir * M_PI) < 0 && d_list->map->raw_map[pos[0] - 1][pos[1]] == 1
+		&& modf(d_list->rc->pos[0], &trash) < 0.2)
+	{
+		printf("n %f\n", cos(move_dir));
+		printf("Dir %f\n", move_dir);
+		printf("X %f\t%f\n", d_list->rc->pos[0], modf(d_list->rc->pos[0], &trash));
+		return (FALSE);
+	}
+	return (TRUE);
+}
+int	move_check_y(t_common *d_list, double move_dir)
+{
+	double	trash;
+	int		pos[2];
+
+	pos[0] = d_list->rc->pos[0];
+	pos[1] = d_list->rc->pos[1];
+
+	if (sin(move_dir * M_PI) < 0 && d_list->map->raw_map[pos[0]][pos[1] + 1] == 1
+		&& modf(d_list->rc->pos[1], &trash) >= 0.8)
+		return (FALSE);
+	if (sin(move_dir * M_PI) > 0 && d_list->map->raw_map[pos[0]][pos[1] - 1] == 1
+		&& modf(d_list->rc->pos[1], &trash) <= 0.2)
+		return (FALSE);
+	return (TRUE);
+}
+void	move_player(t_common *d_list, double move_dir)
+{
+	if (move_check_x(d_list, move_dir))
+		d_list->rc->pos[0] += cos (move_dir * M_PI) * (MOVING_DIS);
+	if (move_check_y(d_list, move_dir))
+		d_list->rc->pos[1] -= sin (move_dir* M_PI) * (MOVING_DIS);
+
 }

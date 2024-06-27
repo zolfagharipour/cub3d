@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_from_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:11 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/26 20:29:13 by fmarggra         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:00:27 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,11 @@ void    check_map_scale_factor(t_common *d_list)
 
     reduction = 0;
     map = d_list->map;
-    if (map->raw_length * map->scale >= WIDTH / 2 ||
-        map->raw_height * map->scale >= HEIGHT / 2)
+    if (map->raw_length * map->scale >= WIDTH -100 ||
+        map->raw_height * map->scale >= HEIGHT -100)
         {
-            while ((map->raw_length * map->scale >= WIDTH / 2 ||
-                map->raw_height * map->scale >= HEIGHT / 2) && map->scale > 2)
+            while ((map->raw_length * map->scale >= WIDTH -100 ||
+                map->raw_height * map->scale >= HEIGHT -100) && map->scale > 2)
             {
                 map->scale = map->scale - 2;
                 reduction++;
