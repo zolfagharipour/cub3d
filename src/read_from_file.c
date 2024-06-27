@@ -68,12 +68,17 @@ int fill_raw_map(t_common *d_list)
     //cleanup stuff
     map = d_list->map;
     map->fd = open(map->file, O_RDONLY);
+    if (map->fd < 0)
+        return (cleanup(d_list), 0);
     line = get_next_line(map->fd);
     while (line && y < map->raw_height)
     {
-        for (int x = 0; x < map->raw_length; x++) {
-            map->raw_map[x][y] = RESIDUUM;
+        printf("Processing line y %d\n", y);
+        for (x = 0; x < map->raw_length; x++)
+        {
+            map->raw_map[x][y] = RESIDUUM;  // Initialize the row first
         }
+
         x = 0;
         while (line[x] && x < map->raw_length)
         {
@@ -91,11 +96,10 @@ int fill_raw_map(t_common *d_list)
                 map->raw_map[x][y] = E;
             else
                 map->raw_map[x][y] = RESIDUUM;
-            y++;
+            x++;
         }
         free(line);
-        line = NULL;
-        line = get_next_line( d_list->map->fd);
+        line = get_next_line(map->fd);
         y++;
     }
     close(d_list->map->fd);
@@ -105,21 +109,37 @@ int fill_raw_map(t_common *d_list)
 
 int malloc_raw_map(t_common *d_list)
 {
-    t_map   *map;
-    int     i = 0;
+    t_map *map;
+    int i = 0;
+    int rows_y = d_list->map->raw_height;
+    int columns_x = d_list->map->raw_length;
 
     map = d_list->map;
-    map->raw_map = (int **)malloc(map->raw_height * sizeof(int *));
+    map->raw_map = (int **)malloc(columns_x * sizeof(int *));
     if (!map->raw_map)
         return (cleanup(d_list), 0);
 
-    while (i < map->raw_height)
+    i = 0;
+    while (i < columns_x)
     {
-        map->raw_map[i] = (int *)malloc(map->raw_length * sizeof(int));
-        if (map->raw_map[i] == NULL)
+        map->raw_map[i] = (int *)malloc(rows_y * sizeof(int));
+        if (!map->raw_map[i])
             return (cleanup(d_list), 0);
         i++;
     }
+    // map = d_list->map;
+    // map->raw_map = (int **)malloc(map->raw_height * sizeof(int *));
+    // if (!map->raw_map)
+    //     return (cleanup(d_list), 0);
+    // printf("malloced height/y: %d\n", map->raw_height);
+    // while (i < map->raw_height)
+    // {
+    //     map->raw_map[i] = (int *)malloc(map->raw_length * sizeof(int));
+    //     if (map->raw_map[i] == NULL)
+    //         return (cleanup(d_list), 0);
+    //     i++;
+    // }
+    // printf("malloced length/x: %d\n", map->raw_length);
     return (1);
 }
 

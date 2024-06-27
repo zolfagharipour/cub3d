@@ -210,7 +210,7 @@ void    caster(t_common *d_list)
     screen_width = 5;
     // screen_dis = 10;
     screen_dis = 8.66025403784;
-    pixle_width = screen_dis / (WIDTH);
+    pixle_width = screen_width / (WIDTH);
     angle = asin(screen_width / screen_dis) / M_PI;
     d_list->rc->dir = d_list->rc->look + angle;
     

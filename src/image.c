@@ -65,7 +65,7 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int my_mlx_pixel_get(t_mlx *mlx, int x, int y)
+int my_mlx_pixel_get(t_mlx *mlx, int x, int y, int fd)
 {
 	char	*src;
 	unsigned int color;
