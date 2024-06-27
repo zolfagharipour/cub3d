@@ -1,4 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 20:29:19 by fmarggra          #+#    #+#             */
+/*   Updated: 2024/06/27 12:50:41 by mzolfagh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubid.h"
+
+void	draw_image(t_common *d_list)
+{
+	draw_minimap(d_list);
+	draw_player(d_list);
+}
 
 void	put_image(t_common *d_list, t_mlx *mlx)
 {
@@ -21,6 +39,8 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
 	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
 	*(unsigned int *)dst = color;
 }

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_structs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
+/*   Updated: 2024/06/27 12:51:00 by mzolfagh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubid.h"
 
-int	init_structs(t_common *d_list)
+int	init_structs(t_common *d_list, char *file)
 {
 	d_list->map = (t_map *)malloc(sizeof(t_map));
 	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx));
@@ -8,14 +20,13 @@ int	init_structs(t_common *d_list)
 	if (!d_list->map || !d_list->mlx)
 		return 0;
 	init_mlx(d_list->mlx);
-	init_map(d_list->map);
+	init_map(d_list->map, file);
 	init_rc(d_list->rc);
-	if (init_mlx_functions(d_list) == 0)
-		return 0;
+	
 	return 1;
 }
 
-void	init_map(t_map *map)
+void	init_map(t_map *map, char *file)
 {
 	map->raw_map = NULL,
 	map->minimap = NULL,
@@ -24,8 +35,14 @@ void	init_map(t_map *map)
 	map->player_x = 0;
 	map->player_y = 0;
 	map->player_size = 0;
-	map->scale = 6;
-	map->player_size = map->scale/2;
+	map->s_square = 10;
+	map->scale = 30;
+	map->player_size = map->scale / 2;
+	map->file = ft_strdup(file);
+	map->player_found = 0;
+	map->previous_line_valid = 0;
+	if (!map->file)
+		return ;
 }
 
 void	init_mlx(t_mlx *mlx)

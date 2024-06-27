@@ -7,9 +7,10 @@ CFLAGS = -g -I include/
 RM = rm -rf
 # ***************************************************************************
 
-SRCS = 	src/draw_red_square.c src/events.c src/image.c src/init_structs.c \
-		src/main.c src/cleanup.c src/raw_map.c src/minimap.c \
-		src/caster.c src/line.c src/draw_walls.c src/move_player.c
+SRCS = 	src/image_utils.c src/events.c src/image.c src/init_structs.c \
+		src/main.c src/cleanup.c  src/minimap.c \
+		src/caster.c src/line.c src/draw_walls.c src/move_player.c \
+		src/error_checks.c src/read_from_file.c  
 
 OBJDIR = ./obj
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
@@ -36,6 +37,7 @@ fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean all
+
 
 test : all
 	clear; valgrind --leak-check=full --track-origins=yes --track-fds=yes --show-reachable=yes --show-leak-kinds=all --error-limit=no --suppressions=./cub3d.supp ./$(NAME)
