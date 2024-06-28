@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:19 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 13:17:34 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:17:47 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 {
 	if (mlx->img)
 		mlx_destroy_image(mlx->ptr, mlx->img);
-	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (mlx->img == NULL)
 		cleanup(d_list);
+	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp,
 			&mlx->line_length, &mlx->endian);
 	if (mlx->addr == NULL)
@@ -32,7 +32,9 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	caster(d_list);
 	draw_walls(d_list);
 	draw_image(d_list);
+	// south(d_list);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+
 }
 
 void	move_window(int keycode, t_common *d_list)
@@ -64,23 +66,4 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
 	*(unsigned int *)dst = color;
 }
-
-int my_mlx_pixel_get(t_mlx *mlx, int x, int y, int fd)
-{
-	char	*src;
-	unsigned int color;
-
-	// Return a default color if the coordinates are out of bound
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-		return 0; 
-	
-	// Get the color of the pixel at x and y
-	src = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
-	color = *(unsigned int *)src;
-	
-	return color;
-}
-
-
-
 

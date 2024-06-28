@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/27 17:17:15 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:37:09 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,29 @@ void    first_step(t_rc *rc)
     {
         rc->steps[0] = 1 - modf(rc->pos[0], &trash);
         rc->steps[1] = -modf(rc->pos[1], &trash);
-        rc->tmp[0] = WW;
-        rc->tmp[1] = SO;
+        rc->tmp[0] = W;
+        rc->tmp[1] = S;
     }
     else if (rc->dir < 1)
     {
         rc->steps[0] = -modf(rc->pos[0], &trash);
         rc->steps[1] = -modf(rc->pos[1], &trash);
-        rc->tmp[0] = EE;
-        rc->tmp[1] = SO;
+        rc->tmp[0] = E;
+        rc->tmp[1] = S;
     }
     else if (rc->dir < 1.5)
     {
         rc->steps[0] = -modf(rc->pos[0], &trash);
         rc->steps[1] = 1 - modf(rc->pos[1], &trash);
-        rc->tmp[0] = EE;
-        rc->tmp[1] = NN;
+        rc->tmp[0] = E;
+        rc->tmp[1] = N;
     }
     else if (rc->dir < 2)
     {
         rc->steps[0] = 1 - modf(rc->pos[0], &trash);
         rc->steps[1] = 1 - modf(rc->pos[1], &trash);
-        rc->tmp[0] = WW;
-        rc->tmp[1] = NN;
+        rc->tmp[0] = W;
+        rc->tmp[1] = N;
     }
     rc->ray[0] = rc->pos[0];
     rc->ray[1] = rc->pos[1];
@@ -62,12 +62,12 @@ void    step_x(t_rc *rc, int i)
     if (rc->steps[0] > 0)
     {
         rc->steps[0] += 1;
-        rc->tmp[0] = WW;
+        rc->tmp[0] = W;
     }
     else
     {
         rc->steps[0] -= 1;
-        rc->tmp[0] = EE;
+        rc->tmp[0] = E;
     }
 }
 
@@ -76,12 +76,12 @@ void    step_y(t_rc *rc, int i)
     if (rc->steps[1] < 0)
     {
         rc->steps[1] -= 1;
-        rc->tmp[1] = SO;
+        rc->tmp[1] = S;
     }
     else
     {
         rc->steps[1] += 1;
-        rc->tmp[1] = NN;
+        rc->tmp[1] = N;
     }
 }
 
@@ -190,7 +190,11 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][0] = rc->pos[0] - pyth(rc->steps[1], length_y(rc));
         d_list->rc->hit[pixel][2] = length_y(rc) * (2 * cos(angle));
     }
-    
+    if (rc->hit[pixel][3] == S || rc->hit[pixel][3] == N)    
+        rc->hit[pixel][4] = rc->pos[0];
+    else
+        rc->hit[pixel][4] = rc->pos[1];
+
     // printf("Dir %f\tlenX %f\tlenY %f\n", rc->dir, length_x(rc), length_y(rc));
     // printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
     // printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);

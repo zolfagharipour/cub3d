@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:02 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 13:18:22 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/28 18:27:48 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	events(t_common *d_list)
 {
 	t_mlx	*mlx;
-	mlx = d_list->mlx;
+	mlx = &d_list->mlx[0];
 	mlx_hook(mlx->win, 2, 1L << 0, (key_press), d_list);
 	mlx_hook(mlx->win, 17, 1L << 8, (cleanup), d_list);
 	mlx_loop(mlx->ptr);

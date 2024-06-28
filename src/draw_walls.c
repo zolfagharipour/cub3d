@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:50:02 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/27 16:25:17 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:17:30 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_walls(t_common *d_list)
 	i = 0;
 	while (i < WIDTH)
 	{
-		line_len = HEIGHT / (d_list->rc->hit[i][2]);
+		line_len = (HEIGHT / (d_list->rc->hit[i][2]));
 		if (line_len > HEIGHT)
 		{
 			p1[1] = HEIGHT - 2;
@@ -35,8 +35,9 @@ void	draw_walls(t_common *d_list)
 		}
 		p1[0] = i;
 		p2[0] = i;
+		// printf ("DIM::   %d\n", d_list->mlx[2].tex_dim[1]);
 		// printf("%f\n", d_list->rc->hit[i][3]);
-		line (d_list, p1, p2, d_list->rc->hit[i][3]);
+		wall (d_list, p1, p2, d_list->rc->hit[i][3], i);
 		i++;
 	}
 }

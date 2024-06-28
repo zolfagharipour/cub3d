@@ -17,7 +17,7 @@
 # define FALSE 0
 //definition square size can be amended
 # define SQUARE 10
-# define MOVING_DIS 0.1
+# define MOVING_DIS 0.2
 # define ORANGE 0xec956c
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6
@@ -37,13 +37,24 @@
 #define M_PI 3.14159265358979323846
 #endif
 
+typedef struct	s_imgs
+{
+	void	*mlx;
+	void	*img;
+	int		im_dim[2];
+
+} t_imgs;
+
 typedef struct s_mlx
 {
 	void		*ptr;
 	void		*win;
 	void		*loop;
 	void		*img;
+	void		*texture;
 	void		*addr;
+	void		*tex_addr;
+	char		*tex_data;
 	int			bpp;
 	int			line_length;
 	int			endian;
@@ -51,6 +62,7 @@ typedef struct s_mlx
 	int			x;
 	int			shift_x;
 	int			shift_y;
+	int			tex_dim[2];
 	//int			player_running;
 }	t_mlx;
 
@@ -79,9 +91,10 @@ typedef struct	s_raycaster
 	double		dir;
 	double		steps[2];
 	int			ray[2];
-	double		hit[WIDTH][4];
+	double		hit[WIDTH][5];
 	double		tmp[2];
 } t_rc;
+
 
 typedef struct s_common
 {
@@ -97,7 +110,7 @@ int		init_structs(t_common *d_list, char *file);
 void	init_mlx(t_mlx *mlx);
 void	init_map(t_map *map, char *file);
 void	init_rc(t_rc *rc);
-int		init_mlx_functions(t_common *d_list);
+int		init_mlx_functions(t_common *d_list, t_mlx *mlx);
 void    put_red_square(t_common *d_list);
 void	put_image(t_common *d_list, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
@@ -145,6 +158,11 @@ void    line(t_common *d_list, double p1[2], double p2[2], int color);
 double	calc_dir(double dir);
 void	draw_walls(t_common *d_list);
 void	move_player(t_common *d_list, double move_dir);
-int my_mlx_pixel_get(t_mlx *mlx, int x, int y, int fd);
+int 	my_mlx_pixel_get(t_mlx *mlx, int x, int y);
+void    south(t_common *d_list);
+void    wall(t_common *d_list, double p1[2],double p2[2], int fd, int x);
+void    load_textures(t_mlx *mlx);
+
+
 
 #endif
