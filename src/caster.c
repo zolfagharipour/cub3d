@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/29 13:45:21 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/29 13:51:25 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,11 +190,15 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
             d_list->rc->hit[pixel][0] = rc->pos[0] - pyth(rc->steps[1], length_y(rc));
         d_list->rc->hit[pixel][2] = length_y(rc) * (2 * cos(angle));
     }
-    if (rc->hit[pixel][3] == S || rc->hit[pixel][3] == N)    
+    if (rc->hit[pixel][3] == S)
         rc->hit[pixel][4] = modf(rc->hit[pixel][0], &angle);
-    else
+    else if (rc->hit[pixel][3] == N)
+        rc->hit[pixel][4] = 1 - modf(rc->hit[pixel][0], &angle);
+    else if (rc->hit[pixel][3] == E)
+        rc->hit[pixel][4] = 1 - modf(rc->hit[pixel][1], &angle);
+    else if (rc->hit[pixel][3] == W)
         rc->hit[pixel][4] = modf(rc->hit[pixel][1], &angle);
-
+    
 
     // printf("Dir %f\tlenX %f\tlenY %f\n", rc->dir, length_x(rc), length_y(rc));
     // printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);

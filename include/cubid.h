@@ -160,7 +160,7 @@ void	draw_walls(t_common *d_list);
 void	move_player(t_common *d_list, double move_dir);
 int 	my_mlx_pixel_get(t_mlx *mlx, int x, int y);
 void    south(t_common *d_list);
-void    wall(t_common *d_list, double p1[2],double p2[2], int fd, int x);
+void    wall(t_common *d_list, double p1[2],double p2[2], int x);
 void    load_textures(t_mlx *mlx);
 
 
