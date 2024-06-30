@@ -93,6 +93,7 @@ typedef struct	s_raycaster
 	int			ray[2];
 	double		hit[WIDTH][5];
 	double		tmp[2];
+	double		sprite[4];
 } t_rc;
 
 
@@ -162,7 +163,12 @@ int 	my_mlx_pixel_get(t_mlx *mlx, int x, int y);
 void    south(t_common *d_list);
 void    wall(t_common *d_list, double p1[2],double p2[2], int x);
 void    load_textures(t_mlx *mlx);
+void    find_sprite(t_common *d_list);
+void	sprite(t_common *d_list, int x);
 
-
+// math
+double  dot_product(double p1[2], double p2[2]);
+double  cross_product(double p1[2], double p2[2]);
+double	magnitudes(double p[2]);
 
 #endif

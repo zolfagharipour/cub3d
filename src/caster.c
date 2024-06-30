@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/29 13:51:25 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/30 15:57:21 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,8 +215,8 @@ void    caster(t_common *d_list)
     double  screen_dis;
 
     i = 0;
-    screen_width = 5;
-    screen_dis = 10;
+    // screen_width = 5;
+    // screen_dis = 10;
     pixle_width = (2 * screen_width) / WIDTH;
     // angle = asin(screen_width /screen_dis) / M_PI;
     // d_list->rc->dir = d_list->rc->look + angle;

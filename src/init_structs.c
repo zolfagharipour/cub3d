@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/28 19:19:32 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:40:19 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	init_rc(t_rc *rc)
 	rc->pos[1] = 1.5;
 	rc->tmp[0] = 0;
 	rc->tmp[1] = 0;
+	rc->sprite[0] = 1.5;
+	rc->sprite[1] = 1.5;
 }
 
 int	init_mlx_functions(t_common *d_list, t_mlx *mlx)

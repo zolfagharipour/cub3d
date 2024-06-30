@@ -89,9 +89,9 @@ void	move_player(t_common *d_list, double move_dir)
 void	rotate_player(int keycode, t_common *d_list)
 {
 	if (keycode == XK_Left)
-		d_list->rc->look += 0.05;
+		d_list->rc->look += 0.02;
 	else if (keycode == XK_Right)
-		d_list->rc->look -= 0.05;
+		d_list->rc->look -= 0.02;
 
 	if (d_list->rc->look >= 2.0)
 		d_list->rc->look -= 2.0;

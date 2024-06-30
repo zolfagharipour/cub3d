@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:38:13 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/28 19:13:56 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:31:51 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void    load_textures(t_mlx *mlx)
 {
     int     i;
 
-    i = 1;
+    i = 0;
     while (i++ < 6)
         mlx[i].ptr = mlx_init();
+    mlx[1].texture = mlx_xpm_file_to_image(mlx[1].ptr, "images/knight.xpm"
+        , &mlx[1].tex_dim[0], &mlx[1].tex_dim[1]);
     mlx[N].texture = mlx_xpm_file_to_image(mlx[N].ptr, "images/north.xpm"
         , &mlx[N].tex_dim[0], &mlx[N].tex_dim[1]);
     mlx[S].texture = mlx_xpm_file_to_image(mlx[S].ptr, "images/south.xpm"
@@ -29,6 +31,7 @@ void    load_textures(t_mlx *mlx)
         , &mlx[W].tex_dim[0], &mlx[W].tex_dim[1]);
  
     //      PROTECTION
+    mlx[1].tex_data = mlx_get_data_addr(mlx[1].texture, &mlx[1].bpp, &mlx[1].line_length, &mlx[1].endian);
     mlx[N].tex_data = mlx_get_data_addr(mlx[N].texture, &mlx[N].bpp, &mlx[N].line_length, &mlx[N].endian);
     mlx[S].tex_data = mlx_get_data_addr(mlx[S].texture, &mlx[S].bpp, &mlx[S].line_length, &mlx[S].endian);
     mlx[E].tex_data = mlx_get_data_addr(mlx[E].texture, &mlx[E].bpp, &mlx[E].line_length, &mlx[E].endian);

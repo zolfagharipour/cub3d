@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:19 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/28 19:17:47 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/29 17:22:12 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	if (mlx->addr == NULL)
 		cleanup(d_list);
 	caster(d_list);
+	find_sprite(d_list);
 	draw_walls(d_list);
 	draw_image(d_list);
 	// south(d_list);

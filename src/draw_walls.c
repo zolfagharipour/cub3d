@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:50:02 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/29 14:07:37 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/06/30 15:28:58 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    wall(t_common *d_list, double p1[2], double p2[2], int x)
 {
-	int		i;
+	int		i[2];
 	int		color;
 	double	w;
 	double	len;
@@ -22,23 +22,25 @@ void    wall(t_common *d_list, double p1[2], double p2[2], int x)
 	
 	step = d_list->mlx[(int)d_list->rc->hit[x][3]].tex_dim[1] / (p1[1] - p2[1]);
 	len = 0;
-	// if (p1[1] - p2[1] > HEIGHT)
-	// {
-	// 	// len = 
-	// 	p1[1] = HEIGHT - 2;
-	// 	p2[1] = 2;
-	// }
-	i = p2[1];
-	while (i < fabs(p1[1]))
+	i[1] = 0;
+	while (i[1] < 2)
 	{
-
-		modf(len, &w);
-		color = my_mlx_pixel_get(&d_list->mlx[(int)d_list->rc->hit[x][3]], d_list->rc->hit[x][4] * d_list->mlx[(int)d_list->rc->hit[x][3]].tex_dim[0], w);
-		len += step;
-		if (p1[0] >= 0 && p1[0] < HEIGHT)
-        	my_mlx_pixel_put(d_list->mlx, p1[0], i, color);
-		i++;
+		i[0] = p2[1];
+		while (i[0] < fabs(p1[1]))
+		{
+			if ((i[1] == 0 && d_list->rc->sprite[4] > d_list->rc->hit[x][2]) || (i[1] == 1 && d_list->rc->sprite[4] < d_list->rc->hit[x][2]))
+			{
+				modf(len, &w);
+				color = my_mlx_pixel_get(&d_list->mlx[(int)d_list->rc->hit[x][3]], d_list->rc->hit[x][4] * d_list->mlx[(int)d_list->rc->hit[x][3]].tex_dim[0], w);
+				len += step;
+				if (p1[0] >= 0 && p1[0] < HEIGHT)
+					my_mlx_pixel_put(d_list->mlx, p1[0], i[0], color);
+			}
+			i[0]++;
+		}
+		i[1]++;	
 	}
+		sprite(d_list, x);
 }
 
 
@@ -50,23 +52,16 @@ void	draw_walls(t_common *d_list)
 	double	line_len;
 
 	i = 0;
+
 	while (i < WIDTH)
 	{
-		line_len = (HEIGHT / (d_list->rc->hit[i][2]));
-		// if (line_len > HEIGHT)
-		// {
-		// 	p1[1] = HEIGHT - 2;
-		// 	p2[1] = 2;
-		// }
-		// else
-		// {
+		line_len = (HEIGHT * 2 / (d_list->rc->hit[i][2]));
+
 			p1[1] = (HEIGHT + line_len) / 2;
 			p2[1] = (HEIGHT - line_len) / 2;
-		// }
 		p1[0] = i;
 		p2[0] = i;
-		// printf ("DIM::   %d\n", d_list->mlx[2].tex_dim[1]);
-		// printf("%f\n", d_list->rc->hit[i][3]);
+
 		wall (d_list, p1, p2, i);
 		i++;
 	}
