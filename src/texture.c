@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 12:38:13 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/01 13:32:04 by mzolfagh         ###   ########.fr       */
+/*   Created: 2024/0DW/28 12:38:13 by mzolfagh          #+#    #+#             */
+/*   Updated: 2024/0D/01 14:2DW:09 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void    load_textures(t_mlx *mlx)
     int     i;
 
     i = 0;
-    while (i++ < 5)
+    while (i++ < 7)
         mlx[i].ptr = mlx_init();
-    mlx[1].texture = mlx_xpm_file_to_image(mlx[1].ptr, "images/knight.xpm"
-        , &mlx[1].tex_dim[0], &mlx[1].tex_dim[1]);
+    mlx[SP].texture = mlx_xpm_file_to_image(mlx[SP].ptr, "images/knight.xpm"
+        , &mlx[SP].tex_dim[0], &mlx[SP].tex_dim[1]);
     mlx[N].texture = mlx_xpm_file_to_image(mlx[N].ptr, "images/north.xpm"
         , &mlx[N].tex_dim[0], &mlx[N].tex_dim[1]);
     mlx[S].texture = mlx_xpm_file_to_image(mlx[S].ptr, "images/south.xpm"
@@ -29,13 +29,21 @@ void    load_textures(t_mlx *mlx)
         , &mlx[E].tex_dim[0], &mlx[E].tex_dim[1]);
     mlx[W].texture = mlx_xpm_file_to_image(mlx[W].ptr, "images/west.xpm"
         , &mlx[W].tex_dim[0], &mlx[W].tex_dim[1]);
+    mlx[DW].texture = mlx_xpm_file_to_image(mlx[DW].ptr, "images/door_wall.xpm"
+        , &mlx[DW].tex_dim[0], &mlx[DW].tex_dim[1]);
+    mlx[D].texture = mlx_xpm_file_to_image(mlx[D].ptr, "images/door.xpm"
+        , &mlx[D].tex_dim[0], &mlx[D].tex_dim[1]);
  
     //      PROTECTION
-    mlx[1].tex_data = mlx_get_data_addr(mlx[1].texture, &mlx[1].bpp, &mlx[1].line_length, &mlx[1].endian);
+    mlx[SP].tex_data = mlx_get_data_addr(mlx[SP].texture, &mlx[SP].bpp, &mlx[SP].line_length, &mlx[SP].endian);
     mlx[N].tex_data = mlx_get_data_addr(mlx[N].texture, &mlx[N].bpp, &mlx[N].line_length, &mlx[N].endian);
     mlx[S].tex_data = mlx_get_data_addr(mlx[S].texture, &mlx[S].bpp, &mlx[S].line_length, &mlx[S].endian);
     mlx[E].tex_data = mlx_get_data_addr(mlx[E].texture, &mlx[E].bpp, &mlx[E].line_length, &mlx[E].endian);
     mlx[W].tex_data = mlx_get_data_addr(mlx[W].texture, &mlx[W].bpp, &mlx[W].line_length, &mlx[W].endian);
+    mlx[DW].tex_data = mlx_get_data_addr(mlx[DW].texture, &mlx[DW].bpp, &mlx[DW].line_length, &mlx[DW].endian);
+    mlx[D].tex_data = mlx_get_data_addr(mlx[D].texture, &mlx[D].bpp, &mlx[D].line_length, &mlx[D].endian);
+        
+
 }
 int my_mlx_pixel_get(t_mlx *mlx, int x, int y)
 {

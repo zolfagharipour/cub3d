@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/01 13:03:56 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:30:35 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	init_structs(t_common *d_list, char *file)
 	int	i;
 	
 	d_list->map = (t_map *)malloc(sizeof(t_map));
-	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx) * 6);
+	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx) * 8);
 	d_list->rc = (t_rc *)malloc(sizeof(t_rc));
 	if (!d_list->map || !d_list->mlx)
 		return 0;
 	init_map(d_list->map, file);
 	init_rc(d_list->rc);
 	i = -1;
-	while (i++ < 5)
+	while (i++ < 7)
 		init_mlx(&d_list->mlx[i]);
 	load_textures(d_list->mlx);
 	return 1;
@@ -72,7 +72,7 @@ void	init_rc(t_rc *rc)
 	rc->tmp[0] = 0;
 	rc->tmp[1] = 0;
 	rc->sprite[0] = 3.5;
-	rc->sprite[1] = 3.5;
+	rc->sprite[1] = 3.8;
 }
 
 int	init_mlx_functions(t_common *d_list, t_mlx *mlx)

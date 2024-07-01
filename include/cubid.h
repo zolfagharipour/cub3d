@@ -22,15 +22,16 @@
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
-# define NN 16761035
-# define SO 11393254
-# define EE 9498256
-# define WW 16776960
 # define DDBLUE 0x0
-# define N 2
-# define S 3
-# define E 4
-# define W 5
+# define SKY 0X87CEEB
+# define FLOOR 0x013220
+# define SP 1
+# define N  2
+# define S  3
+# define E  4
+# define W  5
+# define DW 6
+# define D  7
 # define RESIDUUM 6
 # define SMALL_ANGLE 1e-2
 #ifndef M_PI
@@ -165,6 +166,7 @@ void    wall(t_common *d_list, double p1[2],double p2[2], int x);
 void    load_textures(t_mlx *mlx);
 void    find_sprite(t_common *d_list);
 void	sprite(t_common *d_list);
+void	floor_ceiling(t_common *d_list);
 
 // math
 double  dot_product(double p1[2], double p2[2]);

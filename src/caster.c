@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/01 13:38:04 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:56:58 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
     second_step(rc);
     move_ray(rc);
     int i = 0;
-    while(d_list->map->raw_map[rc->ray[0]][rc->ray[1]] == 0)
+    while(d_list->map->raw_map[rc->ray[0]][rc->ray[1]] != 1)
     {
         
         if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
