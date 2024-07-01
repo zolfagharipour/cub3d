@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:38:13 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/30 18:31:51 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:32:04 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    load_textures(t_mlx *mlx)
     int     i;
 
     i = 0;
-    while (i++ < 6)
+    while (i++ < 5)
         mlx[i].ptr = mlx_init();
     mlx[1].texture = mlx_xpm_file_to_image(mlx[1].ptr, "images/knight.xpm"
         , &mlx[1].tex_dim[0], &mlx[1].tex_dim[1]);

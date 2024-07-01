@@ -12,7 +12,7 @@
 # include <fcntl.h>
 
 # define HEIGHT 800
-# define WIDTH 800
+# define WIDTH 1000
 # define TRUE 1
 # define FALSE 0
 //definition square size can be amended
@@ -91,7 +91,7 @@ typedef struct	s_raycaster
 	double		dir;
 	double		steps[2];
 	int			ray[2];
-	double		hit[WIDTH][5];
+	double		hit[WIDTH][6];
 	double		tmp[2];
 	double		sprite[4];
 } t_rc;
@@ -164,7 +164,7 @@ void    south(t_common *d_list);
 void    wall(t_common *d_list, double p1[2],double p2[2], int x);
 void    load_textures(t_mlx *mlx);
 void    find_sprite(t_common *d_list);
-void	sprite(t_common *d_list, int x);
+void	sprite(t_common *d_list);
 
 // math
 double  dot_product(double p1[2], double p2[2]);
