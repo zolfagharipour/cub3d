@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:19 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/02 18:29:39 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:48:26 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,7 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	find_sprite(d_list);
 	draw_walls(d_list);
 	draw_image(d_list);
-	for (int i = 0; i < 200; i++)
-	{
-		for (int j = 0; j < 200; j++)
-		{
-			my_mlx_pixel_put(d_list->mlx, i, j, 5537454);
-		}
-	}
+
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 
 }
