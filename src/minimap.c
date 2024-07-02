@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:40:35 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/27 13:04:31 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:38:41 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static void	fill_mmap(t_common *dlist, int scale)
 	int	j;
 
 	i = 0;
-	while (i < dlist->map->raw_height)
+	while (i < dlist->map->raw_length)
 	{
 		j = 0;
-		while (j < dlist->map->raw_length)
+		while (j < dlist->map->raw_height)
 		{
 			scale_mmap(dlist, i , j, scale);
 			j++;
@@ -67,14 +67,14 @@ int		minimap(t_common *dlist)
 
 	map = dlist->map;
 
-    map->minimap = (int **)malloc(map->raw_height * sizeof(int *) * dlist->map->scale);
+    map->minimap = (int **)malloc(map->raw_length * sizeof(int *) * dlist->map->scale);
     if (!map->minimap)
         return (cleanup(dlist), 0);
 
 	i = 0;
-    while (i < dlist->map->scale * map->raw_height)
+    while (i < dlist->map->scale * map->raw_length)
     {
-        map->minimap[i] = (int *)malloc(dlist->map->scale * map->raw_length * sizeof(int));
+        map->minimap[i] = (int *)malloc(dlist->map->scale * map->raw_height * sizeof(int));
         if (map->minimap[i] == NULL)
             return (cleanup(dlist), 0);
         i++;

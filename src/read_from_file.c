@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:11 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 16:25:43 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:01:36 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int fill_raw_map(t_common *d_list)
     line = get_next_line(map->fd);
     while (line && y < map->raw_height)
     {
-        printf("Processing line y %d\n", y);
         for (x = 0; x < map->raw_length; x++)
         {
             map->raw_map[x][y] = RESIDUUM;  // Initialize the row first

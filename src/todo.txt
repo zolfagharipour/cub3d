@@ -1,0 +1,5 @@
+FMARGRRA
+    1. simbols for the door (also check if doors are allowed) "4"
+    2. simbol for sprite "3"
+    3. save respone / sprite place just in pos and not in rawmap
+    4. check if the texture file opened

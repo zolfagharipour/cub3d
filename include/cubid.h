@@ -8,34 +8,37 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
-# include "../libft/libft.h"
 # include <fcntl.h>
+# include <sys/time.h>
+# include "../libft/libft.h"
 
 # define HEIGHT 800
-# define WIDTH 800
+# define WIDTH 1000
 # define TRUE 1
 # define FALSE 0
 //definition square size can be amended
 # define SQUARE 10
-# define MOVING_DIS 0.1
+# define MOVING_DIS 0.2
 # define ORANGE 0xec956c
 # define RED 0xFF0000
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
-# define NN 16761035
-# define SO 11393254
-# define EE 9498256
-# define WW 16776960
 # define DDBLUE 0x0
-# define N 2
-# define S 3
-# define E 4
-# define W 5
+# define SKY 0X87CEEB
+# define FLOOR 0x013220
+# define D  1
+# define N  2
+# define S  3
+# define E  4
+# define W  5
+# define DW 6
+# define SP  7
 # define RESIDUUM 6
 # define SMALL_ANGLE 1e-2
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
+
 
 typedef struct s_mlx
 {
@@ -43,7 +46,10 @@ typedef struct s_mlx
 	void		*win;
 	void		*loop;
 	void		*img;
+	void		*texture;
 	void		*addr;
+	void		*tex_addr;
+	char		*tex_data;
 	int			bpp;
 	int			line_length;
 	int			endian;
@@ -51,6 +57,7 @@ typedef struct s_mlx
 	int			x;
 	int			shift_x;
 	int			shift_y;
+	int			tex_dim[2];
 	//int		player_running;
 }	t_mlx;
 
@@ -87,9 +94,12 @@ typedef struct	s_raycaster
 	double		dir;
 	double		steps[2];
 	int			ray[2];
-	double		hit[WIDTH][4];
+	double		hit[WIDTH][6];
 	double		tmp[2];
+	double		sprite[4];
+	int			smoke;
 } t_rc;
+
 
 typedef struct s_common
 {
@@ -106,7 +116,7 @@ int		init_structs(t_common *d_list, char *file);
 void	init_mlx(t_mlx *mlx);
 void	init_map(t_map *map, char *file);
 void	init_rc(t_rc *rc);
-int		init_mlx_functions(t_common *d_list);
+int		init_mlx_functions(t_common *d_list, t_mlx *mlx);
 void    put_red_square(t_common *d_list);
 void	put_image(t_common *d_list, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
@@ -154,12 +164,18 @@ void    line(t_common *d_list, double p1[2], double p2[2], int color);
 double	calc_dir(double dir);
 void	draw_walls(t_common *d_list);
 void	move_player(t_common *d_list, double move_dir);
+int 	my_mlx_pixel_get(t_mlx *mlx, int x, int y);
+void    south(t_common *d_list);
+void    wall(t_common *d_list, double p1[2],double p2[2], int x);
+void    load_textures(t_mlx *mlx);
+void    find_sprite(t_common *d_list);
+void	sprite(t_common *d_list, int smoke);
+void	floor_ceiling(t_common *d_list);
+void	ninja(t_common * d_list);
 
-//texture prototypes
-void    init_texture(t_texture *texture);
-void    load_texture(t_common *d_list, t_texture *texture, int i);
-int		my_mlx_pixel_get(t_mlx *mlx, int x, int y);
-int check_the_textures_open(void);
-
+// math
+double  dot_product(double p1[2], double p2[2]);
+double  cross_product(double p1[2], double p2[2]);
+double	magnitudes(double p[2]);
 
 #endif

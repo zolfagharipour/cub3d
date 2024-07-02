@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:25 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/27 13:17:44 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:33:22 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void    draw_player(t_common *dlist)
         x = -1;
         while (++x < dlist->map->s_square)
         {
-            int pixel_x = start_x + x + dlist->map->scale / 2;
-            int pixel_y = start_y + y + dlist->map->scale / 2;
+            int pixel_x = start_x + x;
+            int pixel_y = start_y + y;
             if (pixel_x >= 0 && pixel_x < dlist->map->raw_length * dlist->map->scale &&
                 pixel_y >= 0 && pixel_y < dlist->map->raw_height * dlist->map->scale)
                 my_mlx_pixel_put(dlist->mlx, pixel_x, pixel_y, ORANGE);

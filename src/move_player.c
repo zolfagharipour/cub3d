@@ -45,19 +45,14 @@ int	move_check_x(t_common *d_list, double move_dir)
 	pos[1] = d_list->rc->pos[1];
 
 	if (cos(move_dir * M_PI) > 0 && d_list->map->raw_map[pos[0] + 1][pos[1]] == 1
-		&& modf(d_list->rc->pos[0], &trash) > 0.8)
+		&& modf(d_list->rc->pos[0], &trash) > 0.6)
 	{
-		// printf("p %f\n", cos(move_dir));
-		// printf("Dir %f\n", move_dir);
-		// printf("X %f\t%f\n", d_list->rc->pos[0], modf(d_list->rc->pos[0], &trash));
+
 		return (FALSE);
 	}
 	if (cos(move_dir * M_PI) < 0 && d_list->map->raw_map[pos[0] - 1][pos[1]] == 1
-		&& modf(d_list->rc->pos[0], &trash) < 0.2)
+		&& modf(d_list->rc->pos[0], &trash) < 0.4)
 	{
-		// printf("n %f\n", cos(move_dir));
-		// printf("Dir %f\n", move_dir);
-		// printf("X %f\t%f\n", d_list->rc->pos[0], modf(d_list->rc->pos[0], &trash));
 		return (FALSE);
 	}
 	return (TRUE);
@@ -71,10 +66,10 @@ int	move_check_y(t_common *d_list, double move_dir)
 	pos[1] = d_list->rc->pos[1];
 
 	if (sin(move_dir * M_PI) < 0 && d_list->map->raw_map[pos[0]][pos[1] + 1] == 1
-		&& modf(d_list->rc->pos[1], &trash) >= 0.8)
+		&& modf(d_list->rc->pos[1], &trash) >= 0.6)
 		return (FALSE);
 	if (sin(move_dir * M_PI) > 0 && d_list->map->raw_map[pos[0]][pos[1] - 1] == 1
-		&& modf(d_list->rc->pos[1], &trash) <= 0.2)
+		&& modf(d_list->rc->pos[1], &trash) <= 0.4)
 		return (FALSE);
 	return (TRUE);
 }
@@ -89,9 +84,9 @@ void	move_player(t_common *d_list, double move_dir)
 void	rotate_player(int keycode, t_common *d_list)
 {
 	if (keycode == XK_Left)
-		d_list->rc->look += 0.05;
+		d_list->rc->look += 0.02;
 	else if (keycode == XK_Right)
-		d_list->rc->look -= 0.05;
+		d_list->rc->look -= 0.02;
 
 	if (d_list->rc->look >= 2.0)
 		d_list->rc->look -= 2.0;

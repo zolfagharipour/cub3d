@@ -10,7 +10,8 @@ RM = rm -rf
 SRCS = 	src/image_utils.c src/events.c src/image.c src/init_structs.c \
 		src/main.c src/cleanup.c  src/minimap.c \
 		src/caster.c src/line.c src/draw_walls.c src/move_player.c \
-		src/error_checks.c src/read_from_file.c  src/texture.c
+		src/error_checks.c src/read_from_file.c  src/texture.c \
+		src/sprite.c src/math.c src/floor_ceiling.c
 
 OBJDIR = ./obj
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
@@ -40,4 +41,4 @@ re: fclean all
 
 
 test : all
-	clear; valgrind --leak-check=full --track-origins=yes --track-fds=yes --show-reachable=yes --show-leak-kinds=all --error-limit=no ./$(NAME)
+	clear; valgrind --leak-check=full --track-origins=yes --track-fds=yes --show-reachable=yes --show-leak-kinds=all --error-limit=no ./$(NAME) test_map.txt
