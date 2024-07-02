@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:11 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/02 18:45:27 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:51:01 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int read_map_from_file(t_common *d_list)
     if (!fill_raw_map(d_list))
         return 0;
     print_map(d_list->map);
-    find_the_players_position(d_list);
+    //find_the_players_position(d_list);
     printf("raw_length: %d\n", d_list->map->raw_length);
     printf("raw_height: %d\n", d_list->map->raw_height);
     return (1);
@@ -85,14 +85,38 @@ int fill_raw_map(t_common *d_list)
                 map->raw_map[x][y] = 1;
             else if (line[x] == '0')
                 map->raw_map[x][y] = 0;
+            else if (line[x] == '4')
+                map->raw_map[x][y] = 4;
+            else if (line[x] == '3')
+                map->raw_map[x][y] = 4;
             else if (line[x] == 'N')
-                map->raw_map[x][y] = N;
+            {
+                d_list->rc->pos[0] = x + 0.5;
+                d_list->rc->pos[1] = y + 0.5;
+                d_list->rc->look = 0.5;
+                map->raw_map[x][y] = 0;
+            }
             else if (line[x] == 'S')
-                map->raw_map[x][y] = S;
+            {
+                d_list->rc->pos[0] = x + 0.5;
+                d_list->rc->pos[1] = y + 0.5;
+                d_list->rc->look = 1;
+                map->raw_map[x][y] = 0;
+            }
             else if (line[x] == 'W')
-                map->raw_map[x][y] = W;
+            {
+                d_list->rc->pos[0] = x + 0.5;
+                d_list->rc->pos[1] = y + 0.5;
+                d_list->rc->look = 1.5;
+                map->raw_map[x][y] = 0;
+            }
             else if (line[x] == 'E')
-                map->raw_map[x][y] = E;
+            {
+                d_list->rc->pos[0] = x + 0.5;
+                d_list->rc->pos[1] = y + 0.5;
+                d_list->rc->look = 0;              
+                map->raw_map[x][y] = 0;
+            }
             else
                 map->raw_map[x][y] = RESIDUUM;
             x++;
@@ -153,11 +177,11 @@ void    check_map_scale_factor(t_common *d_list)
 
     reduction = 0;
     map = d_list->map;
-    if (map->raw_length * map->scale >= WIDTH -100 ||
-        map->raw_height * map->scale >= HEIGHT -100)
+    if (map->raw_length * map->scale >= WIDTH / 2 ||
+        map->raw_height * map->scale >= HEIGHT / 2)
         {
-            while ((map->raw_length * map->scale >= WIDTH -100 ||
-                map->raw_height * map->scale >= HEIGHT -100) && map->scale > 2)
+            while ((map->raw_length * map->scale >= WIDTH / 2 ||
+                map->raw_height * map->scale >= HEIGHT / 2) && map->scale > 2)
             {
                 map->scale = map->scale - 2;
                 reduction++;
@@ -184,7 +208,8 @@ int    find_line_length(char *line)
 
 int validate_map_line(char *line, t_common *d_list)
 {
-    //i is indicating wether it's the first line of the map
+    //i is indicating wether it's the first line of the            else if (line[x] == '0')
+                // map->raw_map[x][y] = 0; map
     //i cannot be under 3 then it's not a valid map
     //check white spaces?
     int i;
@@ -194,7 +219,7 @@ int validate_map_line(char *line, t_common *d_list)
     digit_sequence_start = 0;
     while (line[i] && line[i] != '\n')
     {
-        if (line[i] == '0' || line[i] == '1')
+        if (line[i] == '0' || line[i] == '1' || line[i] == '3' || line[i] == '4')
             digit_sequence_start = 1;
         else if (line[i] == ' ')
         {

@@ -42,8 +42,8 @@ void    load_textures(t_mlx *mlx)
         , &mlx[SP + 3].tex_dim[0], &mlx[SP + 3].tex_dim[1]);
     mlx[SP + 4].texture = mlx_xpm_file_to_image(mlx[SP + 4].ptr, "images/knight4.xpm"
         , &mlx[SP + 4].tex_dim[0], &mlx[SP + 4].tex_dim[1]);
-    mlx[SP + 5].texture = mlx_xpm_file_to_image(mlx[SP + 5].ptr, "images/knight5.xpm"
-        , &mlx[SP + 5].tex_dim[0], &mlx[SP + 5].tex_dim[1]);
+    // mlx[SP + 5].texture = mlx_xpm_file_to_image(mlx[SP + 5].ptr, "images/knight5.xpm"
+    //     , &mlx[SP + 5].tex_dim[0], &mlx[SP + 5].tex_dim[1]);
     
  
     //      PROTECTION
@@ -59,7 +59,7 @@ void    load_textures(t_mlx *mlx)
     mlx[SP + 2].tex_data = mlx_get_data_addr(mlx[SP + 2].texture, &mlx[SP + 2].bpp, &mlx[SP + 2].line_length, &mlx[SP + 2].endian);
     mlx[SP + 3].tex_data = mlx_get_data_addr(mlx[SP + 3].texture, &mlx[SP + 3].bpp, &mlx[SP + 3].line_length, &mlx[SP + 3].endian);
     mlx[SP + 4].tex_data = mlx_get_data_addr(mlx[SP + 4].texture, &mlx[SP + 4].bpp, &mlx[SP + 4].line_length, &mlx[SP + 4].endian);
-    mlx[SP + 5].tex_data = mlx_get_data_addr(mlx[SP + 5].texture, &mlx[SP + 5].bpp, &mlx[SP + 5].line_length, &mlx[SP + 5].endian);
+    // mlx[SP + 5].tex_data = mlx_get_data_addr(mlx[SP + 5].texture, &mlx[SP + 5].bpp, &mlx[SP + 5].line_length, &mlx[SP + 5].endian);
 
 }
 int my_mlx_pixel_get(t_mlx *mlx, int x, int y)

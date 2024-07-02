@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 12:39:49 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/02 18:46:18 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:26:28 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void    find_sprite(t_common *d_list)
     d_list->rc->sprite[2] = magnitudes(delta);
 }
 
-void    draw_sprite(t_common *d_list, double center[2], double scale, int smoke)
+void    draw_sprite(t_common *d_list, double center[2], double scale)
 {
     double  i[2];
     double  dim[2];
@@ -52,7 +52,7 @@ void    draw_sprite(t_common *d_list, double center[2], double scale, int smoke)
         {
             if (pos[0] > 0  && pos[1] > 0 )
             {
-                color = my_mlx_pixel_get(&d_list->mlx[SP + smoke], (int)i[0], (int)i[1]);
+                color = my_mlx_pixel_get(&d_list->mlx[SP + d_list->rc->smoke], (int)i[0], (int)i[1]);
                 if (color != 0XFF000000)
                     my_mlx_pixel_put(&d_list->mlx[0], pos[0], pos[1], color);
             }
@@ -61,16 +61,13 @@ void    draw_sprite(t_common *d_list, double center[2], double scale, int smoke)
         }
         i[0] += steps;
         pos[0]++;
-    // if (smoke)
-    //     usleep (500);
     }
 }
 
-void	sprite(t_common *d_list, int smoke)
+void	sprite(t_common *d_list)
 {
     double  scale;
     double  pos[2];
-
     if (fabs(d_list->rc->sprite[3]) > 0.25)
         return ;
     scale = 15 / d_list->rc->sprite[2];
@@ -78,5 +75,5 @@ void	sprite(t_common *d_list, int smoke)
     pos[1] += 1.0 / d_list->rc->sprite[2];
     pos[0] = tan(d_list->rc->sprite[3] * M_PI) * WIDTH * 2;
     pos[0] = (WIDTH / 2) - pos[0];
-    draw_sprite(d_list, pos, scale, smoke);
+    draw_sprite(d_list, pos, scale);
 }

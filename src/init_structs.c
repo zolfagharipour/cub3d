@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/02 18:18:47 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:09:37 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	init_rc(t_rc *rc)
 	rc->pos[1] = 2.5;
 	rc->tmp[0] = 0;
 	rc->tmp[1] = 0;
-	rc->sprite[0] = 3.5;
-	rc->sprite[1] = 3.8;
+	rc->sprite[0] = 5.5;
+	rc->sprite[1] = 1.5;
 	rc->smoke = 0;
 }
 

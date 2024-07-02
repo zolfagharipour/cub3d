@@ -32,7 +32,7 @@
 # define E  4
 # define W  5
 # define DW 6
-# define SP  7
+# define SP 7
 # define RESIDUUM 6
 # define SMALL_ANGLE 1e-2
 #ifndef M_PI
@@ -169,7 +169,7 @@ void    south(t_common *d_list);
 void    wall(t_common *d_list, double p1[2],double p2[2], int x);
 void    load_textures(t_mlx *mlx);
 void    find_sprite(t_common *d_list);
-void	sprite(t_common *d_list, int smoke);
+void	sprite(t_common *d_list);
 void	floor_ceiling(t_common *d_list);
 void	ninja(t_common * d_list);
 

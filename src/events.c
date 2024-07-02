@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:02 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/02 17:19:28 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:42:11 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,15 @@ void	events(t_common *d_list)
 
 void	ninja(t_common *d_list)
 {
-	d_list->rc->smoke = 1;
-	put_image(d_list, d_list->mlx);
+	while(d_list->rc->smoke < 4)
+	{
+		printf ("%d\n", d_list->rc->smoke);
+		d_list->rc->smoke++;
+		put_image(d_list, d_list->mlx);
+		
+		usleep(40000);
+	}
+	d_list->rc->smoke = 0;
 	// REMOVE THE NINJA FROM RAWMAP
 	// d_list->rc->smoke = 0;
 }
