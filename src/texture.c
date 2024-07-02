@@ -21,9 +21,9 @@ void    load_textures(t_mlx *mlx)
         mlx[i].ptr = mlx_init();
     mlx[SP].texture = mlx_xpm_file_to_image(mlx[SP].ptr, "images/knight.xpm"
         , &mlx[SP].tex_dim[0], &mlx[SP].tex_dim[1]);
-    mlx[N].texture = mlx_xpm_file_to_image(mlx[N].ptr, "images/north.xpm"
+    mlx[N].texture = mlx_xpm_file_to_image(mlx[N].ptr, "images/aztec_wall.xpm"
         , &mlx[N].tex_dim[0], &mlx[N].tex_dim[1]);
-    mlx[S].texture = mlx_xpm_file_to_image(mlx[S].ptr, "images/south.xpm"
+    mlx[S].texture = mlx_xpm_file_to_image(mlx[S].ptr, "images/break_wall.xpm"
         , &mlx[S].tex_dim[0], &mlx[S].tex_dim[1]);
     mlx[E].texture = mlx_xpm_file_to_image(mlx[E].ptr, "images/east.xpm"
         , &mlx[E].tex_dim[0], &mlx[E].tex_dim[1]);
