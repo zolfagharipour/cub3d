@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:50:02 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/01 14:29:14 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:32:17 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,24 @@ void    wall(t_common *d_list, double p1[2], double p2[2], int x)
 	}
 }
 
-
 void	draw_walls(t_common *d_list)
 {
-	int	i[2];
+	int		i[2];
+	int		end;
 	double	p1[2];
 	double	p2[2];
 	double	line_len;
 
 	i[1] = 0;
-	while (i[1] < 2)
+	end = 2;
+	if (d_list->rc->smoke)
+		end = 10;
+	while (i[1] < end)
 	{
 		i[0] = 0;
 		while (i[0] < WIDTH)
 		{
-			if ((i[1] == 0 && d_list->rc->sprite[2] < d_list->rc->hit[i[0]][5]) || (i[1] == 1 && d_list->rc->sprite[2] >= d_list->rc->hit[i[0]][5]))
+			if ((i[1] % 2 == 0 && d_list->rc->sprite[2] < d_list->rc->hit[i[0]][5]) || (i[1] % 2 == 1 && d_list->rc->sprite[2] >= d_list->rc->hit[i[0]][5]))
 			{
 				line_len = (HEIGHT * 3 / (d_list->rc->hit[i[0]][2]));
 				p1[1] = (HEIGHT + line_len) / 2;
@@ -62,8 +65,9 @@ void	draw_walls(t_common *d_list)
 			}
 			i[0]++;
 		}
-		if (i[1] == 0)
-			sprite(d_list);
+		if (i[1] % 2 == 0)
+			sprite(d_list, d_list->rc->smoke++);
 		i[1]++;
 	}
+	d_list->rc->smoke = 0;
 }

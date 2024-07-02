@@ -8,8 +8,9 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
-# include "../libft/libft.h"
 # include <fcntl.h>
+# include <sys/time.h>
+# include "../libft/libft.h"
 
 # define HEIGHT 800
 # define WIDTH 1000
@@ -25,26 +26,19 @@
 # define DDBLUE 0x0
 # define SKY 0X87CEEB
 # define FLOOR 0x013220
-# define SP 1
+# define D  1
 # define N  2
 # define S  3
 # define E  4
 # define W  5
 # define DW 6
-# define D  7
+# define SP  7
 # define RESIDUUM 6
 # define SMALL_ANGLE 1e-2
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
 
-typedef struct	s_imgs
-{
-	void	*mlx;
-	void	*img;
-	int		im_dim[2];
-
-} t_imgs;
 
 typedef struct s_mlx
 {
@@ -95,6 +89,7 @@ typedef struct	s_raycaster
 	double		hit[WIDTH][6];
 	double		tmp[2];
 	double		sprite[4];
+	int			smoke;
 } t_rc;
 
 
@@ -165,8 +160,9 @@ void    south(t_common *d_list);
 void    wall(t_common *d_list, double p1[2],double p2[2], int x);
 void    load_textures(t_mlx *mlx);
 void    find_sprite(t_common *d_list);
-void	sprite(t_common *d_list);
+void	sprite(t_common *d_list, int smoke);
 void	floor_ceiling(t_common *d_list);
+void	ninja(t_common * d_list);
 
 // math
 double  dot_product(double p1[2], double p2[2]);
