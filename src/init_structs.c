@@ -17,12 +17,26 @@ int	init_structs(t_common *d_list, char *file)
 	d_list->map = (t_map *)malloc(sizeof(t_map));
 	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	d_list->rc = (t_rc *)malloc(sizeof(t_rc));
-	if (!d_list->map || !d_list->mlx)
+	d_list->texture = (t_texture *)malloc(sizeof(t_texture));
+	if (!d_list->map || !d_list->mlx || !d_list->rc || !d_list->texture)
 		return 0;
 	init_mlx(d_list->mlx);
 	init_map(d_list->map, file);
 	init_rc(d_list->rc);
-	
+	int	i = 0;
+	d_list->texture->img = NULL;
+	d_list->texture->mlx = NULL;
+	while (i < 4)
+	{
+		d_list->texture->texture_buffer[i] = NULL;
+		d_list->texture->path[i] = "NULL";
+		i++;
+	}
+	//can be taken out later
+	d_list->texture->path[0] = "textures/east.xpm";
+	d_list->texture->path[1] = "textures/west.xpm";
+	d_list->texture->path[2] = "textures/north.xpm";
+	d_list->texture->path[3] = "textures/south.xpm";
 	return 1;
 }
 

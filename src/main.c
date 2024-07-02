@@ -16,6 +16,9 @@ int main(int argc, char **argv)
 {
     t_common  d_list;
     
+    //this should be taken out later
+    if (check_the_textures_open() == 0)
+      return (0);
     if (error_arguments(argc, argv) == 0)
         return (0);
     if (init_structs(&d_list, argv[1]) == 0)
