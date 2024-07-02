@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:31 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/06/28 19:18:06 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:02:07 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int main(int argc, char **argv)
    // test_map(&d_list);
     if (minimap(&d_list) == 0)
       return (cleanup(&d_list), 0);
-		printf ("DIM:   %d\n", d_list.mlx[2].tex_dim[1]);
     put_image(&d_list, &d_list.mlx[0]);
     events(&d_list);
     // //basic 3d array for testing --> d_list->map->raw_map

@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/01 15:30:35 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:52:12 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init_mlx(t_mlx *mlx)
 	mlx->loop = NULL;
 	mlx->img = NULL;
 	mlx->addr = NULL;
+	mlx->texture = NULL;
     mlx->x = 0;
 	mlx->y = 0;
     mlx->shift_x = 0;
