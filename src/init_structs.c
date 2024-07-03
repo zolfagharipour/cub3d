@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/03 11:35:07 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:59:44 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	init_map(t_map *map, char *file)
 	map->file = ft_strdup(file);
 	map->player_found = 0;
 	map->previous_line_valid = 0;
+	map->close_door[0] = -1;
+	map->close_door[1] = -1;
 	if (!map->file)
 		return ;
 }

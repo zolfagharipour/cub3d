@@ -19,9 +19,9 @@ void    load_textures(t_mlx *mlx)
     i = 0;
     while (i++ < 12)
         mlx[i].ptr = mlx_init();
-    mlx[N].texture = mlx_xpm_file_to_image(mlx[N].ptr, "images/aztec_wall.xpm"
+    mlx[N].texture = mlx_xpm_file_to_image(mlx[N].ptr, "images/north.xpm"
         , &mlx[N].tex_dim[0], &mlx[N].tex_dim[1]);
-    mlx[S].texture = mlx_xpm_file_to_image(mlx[S].ptr, "images/break_wall.xpm"
+    mlx[S].texture = mlx_xpm_file_to_image(mlx[S].ptr, "images/south.xpm"
         , &mlx[S].tex_dim[0], &mlx[S].tex_dim[1]);
     mlx[E].texture = mlx_xpm_file_to_image(mlx[E].ptr, "images/east.xpm"
         , &mlx[E].tex_dim[0], &mlx[E].tex_dim[1]);
@@ -29,7 +29,7 @@ void    load_textures(t_mlx *mlx)
         , &mlx[W].tex_dim[0], &mlx[W].tex_dim[1]);
     mlx[DW].texture = mlx_xpm_file_to_image(mlx[DW].ptr, "images/door_wall.xpm"
         , &mlx[DW].tex_dim[0], &mlx[DW].tex_dim[1]);
-    mlx[D].texture = mlx_xpm_file_to_image(mlx[D].ptr, "images/door.xpm"
+    mlx[D].texture = mlx_xpm_file_to_image(mlx[D].ptr, "images/aztec_wall.xpm"
         , &mlx[D].tex_dim[0], &mlx[D].tex_dim[1]);
     
     mlx[SP].texture = mlx_xpm_file_to_image(mlx[SP].ptr, "images/knight.xpm"

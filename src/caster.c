@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/03 10:52:34 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:07:37 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,8 @@ void     shoot_ray(t_common *d_list, t_rc *rc, int pixel)
         rc->hit[pixel][4] = modf(rc->hit[pixel][1], &angle);
     
 
+    if (d_list->map->raw_map[rc->ray[0]][rc->ray[1]] == 4)
+        rc->hit[pixel][3] = D;
     // printf("Dir %f\tlenX %f\tlenY %f\n", rc->dir, length_x(rc), length_y(rc));
     // printf("X %f\t%f\t%f\n", rc->pos[0], rc->steps[0], d_list->rc->hit[pixel][0]);
     // printf("Y %f\t%f\t%f\n\n", rc->pos[1], rc->steps[1], d_list->rc->hit[pixel][1]);

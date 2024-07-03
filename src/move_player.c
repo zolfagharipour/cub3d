@@ -65,10 +65,10 @@ int	move_check_y(t_common *d_list, double move_dir)
 	pos[0] = d_list->rc->pos[0];
 	pos[1] = d_list->rc->pos[1];
 
-	if (sin(move_dir * M_PI) < 0 && d_list->map->raw_map[pos[0]][pos[1] + 1] == 1
+	if (sin(move_dir * M_PI) < 0 && (d_list->map->raw_map[pos[0]][pos[1] + 1] == 1 || d_list->map->raw_map[pos[0]][pos[1] + 1] == 4)
 		&& modf(d_list->rc->pos[1], &trash) >= 0.6)
 		return (FALSE);
-	if (sin(move_dir * M_PI) > 0 && d_list->map->raw_map[pos[0]][pos[1] - 1] == 1
+	if (sin(move_dir * M_PI) > 0 && (d_list->map->raw_map[pos[0]][pos[1] - 1] == 1 || d_list->map->raw_map[pos[0]][pos[1] - 1] == 4)
 		&& modf(d_list->rc->pos[1], &trash) <= 0.4)
 		return (FALSE);
 	return (TRUE);

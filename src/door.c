@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:37:28 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/03 11:40:04 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:21:46 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ void	check_dim(t_common *d_list, int i[2], int end[2])
 
 void	open_door(t_common *d_list, int i[2])
 {
+	int	x[2];
+
+	x[0] = d_list->map->close_door[0];
+	x[1] = d_list->map->close_door[1];
+	if (x[0] != -1)
+		d_list->map->raw_map[x[0]][x[1]] = 4;
+	d_list->map->close_door[0] = i [0];
+	d_list->map->close_door[1] = i [1];
+	d_list->map->raw_map[i[0]][i[1]] = 0;
+}
+
+void	check_doors(t_common *d_list, int i[2])
+{
 	int		end[2];
 	int		i1;
 	
@@ -34,15 +47,12 @@ void	open_door(t_common *d_list, int i[2])
 	end[1] = i[1] + 3;
 	check_dim(d_list, i, end);
 	i1 = i[1];
-	while (i[0] <= end[0])
+	while (i[0] < end[0])
 	{
-		while (i[1] <= end[1])
+		while (i[1] < end[1])
 		{
 			if (d_list->map->raw_map[i[0]][i[1]] == 4)
-			{
-				printf ("DOOR\n");
-				d_list->map->raw_map[i[0]][i[1]] = 0;	
-			}
+				open_door(d_list, i);
 			i[1]++;
 		}
 		i[1] = i1;
@@ -57,25 +67,25 @@ void	door(t_common *d_list)
 
 	i[0] = (int) d_list->rc->pos[0];
 	i[1] = (int) d_list->rc->pos[1];
-	if (d_list->rc->dir > 1.75 && d_list->rc->dir < 0.25)
+	if (d_list->rc->dir >= 1.75 || d_list->rc->dir < 0.25)
 	{
 		i[0] += 1;
 		i[1] -= 1;
 	}
-	else if (d_list->rc->dir > 0.25 && d_list->rc->dir < 0.75)
+	else if (d_list->rc->dir >= 0.25 && d_list->rc->dir < 0.75)
 	{
 		i[0] -= 1;
 		i[1] -= 3;
 	}
-	else if (d_list->rc->dir > 0.75 && d_list->rc->dir < 1.25)
+	else if (d_list->rc->dir >= 0.75 && d_list->rc->dir < 1.25)
 	{
 		i[0] -= 3;
 		i[1] -= 1;
 	}
-	else if (d_list->rc->dir > 1.25 && d_list->rc->dir < 1.75)
+	else if (d_list->rc->dir >= 1.25 && d_list->rc->dir < 1.75)
 	{
 		i[0] -= 1;
 		i[1] += 1;
 	}
-	open_door(d_list, i);
+	check_doors(d_list, i);
 }

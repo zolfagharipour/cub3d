@@ -76,6 +76,7 @@ typedef struct s_map
 	int		player_found;
 	int		previous_line_valid;
 	int		fd;
+	int		close_door[2];
 }	t_map;
 
 typedef struct	s_raycaster
