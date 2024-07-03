@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+    /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
@@ -29,7 +29,7 @@ void    load_textures(t_mlx *mlx)
         , &mlx[W].tex_dim[0], &mlx[W].tex_dim[1]);
     mlx[DW].texture = mlx_xpm_file_to_image(mlx[DW].ptr, "images/door_wall.xpm"
         , &mlx[DW].tex_dim[0], &mlx[DW].tex_dim[1]);
-    mlx[D].texture = mlx_xpm_file_to_image(mlx[D].ptr, "images/aztec_wall.xpm"
+    mlx[D].texture = mlx_xpm_file_to_image(mlx[D].ptr, "images/gate.xpm"
         , &mlx[D].tex_dim[0], &mlx[D].tex_dim[1]);
     
     mlx[SP].texture = mlx_xpm_file_to_image(mlx[SP].ptr, "images/knight.xpm"
