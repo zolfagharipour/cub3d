@@ -31,8 +31,19 @@
 # define S  3
 # define E  4
 # define W  5
+# define FLOOR_N 0
+# define CEILING 1
 # define DW 6
 # define SP 7
+# define NO_PLAYER 0
+# define MULTIPLE_PLAYERS 1
+# define INV_CHAR 2
+# define INV_BORDERS 3
+# define INV_SPACE 4
+# define NOT_FOUND 0
+# define FOUND 1
+# define INV_OPEN_COL 2
+# define INV_FORMAT 3
 # define RESIDUUM 6
 # define SMALL_ANGLE 1e-2
 #ifndef M_PI
@@ -66,6 +77,7 @@ typedef struct s_map
 	int		**raw_map;
 	int		raw_length;
 	int		raw_height;
+	int		file_length;
 	int		scale;
 	int		**minimap;
 	char	*file;
@@ -75,6 +87,11 @@ typedef struct s_map
 	int		s_square;	
 	int		player_found;
 	int		previous_line_valid;
+	int		map_started;
+	int		val_aspects[6];
+	int		val_map[5];
+	char	*textures[4];
+	char	*color[2];
 	int		fd;
 	int		close_door[2];
 }	t_map;
@@ -113,6 +130,12 @@ void    put_red_square(t_common *d_list);
 void	put_image(t_common *d_list, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int		error_arguments(int argc, char **argv);
+
+//map parsing
+void	check_all_parts_found_and_valid(t_common *d_list);
+void	print_map_error(t_common *d_list, int error);
+int		valid_map_boundaries(t_common *d_list);
+
 
 //read_from_file
 int determine_map_size(t_common *d_list);

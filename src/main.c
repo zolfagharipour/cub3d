@@ -25,13 +25,13 @@ int main(int argc, char **argv)
       return (0);
     if (!read_map_from_file(&d_list))
       return (0);
-    if (init_mlx_functions(&d_list, &d_list.mlx[0]) == 0)
-      return 0;
-   // test_map(&d_list);
-    if (minimap(&d_list) == 0)
-      return (cleanup(&d_list), 0);
-    put_image(&d_list, &d_list.mlx[0]);
-    events(&d_list);
+  //   if (init_mlx_functions(&d_list, &d_list.mlx[0]) == 0)
+  //     return 0;
+  //  // test_map(&d_list);
+  //   if (minimap(&d_list) == 0)
+  //     return (cleanup(&d_list), 0);
+  //   put_image(&d_list, &d_list.mlx[0]);
+  //   events(&d_list);
     // //basic 3d array for testing --> d_list->map->raw_map
     // //read from the map_file
     cleanup(&d_list);
