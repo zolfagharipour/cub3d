@@ -6,23 +6,23 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:37:28 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/03 11:32:54 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:40:04 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubid.h"
 
-void	check_dim(t_common *d_list, int i[2])
+void	check_dim(t_common *d_list, int i[2], int end[2])
 {
 	
 	if (i[0] < 0)
 		i[0] = 0;
-	if (i[0] >= d_list->map->raw_length)
-		i[0] = d_list->map->raw_length;
 	if (i[1] < 0)
 		i[1] = 0;
-	if (i[1] >= d_list->map->raw_height)
-		i[1] = d_list->map->raw_height;
+	if (end[0] >= d_list->map->raw_length)
+		end[0] = d_list->map->raw_length;
+	if(end[1] >= d_list->map->raw_height)
+		end[1] = d_list->map->raw_height;
 }
 
 void	open_door(t_common *d_list, int i[2])
@@ -32,7 +32,7 @@ void	open_door(t_common *d_list, int i[2])
 	
 	end[0] = i[0] + 3;
 	end[1] = i[1] + 3;
-	check_dim(d_list, i);
+	check_dim(d_list, i, end);
 	i1 = i[1];
 	while (i[0] <= end[0])
 	{

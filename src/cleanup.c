@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:55 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/03 11:33:33 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:41:12 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	cleanup(t_common *d_list)
 {
 	cleanup_mlx(d_list->mlx);
     cleanup_map(d_list->map);
-    //cleanup_rc(d_list->rc);
     close (d_list->map->fd);
     cleanup_d_list(d_list);
 	exit (1);

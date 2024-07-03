@@ -129,6 +129,8 @@ void find_the_players_position(t_common *d_list);
 void	draw_image(t_common *d_list);
 void    draw_minimap(t_common *d_list);
 void    draw_player(t_common *d_list);
+int		cleanup(t_common *d_list);
+void    cleanup_mlx(t_mlx *mlx);
 void    cleanup_map(t_map *map);
 void    cleanup_d_list(t_common *d_list);
 void    cleanup_rc(t_rc *rc);
