@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:02 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/02 19:42:11 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 10:37:12 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void	ninja(t_common *d_list)
 		
 		usleep(40000);
 	}
-	d_list->rc->smoke = 0;
 	// REMOVE THE NINJA FROM RAWMAP
-	// d_list->rc->smoke = 0;
+	d_list->rc->smoke = 0;
 }
 
 int	key_press(int keycode, t_common *d_list)
@@ -55,6 +54,11 @@ int	key_press(int keycode, t_common *d_list)
 	else if (keycode == XK_e)
 	{
 		ninja(d_list);
+		return (0);
+	}
+	else if (keycode == XK_space)
+	{
+		door(d_list);
 		return (0);
 	}
 	return (0);

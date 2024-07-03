@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/02 19:09:37 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:35:07 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	init_structs(t_common *d_list, char *file)
 	d_list->map = (t_map *)malloc(sizeof(t_map));
 	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx) * 13);
 	d_list->rc = (t_rc *)malloc(sizeof(t_rc));
-	d_list->texture = (t_texture *)malloc(sizeof(t_texture));
-	if (!d_list->map || !d_list->mlx || !d_list->rc || !d_list->texture)
+	if (!d_list->map || !d_list->mlx || !d_list->rc)
 		return 0;
 	init_map(d_list->map, file);
 	init_rc(d_list->rc);

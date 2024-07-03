@@ -61,14 +61,6 @@ typedef struct s_mlx
 	//int		player_running;
 }	t_mlx;
 
-typedef struct s_texture
-{
-	void	*img;
-	char	*path[4];
-	void	*mlx;
-	int		*texture_buffer[4];
-}	t_texture;
-
 typedef struct s_map
 {
 	int		**raw_map;
@@ -106,7 +98,6 @@ typedef struct s_common
 	t_mlx		*mlx;
 	t_map 		*map;
 	t_rc		*rc;
-	t_texture	*texture;
 } t_common;
 
 //setup
@@ -138,11 +129,7 @@ void find_the_players_position(t_common *d_list);
 void	draw_image(t_common *d_list);
 void    draw_minimap(t_common *d_list);
 void    draw_player(t_common *d_list);
-
-//cleanup
-int		cleanup(t_common *d_list);
-void    cleanup_mlx(t_mlx *mlx);
-void    cleanup_map(t_map *map);;
+void    cleanup_map(t_map *map);
 void    cleanup_d_list(t_common *d_list);
 void    cleanup_rc(t_rc *rc);
 void    p_error(char *str, t_common *d_list);
@@ -172,6 +159,8 @@ void    find_sprite(t_common *d_list);
 void	sprite(t_common *d_list);
 void	floor_ceiling(t_common *d_list);
 void	ninja(t_common * d_list);
+void	door (t_common *d_list);
+
 
 // math
 double  dot_product(double p1[2], double p2[2]);

@@ -14,5 +14,5 @@ MZOLFAGH
 
 
 HELP MENUE
-    1. sprite is 3 and walls are 4
+    1. sprite is 3 and doors are 4
     2. e is for explosion
