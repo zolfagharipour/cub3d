@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:45:34 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/03 12:55:59 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:44:22 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,21 @@ void	respone_ninja(t_common *d_list)
 
 void	ninja(t_common *d_list)
 {
-	while(d_list->rc->smoke < 4)
-	{
-		printf ("%d\n", d_list->rc->smoke);
-		d_list->rc->smoke++;
-		put_image(d_list, d_list->mlx);
-		
-		usleep(40000);
-	}
-	respone_ninja(d_list);
-	d_list->rc->smoke = 0;
+	// if (d_list->rc->ninja_found < 5 && d_list->rc->sprite[2] < 5)
+	// {
+		while(d_list->rc->smoke < 4)
+		{
+			d_list->rc->smoke++;
+			put_image(d_list, d_list->mlx);
+			usleep(40000);
+		}
+		respone_ninja(d_list);
+		d_list->rc->smoke = 0;
+		d_list->rc->ninja_found++;
+	// }
+	// else
+	// {
+	// 	exit(1);	
+	// }
 	put_image(d_list, d_list->mlx);
 }

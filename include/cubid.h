@@ -13,7 +13,7 @@
 # include "../libft/libft.h"
 
 # define HEIGHT 800
-# define WIDTH 1000
+# define WIDTH 800
 # define TRUE 1
 # define FALSE 0
 //definition square size can be amended
@@ -91,6 +91,7 @@ typedef struct	s_raycaster
 	double		tmp[2];
 	double		sprite[4];
 	int			smoke;
+	int			ninja_found;
 } t_rc;
 
 
@@ -163,6 +164,8 @@ void	sprite(t_common *d_list);
 void	floor_ceiling(t_common *d_list);
 void	ninja(t_common * d_list);
 void	door (t_common *d_list);
+int		light_adjust(int rgb, double light);
+int		wall_lighting(t_common *d_list, int color, int x);
 
 
 // math

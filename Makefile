@@ -12,7 +12,7 @@ SRCS = 	src/image_utils.c src/events.c src/image.c src/init_structs.c \
 		src/caster.c src/line.c src/draw_walls.c src/move_player.c \
 		src/error_checks.c src/read_from_file.c  src/texture.c \
 		src/sprite.c src/math.c src/floor_ceiling.c src/door.c \
-		src/ninja.c
+		src/ninja.c src/light.c
 
 OBJDIR = ./obj
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))

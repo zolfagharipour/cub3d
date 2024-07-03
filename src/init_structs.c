@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/03 11:59:44 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:36:56 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,15 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_rc(t_rc *rc)
 {
-	rc->look = 0.75;
+	rc->look = 1;
 	rc->pos[0] = 2.5;
 	rc->pos[1] = 2.5;
 	rc->tmp[0] = 0;
 	rc->tmp[1] = 0;
-	rc->sprite[0] = 5.5;
-	rc->sprite[1] = 1.5;
+	rc->sprite[0] = 16.5;
+	rc->sprite[1] = 2.5;
 	rc->smoke = 0;
+	rc->ninja_found = 0;
 }
 
 int	init_mlx_functions(t_common *d_list, t_mlx *mlx)

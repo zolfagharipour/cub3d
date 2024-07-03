@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 12:39:49 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/02 19:26:28 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:20:48 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	sprite(t_common *d_list)
 {
     double  scale;
     double  pos[2];
-    if (fabs(d_list->rc->sprite[3]) > 0.25)
+    if (fabs(d_list->rc->sprite[3]) > 0.25 || d_list->rc->sprite[2] > 5)
         return ;
     scale = 15 / d_list->rc->sprite[2];
     pos[1] = (HEIGHT / 2) + (HEIGHT / 18);
