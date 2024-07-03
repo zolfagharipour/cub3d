@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:02 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/03 11:40:46 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:46:00 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,6 @@ void	events(t_common *d_list)
 	mlx_hook(mlx->win, 2, 1L << 0, (key_press), d_list);
 	mlx_hook(mlx->win, 17, 1L << 8, (cleanup), d_list);
 	mlx_loop(mlx->ptr);
-}
-
-void	ninja(t_common *d_list)
-{
-	while(d_list->rc->smoke < 4)
-	{
-		printf ("%d\n", d_list->rc->smoke);
-		d_list->rc->smoke++;
-		put_image(d_list, d_list->mlx);
-		
-		usleep(40000);
-	}
-	// REMOVE THE NINJA FROM RAWMAP
-	d_list->rc->smoke = 0;
 }
 
 int	key_press(int keycode, t_common *d_list)
