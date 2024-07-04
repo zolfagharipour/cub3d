@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:55 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/03 11:41:12 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:23:13 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    cleanup_mlx(t_mlx *mlx)
     if (mlx->win)
         mlx_destroy_window(mlx->ptr, mlx->win);
     i = 0;
-    while (i < 13)
+    while (i < 21)
     {
         if (&mlx[i])
         {

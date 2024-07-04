@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:50:02 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/03 16:50:28 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:32:19 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_walls(t_common *d_list)
 		{
 			if ((i[1] == 0 && d_list->rc->sprite[2] < d_list->rc->hit[i[0]][5]) || (i[1] == 1 && d_list->rc->sprite[2] >= d_list->rc->hit[i[0]][5]))
 			{
-				line_len = (HEIGHT * 3 / (d_list->rc->hit[i[0]][2]));
+				line_len = (HEIGHT * 2 / (d_list->rc->hit[i[0]][2]));
 				p1[1] = (HEIGHT + line_len) / 2;
 				p2[1] = (HEIGHT - line_len) / 2;
 				p1[0] = i[0];

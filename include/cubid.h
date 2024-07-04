@@ -31,8 +31,7 @@
 # define S  3
 # define E  4
 # define W  5
-# define DW 6
-# define SP 7
+# define SP 6
 # define RESIDUUM 6
 # define SMALL_ANGLE 1e-2
 #ifndef M_PI
