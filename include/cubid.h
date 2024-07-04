@@ -40,6 +40,7 @@
 # define INV_CHAR 2
 # define INV_BORDERS 3
 # define INV_SPACE 4
+# define INV_NL 5
 # define NOT_FOUND 0
 # define FOUND 1
 # define INV_OPEN_COL 2
@@ -89,7 +90,7 @@ typedef struct s_map
 	int		previous_line_valid;
 	int		map_started;
 	int		val_aspects[6];
-	int		val_map[5];
+	int		val_map[6];
 	char	*textures[4];
 	char	*color[2];
 	int		fd;

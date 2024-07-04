@@ -54,7 +54,7 @@ void	init_map(t_map *map, char *file)
 	while (++i < 6)
 		map->val_aspects[i] = 0;
 	i = -1;
-	while (++i < 5)
+	while (++i < 6)
 		map->val_map[i] = 0;
 	if (!map->file)
 		return ;
