@@ -90,8 +90,9 @@ typedef struct	s_raycaster
 	double		hit[WIDTH][6];
 	double		tmp[2];
 	double		sprite[4];
-	int			smoke;
+	int			frame;
 	int			ninja_found;
+	int			shuriken;
 } t_rc;
 
 
@@ -145,6 +146,8 @@ int		key_press(int keycode, t_common *d_list);
 void	move_window(int keycode, t_common *d_list);
 void	rotate_player(int keycode, t_common *d_list);
 int		key_release(int keycode, t_common *d_list);
+int		mouse_track(int x, int y, t_common *d_list);
+
 
 
 
@@ -166,6 +169,8 @@ void	ninja(t_common * d_list);
 void	door (t_common *d_list);
 int		light_adjust(int rgb, double light);
 int		wall_lighting(t_common *d_list, int color, int x);
+void	shuriken(t_common *d_list);
+void	draw_icon(t_common *d_list);
 
 
 // math
