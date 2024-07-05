@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:45:34 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/04 17:32:05 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:07:13 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	respone_ninja(t_common *d_list)
 		i[1] = 0;
 		while (i[1] < d_list->map->raw_height)
 		{
-			if (d_list->map->raw_map[i[0]][i[1]] == 0 && rand() / (float)RAND_MAX > 0.95)
+			if (d_list->map->raw_map[i[0]][i[1]] == 0 && rand() / (float)RAND_MAX > 0.97)
 			{
 				d_list->rc->sprite[0] = i[0] + 0.5;
 				d_list->rc->sprite[1] = i[1] + 0.5;
@@ -40,19 +40,27 @@ void	ninja(t_common *d_list)
 {
 	// if (d_list->rc->ninja_found < 5 && d_list->rc->sprite[2] < 5)
 	// {
-		while(d_list->rc->frame < 9)
-		{
-			d_list->rc->frame++;
-			put_image(d_list, d_list->mlx);
-			usleep(80000);
-		}
-		respone_ninja(d_list);
-		d_list->rc->frame = 0;
-		d_list->rc->ninja_found++;
+	// 	while(d_list->rc->frame < 10)
+	// 	{
+	// 		d_list->rc->frame++;
+	// 		put_image(d_list, d_list->mlx);
+	// 		usleep(70000);
+	// 	}
+	// 	respone_ninja(d_list);
+	// 	d_list->rc->frame = 0;
+	// 	d_list->rc->ninja_found++;
 	// }
 	// else
 	// {
-	// 	exit(1);	
+		d_list->rc->frame = 10;
+		while (d_list->rc->frame < 13)
+		{
+			put_image(d_list, d_list->mlx);
+			d_list->rc->frame++;
+			usleep(100000);
+
+		}
+		d_list->rc->frame = 12;
 	// }
 	put_image(d_list, d_list->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:12:39 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/04 14:04:23 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:58:05 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 
 void	smoke_icon(t_common *d_list, int start[2])
 {
-	int	i[2];
+	int		i[2];
+	int		color;
+	double	scale[2];
 
 	i[0] = 0;
-	while(i[0] < 30)
+	scale[0] = d_list->mlx[SMOKE].tex_dim[0] / 50.0;
+	scale[1] = d_list->mlx[SMOKE].tex_dim[1] / 50.0;
+	while(i[0] < 51)
 	{
 		i[1] = 0;
-		while(i[1] < 30)
+		while(i[1] < 52)
 		{
-			my_mlx_pixel_put(d_list->mlx, start[0] + i[0], start[1] + i[1], 0XFFAACC);
+			color = my_mlx_pixel_get(&d_list->mlx[SMOKE],  i[0] * (int)scale[0], i[1] * (int)scale[1]);
+			if (color != 0XFF000000)
+				my_mlx_pixel_put(d_list->mlx, start[0] + i[0], start[1] + i[1], color);
 			i[1]++;
 		}
 		i[0]++;
@@ -36,12 +42,11 @@ void	draw_icon(t_common *d_list)
 	int	i;
 
 	p[0] = WIDTH - 60;
-	p[1] = 30;
+	p[1] = 10;
 	i = 0;
 	while (i < 4 - d_list->rc->ninja_found)
 	{
 		smoke_icon(d_list, p);
-		// p[0] -= d_list->mlx[5].tex_dim[1] + 20;
 		
 		p[0] -= 30 + 20;
 		i++;

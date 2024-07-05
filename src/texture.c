@@ -29,6 +29,8 @@ void    load_textures(t_mlx *mlx)
         , &mlx[W].tex_dim[0], &mlx[W].tex_dim[1]);
     mlx[D].texture = mlx_xpm_file_to_image(mlx[D].ptr, "images/door.xpm"
         , &mlx[D].tex_dim[0], &mlx[D].tex_dim[1]);
+    mlx[SMOKE].texture = mlx_xpm_file_to_image(mlx[SMOKE].ptr, "images/smoke.xpm"
+        , &mlx[SMOKE].tex_dim[0], &mlx[SMOKE].tex_dim[1]);
     
     mlx[SP].texture = mlx_xpm_file_to_image(mlx[SP].ptr, "images/ninja.xpm"
         , &mlx[SP].tex_dim[0], &mlx[SP].tex_dim[1]);
@@ -44,11 +46,20 @@ void    load_textures(t_mlx *mlx)
         , &mlx[SP + 5].tex_dim[0], &mlx[SP + 5].tex_dim[1]);
     mlx[SP + 6].texture = mlx_xpm_file_to_image(mlx[SP + 6].ptr, "images/ninja6.xpm"
         , &mlx[SP + 6].tex_dim[0], &mlx[SP + 6].tex_dim[1]);
-   
     mlx[SP + 7].texture = mlx_xpm_file_to_image(mlx[SP + 7].ptr, "images/ninja7.xpm"
         , &mlx[SP + 7].tex_dim[0], &mlx[SP + 7].tex_dim[1]);
     mlx[SP + 8].texture = mlx_xpm_file_to_image(mlx[SP + 8].ptr, "images/ninja8.xpm"
         , &mlx[SP + 8].tex_dim[0], &mlx[SP + 8].tex_dim[1]);
+    mlx[SP + 9].texture = mlx_xpm_file_to_image(mlx[SP + 9].ptr, "images/ninja9.xpm"
+        , &mlx[SP + 9].tex_dim[0], &mlx[SP + 9].tex_dim[1]);
+
+    mlx[BL].texture = mlx_xpm_file_to_image(mlx[BL].ptr, "images/blood1.xpm"
+        , &mlx[BL].tex_dim[0], &mlx[BL].tex_dim[1]);
+    mlx[BL + 1].texture = mlx_xpm_file_to_image(mlx[BL + 1].ptr, "images/blood2.xpm"
+        , &mlx[BL + 1].tex_dim[0], &mlx[BL + 1].tex_dim[1]);
+    mlx[BL + 2].texture = mlx_xpm_file_to_image(mlx[BL + 2].ptr, "images/blood3.xpm"
+        , &mlx[BL + 2].tex_dim[0], &mlx[BL + 2].tex_dim[1]);
+
 
 
     
@@ -58,6 +69,7 @@ void    load_textures(t_mlx *mlx)
     mlx[E].tex_data = mlx_get_data_addr(mlx[E].texture, &mlx[E].bpp, &mlx[E].line_length, &mlx[E].endian);
     mlx[W].tex_data = mlx_get_data_addr(mlx[W].texture, &mlx[W].bpp, &mlx[W].line_length, &mlx[W].endian);
     mlx[D].tex_data = mlx_get_data_addr(mlx[D].texture, &mlx[D].bpp, &mlx[D].line_length, &mlx[D].endian);
+    mlx[SMOKE].tex_data = mlx_get_data_addr(mlx[SMOKE].texture, &mlx[SMOKE].bpp, &mlx[SMOKE].line_length, &mlx[SMOKE].endian);
         
     mlx[SP].tex_data = mlx_get_data_addr(mlx[SP].texture, &mlx[SP].bpp, &mlx[SP].line_length, &mlx[SP].endian);
     mlx[SP + 1].tex_data = mlx_get_data_addr(mlx[SP + 1].texture, &mlx[SP + 1].bpp, &mlx[SP + 1].line_length, &mlx[SP + 1].endian);
@@ -68,7 +80,11 @@ void    load_textures(t_mlx *mlx)
     mlx[SP + 6].tex_data = mlx_get_data_addr(mlx[SP + 6].texture, &mlx[SP + 6].bpp, &mlx[SP + 6].line_length, &mlx[SP + 6].endian);
     mlx[SP + 7].tex_data = mlx_get_data_addr(mlx[SP + 7].texture, &mlx[SP + 7].bpp, &mlx[SP + 7].line_length, &mlx[SP + 7].endian);
     mlx[SP + 8].tex_data = mlx_get_data_addr(mlx[SP + 8].texture, &mlx[SP + 8].bpp, &mlx[SP + 8].line_length, &mlx[SP + 8].endian);
- write(1, "BINGO\n", 7);
+    mlx[SP + 9].tex_data = mlx_get_data_addr(mlx[SP + 9].texture, &mlx[SP + 9].bpp, &mlx[SP + 9].line_length, &mlx[SP + 9].endian);
+    
+    mlx[BL].tex_data = mlx_get_data_addr(mlx[BL].texture, &mlx[BL].bpp, &mlx[BL].line_length, &mlx[BL].endian);
+    mlx[BL + 1].tex_data = mlx_get_data_addr(mlx[BL + 1].texture, &mlx[BL + 1].bpp, &mlx[BL + 1].line_length, &mlx[BL + 1].endian);
+    mlx[BL + 2].tex_data = mlx_get_data_addr(mlx[BL + 2].texture, &mlx[BL + 2].bpp, &mlx[BL + 2].line_length, &mlx[BL + 2].endian);
 }
 int my_mlx_pixel_get(t_mlx *mlx, int x, int y)
 {
