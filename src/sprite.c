@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 12:39:49 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/05 15:16:29 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:40:12 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,16 @@ void	sprite(t_common *d_list)
 {
     double  scale;
     double  pos[2];
-    if (fabs(d_list->rc->sprite[3]) > 0.25 || d_list->rc->sprite[2] > 5)
+    if (d_list->rc->frame !=12 && (fabs(d_list->rc->sprite[3]) > 0.25 || d_list->rc->sprite[2] > 5))
         return ;
-    scale = 1 / d_list->rc->sprite[2];
-    pos[1] = (HEIGHT * 2) + (HEIGHT / 15);
+    scale = 1.5 / d_list->rc->sprite[2];
+    pos[1] = (HEIGHT + (HEIGHT / d_list->rc->sprite[2])) / 2;
     if (d_list->rc->frame == 12)
-        pos[1] += HEIGHT / 7;
-    pos[1] += 1.0 / (d_list->rc->sprite[2] * 2);
+        pos[1] *= 1.01;
+    else
+        pos[1] *= 0.9;
     pos[0] = tan(d_list->rc->sprite[3] * M_PI) * WIDTH * 2;
     pos[0] = (WIDTH / 2) - pos[0];
 
     draw_sprite(d_list, pos, scale);
-				line_len = (HEIGHT * 2 / (d_list->rc->hit[i[0]][2]));
-				p1[1] = (HEIGHT + line_len) / 2;
 }
