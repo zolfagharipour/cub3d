@@ -26,12 +26,13 @@ int	init_structs(t_common *d_list, char *file)
 	i = -1;
 	while (i++ < 19)
 		init_mlx(&d_list->mlx[i]);
-	load_textures(d_list->mlx);
+	//load_textures(d_list->mlx);
 	return 1;
 }
 
 void	init_map(t_map *map, char *file)
 {
+	int	i;
 	map->raw_map = NULL,
 	map->minimap = NULL,
 	map->raw_length = 0;
@@ -47,6 +48,14 @@ void	init_map(t_map *map, char *file)
 	map->previous_line_valid = 0;
 	map->close_door[0] = -1;
 	map->close_door[1] = -1;
+	map->map_started = 0;
+	map->file_length = 0;
+	i = -1;
+	while (++i < 6)
+		map->val_aspects[i] = 0;
+	i = -1;
+	while (++i < 6)
+		map->val_map[i] = 0;
 	if (!map->file)
 		return ;
 }

@@ -1,8 +1,8 @@
 FMARGRRA
     
     4. check if the texture file opened
+    5. map border parsing
     6. if URN -> we need one more character for URN
-    7. usleep function.
     8. scale the minimap to HEIGTH and WIDTH if its too big (check_map_scale_factor)
 
 
