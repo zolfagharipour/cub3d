@@ -12,8 +12,8 @@
 # include <sys/time.h>
 # include "../libft/libft.h"
 
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 1000
+# define WIDTH 1000
 # define TRUE 1
 # define FALSE 0
 //definition square size can be amended
@@ -154,7 +154,6 @@ int		mouse_track(int x, int y, t_common *d_list);
 
 //mohamad
 int		minimap(t_common *d_list);
-void    caster(t_common *d_list);
 void    line(t_common *d_list, double p1[2], double p2[2], int color);
 double	calc_dir(double dir);
 void	draw_walls(t_common *d_list);
@@ -173,6 +172,14 @@ int		wall_lighting(t_common *d_list, int color, int x);
 void	shuriken(t_common *d_list);
 void	draw_icon(t_common *d_list);
 
+// caster
+void    caster(t_common *d_list);
+void	step_x(t_rc *rc, int i);
+void	step_y(t_rc *rc, int i);
+double	length_x(t_rc *rc);
+double	length_y(t_rc *rc);
+double	pyth(double b, double c);
+void	shoot_ray(t_common *d_list, t_rc *rc, int pixel);
 
 // math
 double  dot_product(double p1[2], double p2[2]);
