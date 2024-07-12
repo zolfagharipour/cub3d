@@ -3,10 +3,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <mlx.h>
-# include <stdio.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
+// # include <mlx.h>
+// # include <stdio.h>
+// # include <X11/X.h>
+// # include <X11/keysym.h>
 # include <math.h>
 # include <fcntl.h>
 # include <sys/time.h>
@@ -39,9 +39,8 @@
 # define MULTIPLE_PLAYERS 1
 # define INV_CHAR 2
 # define INV_BORDERS 3
-# define INV_SPACE 4
 # define INV_NL 5
-# define NOT_FOUND 0
+# define NOT_FOUND 6
 # define FOUND 1
 # define INV_OPEN_COL 2
 # define INV_FORMAT 3
@@ -135,7 +134,7 @@ int		error_arguments(int argc, char **argv);
 //map parsing
 void	check_all_parts_found_and_valid(t_common *d_list);
 void	print_map_error(t_common *d_list, int error);
-int		valid_map_boundaries(t_common *d_list);
+char	*valid_map_boundaries(t_common *d_list);
 
 
 //read_from_file

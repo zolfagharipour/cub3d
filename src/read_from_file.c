@@ -12,7 +12,7 @@
 
 #include "cubid.h"
 
-int valid_map_boundaries(t_common *d_list)
+char *valid_map_boundaries(t_common *d_list)
 {
     int x;
     int y;
@@ -21,81 +21,59 @@ int valid_map_boundaries(t_common *d_list)
     x = 0;
     y = 0;
     map = d_list->map;
-    printf("raw_length: %d\n", d_list->map->raw_length);
-    printf("raw_height: %d\n", d_list->map->raw_height);
-    //forward first line
-    printf("first step: x (%d) should be zero and y (%d) should be 0\n", x, y);
     while (x < d_list->map->raw_length)
     {
         if (map->raw_map[x][y] != ft_atoi("1") && map->raw_map[x][y] != ft_atoi("6"))
-            return (0);
+            return ("Invalid map boundaries\n");
         x++;
     }
-    //backwards last line
-    printf("\tx should now be length: %d\n", x);
     y = d_list->map->raw_height - 1;
-    printf("\nsecond step: x (%d) should be length - 1 and y (%d) should be heigth - 1\n", x, y);
     x--;
     while (x >= 0)
     {
-        // printf("x: %d\n", x);
-        // printf("y: %d\n", y);
-        // printf("%d\n", map->raw_map[x][y]);
         if (map->raw_map[x][y] != ft_atoi("1") && map->raw_map[x][y] != ft_atoi("6"))
-            return (0);
+            return ("Invalid map boundaries\n");
         x--;
     }
     x++;
-    printf("\tx should now be 0: %d\n", x);
-    //increasing first colums
     y = 0;
-    printf("\nthird step: x (%d) should be 0 and y (%d) should be 0\n", x, y);
     while (y < d_list->map->raw_height)
     {
-        // printf("x: %d\n", x);
-        // printf("y: %d\n", y);
-        // printf("%d\n", map->raw_map[x][y]);
         if (map->raw_map[x][y] != ft_atoi("1") && map->raw_map[x][y] != ft_atoi("6"))
-            return (0);
+            return ("Invalid map boundaries\n");
         y++;
     }
     y--;
-    printf("\ty (%d) should now be height\n", y);
-
     x = d_list->map->raw_length - 1;
-    printf("\nfourth step: x (%d) should be length - 1 and y (%d) should be height - 1\n", x, y);
-    //decreasing last column
     while (y >= 0)
     {
         if (map->raw_map[x][y] != ft_atoi("1") && map->raw_map[x][y] != ft_atoi("6"))
-            return (0);
+            return ("Invalid map boundaries\n");
         y--;
     }
     y++;
-    printf("\ty (%d) should now be 0\n", y);
-    printf("all finished\n\n");
     
     //player checking
-    x = 1;
-    y = 1;
-    while (y < map->raw_height - 1)
-    {
-        x = 1;
-        while (x < map->raw_length - 1)
-        {
-            if (x == d_list->rc->pos[0] - 0.5 && y == d_list->rc->pos[1] - 0.5)
-            {
-                if (map->raw_map[x + 1][y] == ft_atoi("6")
-                    || map->raw_map[x - 1][y] == ft_atoi("6")
-                    || map->raw_map[x][y + 1] == ft_atoi("6")
-                    || map->raw_map[x][y - 1] == ft_atoi("6"))
-                    p_error("Player is outside of the map", d_list);
-            }
-            x++;
-        }
-        y++;
-    }
-
+    //why was that necessary?
+    // x = 1;
+    // y = 1;
+    // while (y < map->raw_height - 1)
+    // {
+    //     x = 1;
+    //     while (x < map->raw_length - 1)
+    //     {
+    //         if (x == d_list->rc->pos[0] - 0.5 && y == d_list->rc->pos[1] - 0.5)
+    //         {
+    //             if (map->raw_map[x + 1][y] == ft_atoi("6")
+    //                 || map->raw_map[x - 1][y] == ft_atoi("6")
+    //                 || map->raw_map[x][y + 1] == ft_atoi("6")
+    //                 || map->raw_map[x][y - 1] == ft_atoi("6"))
+    //                 return("Player ist outside of the map\n");
+    //         }
+    //         x++;
+    //     }
+    //     y++;
+    // }
     //zero checking
     x = 1;
     y = 1;
@@ -110,7 +88,7 @@ int valid_map_boundaries(t_common *d_list)
                     || map->raw_map[x - 1][y] == ft_atoi("6")
                     || map->raw_map[x][y + 1] == ft_atoi("6")
                     || map->raw_map[x][y - 1] == ft_atoi("6"))
-                    return (0);
+                    return ("Invalid map boundaries\n");
             }
             x++;
         }
@@ -135,13 +113,13 @@ int valid_map_boundaries(t_common *d_list)
                     || (map->raw_map[x - 1][y] == ft_atoi("4"))
                     || (map->raw_map[x][y + 1] == ft_atoi("4"))
                     || (map->raw_map[x][y - 1] == ft_atoi("4")))
-                    return (0);
+                    return ("Invalid placement of doors in the map\n");
             }
             x++;
         }
         y++;
     }
-    return (1);
+    return (NULL);
 }
 
 int read_map_from_file(t_common *d_list)
@@ -153,12 +131,10 @@ int read_map_from_file(t_common *d_list)
     if (!fill_raw_map(d_list))
         return 0;
     check_all_parts_found_and_valid(d_list);
-    if (!valid_map_boundaries(d_list))
-        p_error("Invalid map boundaries", d_list);
     print_map(d_list->map);
     //find_the_players_position(d_list);
-    printf("raw_length: %d\n", d_list->map->raw_length);
-    printf("raw_height: %d\n", d_list->map->raw_height);
+    ft_printf("raw_length: %d\n", d_list->map->raw_length);
+    ft_printf("raw_height: %d\n", d_list->map->raw_height);
     return (1);
 }
 
@@ -187,9 +163,9 @@ void print_map(t_map *map)
     {
         for (int x = 0; x < map->raw_length; x++)
         {
-            printf("%d", map->raw_map[x][y]);
+            ft_printf("%d", map->raw_map[x][y]);
         }
-        printf("\n");
+        ft_printf("\n");
     }
 }
 
@@ -339,7 +315,7 @@ int    find_line_length(char *line)
     return (i);
 }
 
-int validate_map_line(char *line, t_common *d_list)
+void validate_map_line(char *line, t_common *d_list)
 {
     int i;
     int digit_sequence_start;
@@ -360,7 +336,6 @@ int validate_map_line(char *line, t_common *d_list)
             d_list->map->val_map[INV_CHAR] = 1;
         i++;
     }
-    return (1);
 }
 
 int line_empty(char *line)
@@ -373,6 +348,59 @@ int line_empty(char *line)
         return (1);
     return (0);
 }
+
+
+//it doesnt stop if the colors arent found
+void    find_color(char *line, t_common *d_list, int identifier, int start)
+{
+    int i;
+    char    *red;
+    char    *green;
+    char    *blue;
+
+    i = 0;
+    while (line[start] && line[start] == ' ')
+        start++;
+    d_list->map->val_aspects[identifier] = INV_FORMAT;
+    if (line[start] == '\0' || line[start] == '\n' || ft_isdigit(line[start]) == 0)
+        return ;
+    while (ft_isdigit(line[start + i]))
+        i++;
+    red = ft_substr(line, start, i);
+    start += i;
+    i = 0;
+    if (line[start] && line[start] && line[start] == ',' && ft_isdigit(line[start + 1]))
+        start++;
+    else
+        return ;
+    while (ft_isdigit(line[start + i]))
+        i++;
+    green = ft_substr(line, start, i);
+    start += i;
+    i = 0;
+    if (line[start] && line[start] && line[start] == ',' && ft_isdigit(line[start + 1]))
+        start++;
+    else
+        return ;
+    while (ft_isdigit(line[start + i]))
+        i++;
+    blue = ft_substr(line, start, i);
+    start += i;
+    start++;
+    while (line[start])
+    {
+        if (line[start] != ' ' && line[start] != '\n' && line[start] != '\0')
+            return ;
+    }
+    //transform color by atoi
+    //check if color is in range
+    //transform color
+    d_list->map->val_aspects[identifier] = FOUND;
+    ft_printf("red%s", red);
+    ft_printf("green%s", green);
+    ft_printf("blue%s", blue);
+    
+} 
 
 int find_texture(char *line, t_common *d_list, int identifyer, int start)
 {
@@ -388,25 +416,16 @@ int find_texture(char *line, t_common *d_list, int identifyer, int start)
     while (line[start + i] && line[start + i] != ' ' && line[start + i] != '\n')
         i++;
     d_list->map->textures[identifyer] = ft_substr(line, start, i);
-    d_list->map->val_aspects[identifyer] = FOUND;
     if (d_list->map->textures[identifyer] == NULL)
         return (p_error("Malloc failed", d_list), 0);
-    printf("substr texture: %s\n", d_list->map->textures[identifyer]);
+    d_list->map->val_aspects[identifyer] = FOUND;
     while (line[start + i] && line[start + i] == ' ')
         i++;
     if (line[start + i] && line[start + i] != '\n' && line[start + i] != ' ')
-    {
-        printf("check2\n");
         d_list->map->val_aspects[identifyer] = INV_FORMAT;
-    }
     fd = open(d_list->map->textures[identifyer], O_RDONLY);
     if (fd < 0)
-    {
-        printf("error in  ");
-        printf("substr texture: %s\n", d_list->map->textures[identifyer]);
-
         d_list->map->val_aspects[identifyer] = INV_OPEN_COL;
-    }
     else
         close(fd);
     return 1;
@@ -416,23 +435,22 @@ void    evaluate_line(char *line, t_common *d_list)
 {
     int i = 0;
 
-
     while (line[i] && line[i] == ' ')
         i++;
     if (line[i] == '\n')
         return ;
-    if (line[i] && line[i+1] && line[i] == 'N' && line[i + 1] == 'O')
+    if (line[i] && line[i+1]  && line [i + 2]&& line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
         find_texture(line, d_list, N, i + 2);
-    else if (line[i] && line[i+1] && line[i] == 'S' && line[i + 1] == 'O')
+    else if (line[i] && line[i+1]  && line [i + 2]&& line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
         find_texture(line, d_list, S, i + 2);
-    else if (line[i] && line[i+1] && line[i] == 'E' && line[i + 1] == 'A')
+    else if (line[i] && line[i+1] && line [i + 2] && line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
         find_texture(line, d_list, E, i + 2);
-    else if (line[i] && line[i+1] && line[i] == 'W' && line[i + 1] == 'E')
+    else if (line[i] && line[i+1] && line [i + 2] && line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
         find_texture(line, d_list, W, i + 2);
-    // else if (line[i] && line[i+1] && line[i] == 'C' && line[i + 1] == ' ')
-    //     find_color(line, d_list, CEILING, i + 2);
+    else if (line[i] && line[i+1] && line[i] == 'C' && line[i + 1] == ' ')
+        find_color(line, d_list, CEILING, i + 2);
     // else if (line[i] && line[i+1] && line[i] == 'F' && line[i + 1] == ' ')
-    //     find_color(line, d_list, FLOOR_N, i + 2);
+        // find_color(line, d_list, FLOOR_N, i + 2);
     else if (line[i] && line[i] == '1' || line[i] == '0' || line[i] == 'S' 
             || line[i] == 'W' || line[i] == 'E' || line[i] == 'N' || line[i] == '3' || line[i] == '4')
         d_list->map->map_started = 1;
@@ -465,8 +483,7 @@ int determine_map_size(t_common *d_list)
             //starts checking map if map has started
             if (d_list->map->map_started == 1)
             {
-                if (!validate_map_line(line, d_list))
-                    return (0);
+                validate_map_line(line, d_list);
                 if (find_line_length(line) > map->raw_length)
                     map->raw_length = find_line_length(line);
                 //check noch dass das zählen bei der letzten ziffer endet
@@ -479,7 +496,7 @@ int determine_map_size(t_common *d_list)
         line = get_next_line(map->fd);
     }
     if (d_list->map->map_started == 0)
-        write (1, "Error\nNo map found\n", 20);
+        p_error("Error\nNo map found\n", d_list);
     check_map_scale_factor(d_list);
     close(map->fd);
     return (1);
@@ -487,29 +504,51 @@ int determine_map_size(t_common *d_list)
 
 void print_map_error(t_common *d_list, int error)
 {
-    if (error == INV_SPACE)
-        write(1, "Error\nInvalid space in map\n", 28);
-    else if (error == MULTIPLE_PLAYERS)
-        write(1, "Error\nMultiple players found\n", 30);
+    if (error == MULTIPLE_PLAYERS)
+        write(1, "Multiple players found\n", 24);
     else if (error == INV_CHAR)
-        write(1, "Error\nInvalid character in map\n", 33);
-    else if (error == INV_OPEN_COL)
-        write(1, "Error\nInvalid open color\n", 26);
+        write(1, "Invalid character in map\n", 26);
     else if (error == INV_FORMAT)
-        write(1, "Error\nInvalid format\n", 22);
+        write(1, "Invalid format\n", 16);
     else if (error == INV_NL)
-        write(1, "Error\nInvalid new line in the map\n", 35);
+        write(1, "Invalid new line in the map\n", 29);
 }
 
 void print_color_texture_error(t_common *d_list, int i)
 {
-    printf("error here\n");
+    int prev_error;
+
+    prev_error = 0;
     if (d_list->map->val_aspects[i] == NOT_FOUND)
-        write(1, "Error\nA Texture and/or color is missing\n", 40);
+    {
+        while (prev_error < i)
+        {
+            if (d_list->map->val_aspects[prev_error] == NOT_FOUND)
+                return ;
+            prev_error++;
+        }
+        write(1, "A Texture and/or color is missing\n", 35);
+    }
     else if (d_list->map->val_aspects[i] == INV_OPEN_COL)
-        write(1, "Error\nInvalid open of texture and/or invalid color\n", 52);
+    {
+        while (prev_error < i)
+        {
+            if (d_list->map->val_aspects[prev_error] == INV_OPEN_COL)
+                return ;
+            prev_error++;
+        }
+        write(1, "Invalid open of texture and/or invalid color\n", 46);
+    }
     else if (d_list->map->val_aspects[i] == INV_FORMAT)
-        write(1, "Error\nInvalid format of color and/or texture\n", 46);
+    {
+        while (prev_error < i)
+        {
+            if (d_list->map->val_aspects[prev_error] == INV_FORMAT)
+                return ;
+            prev_error++;
+        }
+        write(1, "Invalid format of color and/or texture\n", 40);
+    }
 }
 
 void check_all_parts_found_and_valid(t_common *d_list)
@@ -518,18 +557,18 @@ void check_all_parts_found_and_valid(t_common *d_list)
     int i;
 
     //change back to -1 if color check is implemented
-    i = 1;
+    i = 0;
     at_least_one_error = 0;
-    //set back to six
     while (++i < 6)
     {
         if (d_list->map->val_aspects[i] == NOT_FOUND
             || d_list->map->val_aspects[i] == INV_OPEN_COL
             || d_list->map->val_aspects[i] == INV_FORMAT)
         {
-            printf("i: %d\n", i);
+            if (at_least_one_error < 1)
+                ft_printf("Error\n");
             print_color_texture_error(d_list, i);
-            at_least_one_error = 1;
+            at_least_one_error++;
         }
     }
     
@@ -538,14 +577,25 @@ void check_all_parts_found_and_valid(t_common *d_list)
     {
         if (d_list->map->val_map[i] == 1)
         {
+            if (at_least_one_error < 1)
+                ft_printf("Error\n");
             print_map_error(d_list, i);
-            at_least_one_error = 1;
+            at_least_one_error++;
         }
     }
     if (d_list->map->player_found == 0)
     {
-        write(1, "Error\nNo player found\n", 22);
-        at_least_one_error = 1;
+        if (at_least_one_error < 1)
+                ft_printf("Error\n");
+        write(1, "No player found\n", 17);
+        at_least_one_error++;
+    }
+    if (valid_map_boundaries(d_list) != NULL)
+    {
+        if (at_least_one_error < 1)
+            ft_printf("Error\n");
+        ft_printf("%s", valid_map_boundaries(d_list));
+        at_least_one_error++;
     }
     if (at_least_one_error)
         cleanup(d_list);

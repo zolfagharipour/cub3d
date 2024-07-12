@@ -8,6 +8,8 @@ WE   ./images/west.xpm
 
 EA   ./images/east.xpm
 
+C   250,1,23
+
    1
 11111111111111
 10011001111
