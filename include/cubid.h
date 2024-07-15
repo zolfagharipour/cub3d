@@ -91,7 +91,7 @@ typedef struct s_map
 	int		val_aspects[6];
 	int		val_map[6];
 	char	*textures[4];
-	char	*color[2];
+	int		color[2];
 	int		fd;
 	int		close_door[2];
 }	t_map;
@@ -131,18 +131,30 @@ void	put_image(t_common *d_list, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int		error_arguments(int argc, char **argv);
 
+//file processing
+void    evaluate_line(char *line, t_common *d_list);
+void    gnl_loop(t_common *d_list, char *line);
+int		determine_map_size_and_val(t_common *d_list);
+void 	validate_map_line(char *line, t_common *d_list);
+int 	ine_empty(char *line);
+int 	find_texture(char *line, t_common *d_list, int identifyer, int start);
+void    find_color(char *line, t_common *d_list, int identifier, int start);
+int 	suitable_color_range(t_common *d_list, char *r, char *g, char *b, int id);
+int 	fill_raw_map(t_common *d_list);
+void    determine_content_of_coordinates(t_common *d_list, char *line, int x, int y);
+void	flush_initial_values(t_common *d_list, int y);
+void    check_map_scale_factor(t_common *d_list);
+int line_empty(char *line);
+
 //map parsing
 char	*valid_map_boundaries(t_common *d_list);
-void    evaluate_line(char *line, t_common *d_list);
-int find_texture(char *line, t_common *d_list, int identifyer, int start);
-void    find_color(char *line, t_common *d_list, int identifier, int start);
-int suitable_color_range(t_common *d_list, char *r, char *g, char *b);
-
-
-
+int minimap_vertical_boundaries(t_common *d_list);
+int minimap_horizontal_boundaries(t_common *d_list);
+int minimap_door_check(t_common *d_list);
+int minimap_zero_check(t_common *d_list);
 
 //read_from_file
-int determine_map_size(t_common *d_list);
+int determine_map_size_and_val(t_common *d_list);
 int read_map_from_file(t_common *d_list);
 int fill_raw_map(t_common *d_list);
 void find_the_players_position(t_common *d_list);

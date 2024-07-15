@@ -12,119 +12,9 @@
 
 #include "cubid.h"
 
-char *valid_map_boundaries(t_common *d_list)
-{
-    int x;
-    int y;
-    t_map *map;
-
-    x = 0;
-    y = 0;
-    map = d_list->map;
-    while (x < d_list->map->raw_length)
-    {
-        if (map->raw_map[x][y] != ft_atoi("1") && map->raw_map[x][y] != ft_atoi("6"))
-            return ("Invalid map boundaries\n");
-        x++;
-    }
-    y = d_list->map->raw_height - 1;
-    x--;
-    while (x >= 0)
-    {
-        if (map->raw_map[x][y] != ft_atoi("1") && map->raw_map[x][y] != ft_atoi("6"))
-            return ("Invalid map boundaries\n");
-        x--;
-    }
-    x++;
-    y = 0;
-    while (y < d_list->map->raw_height)
-    {
-        if (map->raw_map[x][y] != ft_atoi("1") && map->raw_map[x][y] != ft_atoi("6"))
-            return ("Invalid map boundaries\n");
-        y++;
-    }
-    y--;
-    x = d_list->map->raw_length - 1;
-    while (y >= 0)
-    {
-        if (map->raw_map[x][y] != ft_atoi("1") && map->raw_map[x][y] != ft_atoi("6"))
-            return ("Invalid map boundaries\n");
-        y--;
-    }
-    y++;
-    
-    //player checking
-    //why was that necessary?
-    // x = 1;
-    // y = 1;
-    // while (y < map->raw_height - 1)
-    // {
-    //     x = 1;
-    //     while (x < map->raw_length - 1)
-    //     {
-    //         if (x == d_list->rc->pos[0] - 0.5 && y == d_list->rc->pos[1] - 0.5)
-    //         {
-    //             if (map->raw_map[x + 1][y] == ft_atoi("6")
-    //                 || map->raw_map[x - 1][y] == ft_atoi("6")
-    //                 || map->raw_map[x][y + 1] == ft_atoi("6")
-    //                 || map->raw_map[x][y - 1] == ft_atoi("6"))
-    //                 return("Player ist outside of the map\n");
-    //         }
-    //         x++;
-    //     }
-    //     y++;
-    // }
-    //zero checking
-    x = 1;
-    y = 1;
-    while (y < map->raw_height - 1)
-    {
-        x = 1;
-        while (x < map->raw_length - 1)
-        {
-            if (map->raw_map[x][y] == ft_atoi("0"))
-            {
-                if (map->raw_map[x + 1][y] == ft_atoi("6")
-                    || map->raw_map[x - 1][y] == ft_atoi("6")
-                    || map->raw_map[x][y + 1] == ft_atoi("6")
-                    || map->raw_map[x][y - 1] == ft_atoi("6"))
-                    return ("Invalid map boundaries\n");
-            }
-            x++;
-        }
-        y++;
-    }
-
-    //door checking
-    x = 1;
-    y = 1;
-    while (y < map->raw_height - 1)
-    {
-        x = 1;
-        while (x < map->raw_length - 1)
-        {
-            if (map->raw_map[x][y] == ft_atoi("4"))
-            {
-                if (!((map->raw_map[x + 1][y] == ft_atoi("1")
-                    && map->raw_map[x - 1][y] == ft_atoi("1"))
-                    || (map->raw_map[x][y + 1] == ft_atoi("1")
-                    && map->raw_map[x][y - 1] == ft_atoi("1")))
-                    || (map->raw_map[x + 1][y] == ft_atoi("4"))
-                    || (map->raw_map[x - 1][y] == ft_atoi("4"))
-                    || (map->raw_map[x][y + 1] == ft_atoi("4"))
-                    || (map->raw_map[x][y - 1] == ft_atoi("4")))
-                    return ("Invalid placement of doors in the map\n");
-            }
-            x++;
-        }
-        y++;
-    }
-    return (NULL);
-}
-
 int read_map_from_file(t_common *d_list)
 {
-    if (!determine_map_size(d_list))
+    if (!determine_map_size_and_val(d_list))
         return 0;
     if (!malloc_raw_map(d_list))
         return 0;
@@ -132,9 +22,6 @@ int read_map_from_file(t_common *d_list)
         return 0;
     check_all_parts_found_and_valid(d_list);
     print_map(d_list->map);
-    //find_the_players_position(d_list);
-    ft_printf("raw_length: %d\n", d_list->map->raw_length);
-    ft_printf("raw_height: %d\n", d_list->map->raw_height);
     return (1);
 }
 
@@ -162,92 +49,10 @@ void print_map(t_map *map)
     for (int y = 0; y < map->raw_height; y++)
     {
         for (int x = 0; x < map->raw_length; x++)
-        {
             ft_printf("%d", map->raw_map[x][y]);
-        }
         ft_printf("\n");
     }
 }
-
-int fill_raw_map(t_common *d_list)
-{
-    char    *line;
-    int     x = 0;
-    int     y = 0;
-    t_map   *map;
-
-    //cleanup stuff
-    map = d_list->map;
-    map->fd = open(map->file, O_RDONLY);
-    if (map->fd < 0)
-        return (cleanup(d_list), 0);
-    line = get_next_line(map->fd);
-    while (x < map->file_length - map->raw_height )
-    {
-        free(line);
-        line = get_next_line(map->fd);
-        x++;
-    }
-    x = 0;
-    while (line && y < map->raw_height)
-    {
-        for (x = 0; x < map->raw_length; x++)
-            map->raw_map[x][y] = RESIDUUM;  // Initialize the row first
-        x = 0;
-        while (line[x] && x < map->raw_length)
-        {
-            if (line[x] == '1')
-                map->raw_map[x][y] = 1;
-            else if (line[x] == '0')
-                map->raw_map[x][y] = 0;
-            else if (line[x] == '4')
-                map->raw_map[x][y] = 4;
-            else if (line[x] == '3')
-            {
-                d_list->rc->sprite[0] = x + 0.5;
-                d_list->rc->sprite[1] = y + 0.5;
-                map->raw_map[x][y] = 0;
-            }
-            else if (line[x] == 'N')
-            {
-                d_list->rc->pos[0] = x + 0.5;
-                d_list->rc->pos[1] = y + 0.5;
-                d_list->rc->look = 0.5;
-                map->raw_map[x][y] = 0;
-            }
-            else if (line[x] == 'S')
-            {
-                d_list->rc->pos[0] = x + 0.5;
-                d_list->rc->pos[1] = y + 0.5;
-                d_list->rc->look = 1;
-                map->raw_map[x][y] = 0;
-            }
-            else if (line[x] == 'W')
-            {
-                d_list->rc->pos[0] = x + 0.5;
-                d_list->rc->pos[1] = y + 0.5;
-                d_list->rc->look = 1.5;
-                map->raw_map[x][y] = 0;
-            }
-            else if (line[x] == 'E')
-            {
-                d_list->rc->pos[0] = x + 0.5;
-                d_list->rc->pos[1] = y + 0.5;
-                d_list->rc->look = 0;              
-                map->raw_map[x][y] = 0;
-            }
-            else
-                map->raw_map[x][y] = RESIDUUM;
-            x++;
-        }
-        free(line);
-        line = get_next_line(map->fd);
-        y++;
-    }
-    close(d_list->map->fd);
-    return (1);
-}
-
 
 int malloc_raw_map(t_common *d_list)
 {
@@ -302,55 +107,7 @@ void    check_map_scale_factor(t_common *d_list)
     }
 }
 
-int    find_line_length(char *line)
-{
-    int i;
-
-    i = 0;
-    while (line[i] && line[i] == ' ')
-        i++;
-    while (line[i] && ft_isdigit(line[i]))
-        i++;
-    while (line[i] && line[i] == ' ')
-        i++;
-    return (i);
-}
-
-void validate_map_line(char *line, t_common *d_list)
-{
-    int i;
-    int digit_sequence_start;
-
-    i = 0;
-    digit_sequence_start = 0;
-    while (line[i] && line[i] != '\n')
-    {
-        if (line[i] == 'S' || line[i] == 'N' || line[i] == 'W' || line[i] == 'E')
-        {
-            if (d_list->map->player_found)
-                d_list->map->val_map[MULTIPLE_PLAYERS] = 1;
-            else
-                d_list->map->player_found = 1;
-        }
-        else if (line[i] != '0' && line[i] != '1' && line[i] != '3' && line[i] != '4'
-            && line[i] != ' ')
-            d_list->map->val_map[INV_CHAR] = 1;
-        i++;
-    }
-}
-
-int line_empty(char *line)
-{
-    int i = 0;
-
-    while (line[i] && line[i] == ' ')
-        i++;
-    if (line[i] == '\n')
-        return (1);
-    return (0);
-}
-
-int suitable_color_range(t_common *d_list, char *r, char *g, char *b)
+int suitable_color_range(t_common *d_list, char *r, char *g, char *b, int id)
 {
     int red;
     int blue;
@@ -368,48 +125,7 @@ int suitable_color_range(t_common *d_list, char *r, char *g, char *b)
         return (0);
     color = (red << 16) | (green << 8) | blue;
     ft_printf("color: %d\n", color);
+    d_list->map->color[id] = color;
+    d_list->map->val_aspects[id] = FOUND;
     return 1;
-}
-
-int determine_map_size(t_common *d_list)
-{
-    char    *line;
-    t_map   *map;
-
-    map = d_list->map;
-    map->fd = open(d_list->map->file, O_RDONLY);
-    if (map->fd == -1)
-        return (0);
-    line = NULL;
-    line = get_next_line(map->fd);
-    while (line)
-    {
-        if (line_empty(line) && d_list->map->map_started == 1)
-            d_list->map->val_map[INV_NL] = 1;
-        //skip nl and space
-        if (!line_empty(line))
-        {
-            //check each individual line
-            if (d_list->map->map_started == 0)
-                evaluate_line(line, d_list);
-            //starts checking map if map has started
-            if (d_list->map->map_started == 1)
-            {
-                validate_map_line(line, d_list);
-                if (find_line_length(line) > map->raw_length)
-                    map->raw_length = find_line_length(line);
-                //check noch dass das zählen bei der letzten ziffer endet
-                map->raw_height++;
-            }
-        }
-        d_list->map->file_length++;
-        free(line);
-        line = NULL;
-        line = get_next_line(map->fd);
-    }
-    if (d_list->map->map_started == 0)
-        p_error("Error\nNo map found\n", d_list);
-    check_map_scale_factor(d_list);
-    close(map->fd);
-    return (1);
 }

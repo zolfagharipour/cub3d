@@ -9,8 +9,8 @@ RM = rm -rf
 # ***************************************************************************
 
 SRCS = 	src/init_structs.c src/validate_map.c src/file_parsing.c\
-		src/main.c src/cleanup.c \
-		src/error_checks.c src/read_from_file.c 
+		src/main.c src/cleanup.c src/map_parsing.c src/fill_minimap.c \
+		src/error_checks.c src/read_from_file.c src/read_from_file_utils.c \
 
 OBJDIR = ./obj
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
