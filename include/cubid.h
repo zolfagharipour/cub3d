@@ -132,9 +132,13 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int		error_arguments(int argc, char **argv);
 
 //map parsing
-void	check_all_parts_found_and_valid(t_common *d_list);
-void	print_map_error(t_common *d_list, int error);
 char	*valid_map_boundaries(t_common *d_list);
+void    evaluate_line(char *line, t_common *d_list);
+int find_texture(char *line, t_common *d_list, int identifyer, int start);
+void    find_color(char *line, t_common *d_list, int identifier, int start);
+int suitable_color_range(t_common *d_list, char *r, char *g, char *b);
+
+
 
 
 //read_from_file
@@ -142,6 +146,16 @@ int determine_map_size(t_common *d_list);
 int read_map_from_file(t_common *d_list);
 int fill_raw_map(t_common *d_list);
 void find_the_players_position(t_common *d_list);
+
+//error checking
+void check_all_parts_found_and_valid(t_common *d_list);
+void	catch_invalid_map(int *amt_errors, t_common *d_list, int i);
+void print_color_texture_error(t_common *d_list, int i);
+int has_been_printed_before(t_common *d_list, int err_macro, int i);
+void print_map_error(t_common *d_list, int error);
+
+
+
 
 //testing
 int test_map(t_common *d_list);

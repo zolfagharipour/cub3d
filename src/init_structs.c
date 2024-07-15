@@ -53,9 +53,6 @@ void	init_map(t_map *map, char *file)
 	i = -1;
 	while (++i < 6)
 		map->val_aspects[i] = NOT_FOUND;
-	//take out later
-	map->val_aspects[0] = FOUND;
-	map->val_aspects[1] = FOUND;
 	i = -1;
 	while (++i < 6)
 		map->val_map[i] = 0;

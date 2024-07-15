@@ -8,7 +8,7 @@ CFLAGS = -g -I include/
 RM = rm -rf
 # ***************************************************************************
 
-SRCS = 	src/init_structs.c \
+SRCS = 	src/init_structs.c src/validate_map.c src/file_parsing.c\
 		src/main.c src/cleanup.c \
 		src/error_checks.c src/read_from_file.c 
 

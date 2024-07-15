@@ -277,6 +277,7 @@ int malloc_raw_map(t_common *d_list)
 //- scale/2 because the minimap is placed sale/2 to the right and down
 void    check_map_scale_factor(t_common *d_list)
 {
+    //!!!
     t_map   *map;
     int     scale;
     int     reduction;
@@ -349,114 +350,25 @@ int line_empty(char *line)
     return (0);
 }
 
-
-//it doesnt stop if the colors arent found
-void    find_color(char *line, t_common *d_list, int identifier, int start)
+int suitable_color_range(t_common *d_list, char *r, char *g, char *b)
 {
-    int i;
-    char    *red;
-    char    *green;
-    char    *blue;
+    int red;
+    int blue;
+    int green;
+    int color;
 
-    i = 0;
-    while (line[start] && line[start] == ' ')
-        start++;
-    d_list->map->val_aspects[identifier] = INV_FORMAT;
-    if (line[start] == '\0' || line[start] == '\n' || ft_isdigit(line[start]) == 0)
-        return ;
-    while (ft_isdigit(line[start + i]))
-        i++;
-    red = ft_substr(line, start, i);
-    start += i;
-    i = 0;
-    if (line[start] && line[start] && line[start] == ',' && ft_isdigit(line[start + 1]))
-        start++;
-    else
-        return ;
-    while (ft_isdigit(line[start + i]))
-        i++;
-    green = ft_substr(line, start, i);
-    start += i;
-    i = 0;
-    if (line[start] && line[start] && line[start] == ',' && ft_isdigit(line[start + 1]))
-        start++;
-    else
-        return ;
-    while (ft_isdigit(line[start + i]))
-        i++;
-    blue = ft_substr(line, start, i);
-    start += i;
-    start++;
-    while (line[start])
-    {
-        if (line[start] != ' ' && line[start] != '\n' && line[start] != '\0')
-            return ;
-    }
-    //transform color by atoi
-    //check if color is in range
-    //transform color
-    d_list->map->val_aspects[identifier] = FOUND;
-    ft_printf("red%s", red);
-    ft_printf("green%s", green);
-    ft_printf("blue%s", blue);
-    
-} 
-
-int find_texture(char *line, t_common *d_list, int identifyer, int start)
-{
-    int i;
-    int texture_found;
-    int fd;
-
-    i = 0;
-    fd = 0;
-    texture_found = 0;
-    while (line[start] && line[start] == ' ')
-        start++;
-    while (line[start + i] && line[start + i] != ' ' && line[start + i] != '\n')
-        i++;
-    d_list->map->textures[identifyer] = ft_substr(line, start, i);
-    if (d_list->map->textures[identifyer] == NULL)
-        return (p_error("Malloc failed", d_list), 0);
-    d_list->map->val_aspects[identifyer] = FOUND;
-    while (line[start + i] && line[start + i] == ' ')
-        i++;
-    if (line[start + i] && line[start + i] != '\n' && line[start + i] != ' ')
-        d_list->map->val_aspects[identifyer] = INV_FORMAT;
-    fd = open(d_list->map->textures[identifyer], O_RDONLY);
-    if (fd < 0)
-        d_list->map->val_aspects[identifyer] = INV_OPEN_COL;
-    else
-        close(fd);
+    red = ft_atoi(r);
+    if (red < 0 || red > 255)
+        return (0);
+    green = ft_atoi(g);
+    if (green < 0 || green > 255)
+        return (0);
+    blue = ft_atoi(b);
+    if (blue < 0 || blue > 255)
+        return (0);
+    color = (red << 16) | (green << 8) | blue;
+    ft_printf("color: %d\n", color);
     return 1;
-}
-
-void    evaluate_line(char *line, t_common *d_list)
-{
-    int i = 0;
-
-    while (line[i] && line[i] == ' ')
-        i++;
-    if (line[i] == '\n')
-        return ;
-    if (line[i] && line[i+1]  && line [i + 2]&& line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == ' ')
-        find_texture(line, d_list, N, i + 2);
-    else if (line[i] && line[i+1]  && line [i + 2]&& line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == ' ')
-        find_texture(line, d_list, S, i + 2);
-    else if (line[i] && line[i+1] && line [i + 2] && line[i] == 'E' && line[i + 1] == 'A' && line[i + 2] == ' ')
-        find_texture(line, d_list, E, i + 2);
-    else if (line[i] && line[i+1] && line [i + 2] && line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == ' ')
-        find_texture(line, d_list, W, i + 2);
-    else if (line[i] && line[i+1] && line[i] == 'C' && line[i + 1] == ' ')
-        find_color(line, d_list, CEILING, i + 2);
-    // else if (line[i] && line[i+1] && line[i] == 'F' && line[i + 1] == ' ')
-        // find_color(line, d_list, FLOOR_N, i + 2);
-    else if (line[i] && line[i] == '1' || line[i] == '0' || line[i] == 'S' 
-            || line[i] == 'W' || line[i] == 'E' || line[i] == 'N' || line[i] == '3' || line[i] == '4')
-        d_list->map->map_started = 1;
-    //check if this p_error format fits
-    else
-        p_error("Invalid identifier in the map file", d_list);
 }
 
 int determine_map_size(t_common *d_list)
@@ -500,103 +412,4 @@ int determine_map_size(t_common *d_list)
     check_map_scale_factor(d_list);
     close(map->fd);
     return (1);
-}
-
-void print_map_error(t_common *d_list, int error)
-{
-    if (error == MULTIPLE_PLAYERS)
-        write(1, "Multiple players found\n", 24);
-    else if (error == INV_CHAR)
-        write(1, "Invalid character in map\n", 26);
-    else if (error == INV_FORMAT)
-        write(1, "Invalid format\n", 16);
-    else if (error == INV_NL)
-        write(1, "Invalid new line in the map\n", 29);
-}
-
-void print_color_texture_error(t_common *d_list, int i)
-{
-    int prev_error;
-
-    prev_error = 0;
-    if (d_list->map->val_aspects[i] == NOT_FOUND)
-    {
-        while (prev_error < i)
-        {
-            if (d_list->map->val_aspects[prev_error] == NOT_FOUND)
-                return ;
-            prev_error++;
-        }
-        write(1, "A Texture and/or color is missing\n", 35);
-    }
-    else if (d_list->map->val_aspects[i] == INV_OPEN_COL)
-    {
-        while (prev_error < i)
-        {
-            if (d_list->map->val_aspects[prev_error] == INV_OPEN_COL)
-                return ;
-            prev_error++;
-        }
-        write(1, "Invalid open of texture and/or invalid color\n", 46);
-    }
-    else if (d_list->map->val_aspects[i] == INV_FORMAT)
-    {
-        while (prev_error < i)
-        {
-            if (d_list->map->val_aspects[prev_error] == INV_FORMAT)
-                return ;
-            prev_error++;
-        }
-        write(1, "Invalid format of color and/or texture\n", 40);
-    }
-}
-
-void check_all_parts_found_and_valid(t_common *d_list)
-{
-    int at_least_one_error;
-    int i;
-
-    //change back to -1 if color check is implemented
-    i = 0;
-    at_least_one_error = 0;
-    while (++i < 6)
-    {
-        if (d_list->map->val_aspects[i] == NOT_FOUND
-            || d_list->map->val_aspects[i] == INV_OPEN_COL
-            || d_list->map->val_aspects[i] == INV_FORMAT)
-        {
-            if (at_least_one_error < 1)
-                ft_printf("Error\n");
-            print_color_texture_error(d_list, i);
-            at_least_one_error++;
-        }
-    }
-    
-    i = -1;
-    while (++i < 6)
-    {
-        if (d_list->map->val_map[i] == 1)
-        {
-            if (at_least_one_error < 1)
-                ft_printf("Error\n");
-            print_map_error(d_list, i);
-            at_least_one_error++;
-        }
-    }
-    if (d_list->map->player_found == 0)
-    {
-        if (at_least_one_error < 1)
-                ft_printf("Error\n");
-        write(1, "No player found\n", 17);
-        at_least_one_error++;
-    }
-    if (valid_map_boundaries(d_list) != NULL)
-    {
-        if (at_least_one_error < 1)
-            ft_printf("Error\n");
-        ft_printf("%s", valid_map_boundaries(d_list));
-        at_least_one_error++;
-    }
-    if (at_least_one_error)
-        cleanup(d_list);
 }
