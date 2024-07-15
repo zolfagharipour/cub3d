@@ -41,15 +41,16 @@ int find_texture(char *line, t_common *d_list, int identifyer, int start)
         start++;
     while (line[start + i] && line[start + i] != ' ' && line[start + i] != '\n')
         i++;
-    d_list->map->textures[identifyer] = ft_substr(line, start, i);
-    if (d_list->map->textures[identifyer] == NULL)
+    d_list->map->textures[identifyer - 2] = ft_substr(line, start, i);
+    ft_printf("texture: %s\n", d_list->map->textures[identifyer - 2]);
+    if (d_list->map->textures[identifyer - 2] == NULL)
         return (p_error("Malloc failed", d_list), 0);
     d_list->map->val_aspects[identifyer] = FOUND;
     while (line[start + i] && line[start + i] == ' ')
         i++;
     if (line[start + i] && line[start + i] != '\n' && line[start + i] != ' ')
         d_list->map->val_aspects[identifyer] = INV_FORMAT;
-    fd = open(d_list->map->textures[identifyer], O_RDONLY);
+    fd = open(d_list->map->textures[identifyer - 2], O_RDONLY);
     if (fd < 0)
         d_list->map->val_aspects[identifyer] = INV_OPEN_COL;
     else
