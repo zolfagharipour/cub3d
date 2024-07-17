@@ -14,7 +14,7 @@ SRCS		=	ft_atoi.c ft_itoa.c ft_putchar_fd.c ft_strjoin.c ft_strtrim.c ft_bzero.c
 				ft_strchr.c ft_strncmp.c ft_isdigit.c ft_memmove.c ft_strdup.c ft_strnstr.c ft_isprint.c \
 				ft_memset.c ft_striteri.c ft_strrchr.c ft_realloc.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 				ft_printf/ft_conv.c ft_printf/ft_flags.c ft_printf/ft_printf.c  ft_printf/ft_subprint.c \
-				ft_printf/ft_conversion.c  ft_printf/ft_itoa_s.c
+				ft_printf/ft_conversion.c  ft_printf/ft_itoa_s.c 
 
 OBJS		=	$(SRCS:.c=.o)
 BONOBJS		=	$(BONSRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:12:39 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 16:31:02 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:36:14 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	smoke_icon(t_common *d_list, int start[2])
 	double	scale[2];
 
 	i[0] = 0;
-	scale[0] = d_list->mlx[SMOKE].tex_dim[0] / 50.0;
-	scale[1] = d_list->mlx[SMOKE].tex_dim[1] / 50.0;
-	while (i[0] < 51)
+	scale[0] = d_list->mlx[SMOKE].tex_d[0] / 50.0;
+	scale[1] = d_list->mlx[SMOKE].tex_d[1] / 50.0;
+	while(i[0] < 51)
 	{
 		i[1] = 0;
 		while (i[1] < 52)
