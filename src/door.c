@@ -14,14 +14,13 @@
 
 void	check_dim(t_common *d_list, int i[2], int end[2])
 {
-	
 	if (i[0] < 0)
 		i[0] = 0;
 	if (i[1] < 0)
 		i[1] = 0;
 	if (end[0] >= d_list->map->raw_length)
 		end[0] = d_list->map->raw_length;
-	if(end[1] >= d_list->map->raw_height)
+	if (end[1] >= d_list->map->raw_height)
 		end[1] = d_list->map->raw_height;
 }
 
@@ -42,7 +41,7 @@ void	check_doors(t_common *d_list, int i[2])
 {
 	int		end[2];
 	int		i1;
-	
+
 	end[0] = i[0] + 3;
 	end[1] = i[1] + 3;
 	check_dim(d_list, i, end);

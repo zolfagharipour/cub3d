@@ -46,6 +46,7 @@ char	*valid_map_boundaries(t_common *d_list)
 //     }
 //     y++;
 // }
+
 int	minimap_vertical_boundaries(t_common *d_list)
 {
 	int		x;

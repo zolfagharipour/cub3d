@@ -34,7 +34,7 @@ void	evaluate_line(char *line, t_common *d_list)
 	else if (line[i] && line[i + 1] && line[i] == 'F' && line[i + 1] == ' ')
 		find_color(line, d_list, FLOOR, i + 2);
 	else if ((line[i] && line[i] == '1' || line[i] == '0' || line[i] == '3'
-		|| line[i] == '4') && all_ids_found(d_list))
+			|| line[i] == '4') && all_ids_found(d_list))
 		d_list->map->map_started = 1;
 	else
 		p_error("Error\nInvalid identifier in the map file", d_list);

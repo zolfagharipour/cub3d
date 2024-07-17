@@ -19,7 +19,7 @@ int	mouse_track(int x, int y, t_common *d_list)
 	offset = x - (WIDTH / 2);
 	if (abs(offset) < 30)
 		return (0);
-		d_list->rc->look -= 0.08 * (offset / (double)WIDTH);
+	d_list->rc->look -= 0.08 * (offset / (double)WIDTH);
 	if (d_list->rc->look > 2)
 		d_list->rc->look -= 2;
 	else if (d_list->rc->look < 0)

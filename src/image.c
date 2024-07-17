@@ -35,7 +35,6 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	draw_walls(d_list);
 	draw_image(d_list);
 	draw_icon(d_list);
-
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 }
 

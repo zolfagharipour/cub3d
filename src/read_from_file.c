@@ -21,7 +21,7 @@ int	read_map_from_file(t_common *d_list)
 	if (!fill_raw_map(d_list))
 		return (0);
 	check_all_parts_found_and_valid(d_list);
-	print_map(d_list->map);
+	// print_map(d_list->map);
 	return (1);
 }
 
@@ -51,15 +51,15 @@ void	find_the_players_position(t_common *d_list)
 	}
 }
 
-void	print_map(t_map *map)
-{
-	for (int y = 0; y < map->raw_height; y++)
-	{
-		for (int x = 0; x < map->raw_length; x++)
-			ft_printf("%d", map->raw_map[x][y]);
-		ft_printf("\n");
-	}
-}
+// void	print_map(t_map *map)
+// {
+// 	for (int y = 0; y < map->raw_height; y++)
+// 	{
+// 		for (int x = 0; x < map->raw_length; x++)
+// 			ft_printf("%d", map->raw_map[x][y]);
+// 		ft_printf("\n");
+// 	}
+// }
 
 int	malloc_raw_map(t_common *d_list)
 {
@@ -116,4 +116,3 @@ void	check_map_scale_factor(t_common *d_list)
 			map->s_square = 1;
 	}
 }
-

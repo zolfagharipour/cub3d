@@ -85,6 +85,5 @@ int	suitable_color_range(int *store_location, char *r, char *g, char *b)
 		return (0);
 	color = (red << 16) | (green << 8) | blue;
 	*store_location = color;
-
 	return (1);
 }

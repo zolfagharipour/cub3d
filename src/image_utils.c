@@ -12,16 +12,16 @@
 
 #include "cubid.h"
 
-void	fill_pixel(int x, int y, int ii, int jj, t_common *d_list)
+void	fill_pixel(int ii, int jj, t_common *d_list)
 {
 	int	pixel_x;
 	int	pixel_y;
 
-	pixel_x = x * d_list->map->scale + ii;
-	pixel_y = y * d_list->map->scale + jj;
-	if (d_list->map->raw_map[x][y] == 1)
+	pixel_x = d_list->mlx->x * d_list->map->scale + ii;
+	pixel_y = d_list->mlx->y * d_list->map->scale + jj;
+	if (d_list->map->raw_map[d_list->mlx->x][d_list->mlx->y] == 1)
 		my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DBLUE);
-	else if (d_list->map->raw_map[x][y] == RESIDUUM)
+	else if (d_list->map->raw_map[d_list->mlx->x][d_list->mlx->y] == RESIDUUM)
 		my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DDBLUE);
 	else
 		my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, LBLUE);
@@ -29,13 +29,11 @@ void	fill_pixel(int x, int y, int ii, int jj, t_common *d_list)
 
 void	draw_minimap(t_common *d_list)
 {
-	t_mlx	*mlx;
 	int		x;
 	int		y;
 	int		ii;
 	int		jj;
 
-	mlx = d_list->mlx;
 	x = -1;
 	while (++x < d_list->map->raw_length)
 	{
@@ -48,7 +46,9 @@ void	draw_minimap(t_common *d_list)
 				jj = -1;
 				while (++jj < d_list->map->scale)
 				{
-					fill_pixel(x, y, ii, jj, d_list);
+					d_list->mlx->x = x;
+					d_list->mlx->y = y;
+					fill_pixel(ii, jj, d_list);
 				}
 			}
 		}
@@ -59,26 +59,22 @@ void	draw_player(t_common *dlist)
 {
 	int		x;
 	int		y;
-	double	start_x;
-	double	start_y;
-	int		pixel_x;
-	int		pixel_y;
+	double	x_n;
+	double	y_n;
 
-	start_x = dlist->rc->pos[0] * dlist->map->scale - dlist->map->s_square / 2;
-	start_y = dlist->rc->pos[1] * dlist->map->scale - dlist->map->s_square / 2;
+	x_n = dlist->rc->pos[0] * dlist->map->scale - dlist->map->s_square / 2;
+	y_n = dlist->rc->pos[1] * dlist->map->scale - dlist->map->s_square / 2;
 	y = -1;
 	while (++y < dlist->map->s_square)
 	{
 		x = -1;
 		while (++x < dlist->map->s_square)
 		{
-			pixel_x = start_x + x;
-			pixel_y = start_y + y;
-			if (pixel_x >= 0
-				&& pixel_x < dlist->map->raw_length * dlist->map->scale
-				&& pixel_y >= 0
-				&& pixel_y < dlist->map->raw_height * dlist->map->scale)
-				my_mlx_pixel_put(dlist->mlx, pixel_x, pixel_y, ORANGE);
+			if ((x_n + x) >= 0
+				&& (x_n + x) < dlist->map->raw_length * dlist->map->scale
+				&& (y_n + y) >= 0
+				&& (y_n + y) < dlist->map->raw_height * dlist->map->scale)
+				my_mlx_pixel_put(dlist->mlx, (x_n + x), (y_n + y), ORANGE);
 		}
 	}
 }

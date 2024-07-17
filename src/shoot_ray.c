@@ -12,7 +12,6 @@
 
 #include "cubid.h"
 
-
 static void	first_step(t_rc *rc)
 {
 	double	trash;
@@ -57,9 +56,11 @@ static void	second_step(t_rc *rc)
 	else if (rc->dir == 0.0 || rc->dir == 1.0)
 		rc->steps[1] = 10000.0;
 }
+
 void	move_ray(t_rc *rc)
 {
-	if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
+	if (rc->steps[1] > 1000.0
+		|| (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
 	{
 		if (rc->dir < 0.5 || rc->dir > 1.5)
 			rc->ray[0] += 1;
@@ -77,16 +78,17 @@ void	move_ray(t_rc *rc)
 
 void	shoot_ray(t_common *d_list, t_rc *rc, int pixel)
 {
-	int i;
+	int	i;
 
 	first_step(rc);
 	second_step(rc);
 	move_ray(rc);
 	i = 0;
-	while(d_list->map->raw_map[rc->ray[0]][rc->ray[1]] != 1 && d_list->map->raw_map[rc->ray[0]][rc->ray[1]] != 4)
+	while (d_list->map->raw_map[rc->ray[0]][rc->ray[1]]
+		!= 1 && d_list->map->raw_map[rc->ray[0]][rc->ray[1]] != 4)
 	{
-		
-		if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
+		if (rc->steps[1] > 1000.0
+			|| (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
 			step_x(rc, pixel);
 		else
 			step_y(rc, pixel);
@@ -94,4 +96,3 @@ void	shoot_ray(t_common *d_list, t_rc *rc, int pixel)
 		i++;
 	}
 }
-
