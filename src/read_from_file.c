@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:11 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 18:36:59 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:49:03 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int	read_map_from_file(t_common *d_list)
 	if (!fill_raw_map(d_list))
 		return (0);
 	check_all_parts_found_and_valid(d_list);
-	print_map(d_list->map);
+	// print_map(d_list->map);
 	load_textures(d_list, d_list->mlx);
+	
 	return (1);
 }
 

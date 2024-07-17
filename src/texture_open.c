@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:18:56 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 18:31:32 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:45:49 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	open_texture(t_common *d_list, t_mlx *mlx)
 	k = 0;
 	while (k < 4)
 	{
-		printf("Addr%d:\t%s\n", k + 2, d_list->map->textures[k]);
 		mlx[k + 2].texture = mlx_xpm_file_to_image(mlx[k + 2].ptr,
 				d_list->map->textures[k], &mlx[k + 2].tex_d[0],
 				&mlx[k + 2].tex_d[1]);
