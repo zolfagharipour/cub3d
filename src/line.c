@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:54:51 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/06/29 13:53:14 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:32:44 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    line(t_common *d_list, double p1[2], double p2[2], int color)
 	i = 0;
 	while (i < step)
 	{
-        my_mlx_pixel_put(d_list->mlx, p1[0], p1[1], color);
+		my_mlx_pixel_put(d_list->mlx, p1[0], p1[1], color);
 		p1[0] += delta[0];
 		p1[1] += delta[1];
 		i++;

@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/05 14:57:52 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:32:49 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void	init_mlx(t_mlx *mlx)
 	mlx->img = NULL;
 	mlx->addr = NULL;
 	mlx->texture = NULL;
-    mlx->x = 0;
+	mlx->x = 0;
 	mlx->y = 0;
-    mlx->shift_x = 0;
-    mlx->shift_y = 0;
+	mlx->shift_x = 0;
+	mlx->shift_y = 0;
 	mlx->tex_dim[0] = 0;
-    mlx->tex_dim[1] = 0;
+	mlx->tex_dim[1] = 0;
 }
 
 void	init_rc(t_rc *rc)
