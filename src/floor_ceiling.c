@@ -12,9 +12,9 @@
 
 #include "cubid.h"
 
-void    floor_ceiling(t_common *d_list)
+void	floor_ceiling(t_common *d_list)
 {
-	int i[2];
+	int		i[2];
 
 	i[0] = 0;
 	while (i[0] < WIDTH)

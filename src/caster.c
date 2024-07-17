@@ -33,26 +33,28 @@ void	horizontal(t_common *d_list, t_rc *rc, int pixel, double angle)
 {
 	rc->hit[pixel][3] = rc->tmp[1];
 	if (rc->dir < 1.0)
-		d_list->rc->hit[pixel][1] = rc->ray[1] + 1;
+		rc->hit[pixel][1] = rc->ray[1] + 1;
 	else
-		d_list->rc->hit[pixel][1] = rc->ray[1];
+		rc->hit[pixel][1] = rc->ray[1];
 	if (rc->dir < 0.5 || rc->dir > 1.5)
-		d_list->rc->hit[pixel][0] = rc->pos[0] + pyth(rc->steps[1], length_y(rc));
+		rc->hit[pixel][0] = rc->pos[0] + pyth(rc->steps[1], length_y(rc));
 	else
-		d_list->rc->hit[pixel][0] = rc->pos[0] - pyth(rc->steps[1], length_y(rc));
-	d_list->rc->hit[pixel][5] = length_y(rc);
-	d_list->rc->hit[pixel][2] = d_list->rc->hit[pixel][5] * (2 * cos(angle));	
+		rc->hit[pixel][0] = rc->pos[0] - pyth(rc->steps[1], length_y(rc));
+	rc->hit[pixel][5] = length_y(rc);
+	rc->hit[pixel][2] = rc->hit[pixel][5] * (2 * cos(angle));
 }
 
 void	where_hit(t_common *d_list, t_rc *rc, int pixel)
 {
-	double angle = d_list->rc->dir - d_list->rc->look;
+	double	angle;
+
+	angle = d_list->rc->dir - d_list->rc->look;
 	if (d_list->rc->dir < 0.5 && d_list->rc->look > 1.5)
 		angle += 2;
 	else if (d_list->rc->look < 0.5 && d_list->rc->dir > 1.5)
 		angle -= 2;
-
-	if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
+	if (rc->steps[1] > 1000.0 || (rc->steps[0] < 1000.0
+			&& length_x(rc) < length_y(rc)))
 		vertical(d_list, rc, pixel, angle);
 	else
 		horizontal(d_list, rc, pixel, angle);
@@ -65,21 +67,19 @@ void	where_hit(t_common *d_list, t_rc *rc, int pixel)
 	else if (rc->hit[pixel][3] == W)
 		rc->hit[pixel][4] = modf(rc->hit[pixel][1], &angle);
 	if (d_list->map->raw_map[rc->ray[0]][rc->ray[1]] == 4)
-		rc->hit[pixel][3] = D;	
+		rc->hit[pixel][3] = D;
 }
 
 void	caster(t_common *d_list)
 {
-	int     i;
-	double  angle;
+	int		i;
+	double	angle;
 
 	i = 0;
 	d_list->rc->dir = d_list->rc->look + 0.0833335;
 	angle = 0.166667 / WIDTH;
-	
 	if (d_list->rc->dir >= 2.0)
 		d_list->rc->dir -= 2.0;
-	
 	while (i < WIDTH)
 	{
 		if (angle >= 2)

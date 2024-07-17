@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:50:02 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 18:29:45 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:36:24 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	check_boundries(int p1)
 {
 	if (p1 < 0)
 		p1 = 0;
-	else if(p1 >= WIDTH)
+	else if (p1 >= WIDTH)
 		p1 = WIDTH - 1;
 }
 
-void    wall(t_common *d_list, double p1[2], double p2[2], int x)
+void	wall(t_common *d_list, double p1[2], double p2[2], int x)
 {
 	int		i;
 	int		color;
@@ -51,7 +51,6 @@ void	draw_walls(t_common *d_list)
 	double	line_len;
 
 	i[1] = 0;
-
 	while (i[1] < 2)
 	{
 		i[0] = 0;

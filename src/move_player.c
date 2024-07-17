@@ -1,57 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 16:54:00 by fmarggra          #+#    #+#             */
+/*   Updated: 2024/07/17 16:54:01 by fmarggra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubid.h"
 
 int	check_entire_square(t_common *d_list, int new_x, int new_y)
 {
-	double	upper_left_x;
-	double	upper_left_y;
+	double	up_left_x;
+	double	up_left_y;
+	int		y;
+	int		x;
+	t_map	*map;
 
-	upper_left_x = new_x - SQUARE / 2;
-	upper_left_y = new_y - SQUARE / 2;
-	for (int y = - 2; y < SQUARE + 2; y++)
+	//draw the square smaller
+	map = d_list->map;
+	up_left_x = new_x - SQUARE / 2;
+	up_left_y = new_y - SQUARE / 2;
+	y = -2;
+	while (y < SQUARE)
 	{
-		for (int x = -1; x < SQUARE + 2; x++)
+		x = -1;
+		while (x < SQUARE + 2)
 		{
-			if (d_list->map->minimap[(int)upper_left_x + x][(int)upper_left_y + y] == 1)
+			if (map->minimap[(int)up_left_x + x][(int)up_left_y + y] == 1)
 				return (TRUE);
+			x++;
 		}
+		y++;
 	}
 	return (FALSE);
-}
-
-double	calc_dir(double dir)
-{
-	double	rdir;
-	
-	if (dir >= 2)
-		rdir -= 2;
-	else if (dir < 0)
-		rdir += 2;
-	if (dir < 0.5)
-		rdir = dir;
-	else if (dir < 1.0)
-		rdir = 1.0 - dir;
-	else if (dir < 1.5)
-		rdir = dir - 1;
-	else if (dir < 2.0)
-		rdir = 2 - dir;
-	return (rdir);
 }
 
 int	move_check_x(t_common *d_list, double move_dir)
 {
 	double	trash;
 	int		pos[2];
+	t_map	*map;
 
+	map = d_list->map;
 	pos[0] = d_list->rc->pos[0];
 	pos[1] = d_list->rc->pos[1];
-	if (cos(move_dir * M_PI) > 0 && (d_list->map->raw_map[pos[0] + 1][pos[1]] == 1 || d_list->map->raw_map[pos[0] + 1][pos[1]] == 4)
+	if (cos(move_dir * M_PI) > 0 && (map->raw_map[pos[0] + 1][pos[1]] == 1
+		|| map->raw_map[pos[0] + 1][pos[1]] == 4)
 		&& modf(d_list->rc->pos[0], &trash) > 0.6)
 		return (FALSE);
-	if (cos(move_dir * M_PI) < 0 && (d_list->map->raw_map[pos[0] - 1][pos[1]] == 1 || d_list->map->raw_map[pos[0] - 1][pos[1]] == 4)
+	if (cos(move_dir * M_PI) < 0 && (map->raw_map[pos[0] - 1][pos[1]] == 1
+		|| map->raw_map[pos[0] - 1][pos[1]] == 4)
 		&& modf(d_list->rc->pos[0], &trash) < 0.4)
-	{
 		return (FALSE);
-	}
 	return (TRUE);
 }
 
@@ -62,10 +66,14 @@ int	move_check_y(t_common *d_list, double move_dir)
 
 	pos[0] = d_list->rc->pos[0];
 	pos[1] = d_list->rc->pos[1];
-	if (sin(move_dir * M_PI) < 0 && (d_list->map->raw_map[pos[0]][pos[1] + 1] == 1 || d_list->map->raw_map[pos[0]][pos[1] + 1] == 4)
+	if (sin(move_dir * M_PI) < 0
+		&& (d_list->map->raw_map[pos[0]][pos[1] + 1] == 1
+		|| d_list->map->raw_map[pos[0]][pos[1] + 1] == 4)
 		&& modf(d_list->rc->pos[1], &trash) >= 0.6)
 		return (FALSE);
-	if (sin(move_dir * M_PI) > 0 && (d_list->map->raw_map[pos[0]][pos[1] - 1] == 1 || d_list->map->raw_map[pos[0]][pos[1] - 1] == 4)
+	if (sin(move_dir * M_PI) > 0
+		&& (d_list->map->raw_map[pos[0]][pos[1] - 1] == 1
+		|| d_list->map->raw_map[pos[0]][pos[1] - 1] == 4)
 		&& modf(d_list->rc->pos[1], &trash) <= 0.4)
 		return (FALSE);
 	return (TRUE);

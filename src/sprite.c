@@ -12,32 +12,29 @@
 
 #include "cubid.h"
 
-
-void    find_sprite(t_common *d_list)
+void	find_sprite(t_common *d_list)
 {
-	double  delta[2];
-	double  angle;
+	double	delta[2];
+	double	angle;
 
 	delta[0] = d_list->rc->sprite[0] - d_list->rc->pos[0];
 	delta[1] = -d_list->rc->sprite[1] + d_list->rc->pos[1];
 	angle = atan2(delta[1], delta[0]) / M_PI;
-	
-	d_list->rc->sprite[3] =  angle - d_list->rc->look;
+	d_list->rc->sprite[3] = angle - d_list->rc->look;
 	while (d_list->rc->sprite[3] < -1)
 		d_list->rc->sprite[3] += 2;
 	while (d_list->rc->sprite[3] > 1)
 		d_list->rc->sprite[3] -= 2;
-
 	d_list->rc->sprite[2] = magnitudes(delta);
 }
 
-void    draw_sprite(t_common *d_list, double center[2], double scale)
+void	draw_sprite(t_common *d_list, double center[2], double scale)
 {
-	double  i[2];
-	double  dim[2];
-	int     pos[2];
-	double  steps;
-	int     color;
+	double	i[2];
+	double	dim[2];
+	int		pos[2];
+	double	steps;
+	int		color;
 
 	dim[0] = d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale;
 	dim[1] = d_list->mlx[SP + d_list->rc->frame].tex_d[1] * scale;
@@ -50,7 +47,7 @@ void    draw_sprite(t_common *d_list, double center[2], double scale)
 		pos[1] = (int)center[1] - ((d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale) / 2);
 		while (i[1] < d_list->mlx[SP + d_list->rc->frame].tex_d[1] && pos[1] < HEIGHT && pos[0] < WIDTH)
 		{
-			if (pos[0] > 0  && pos[1] > 0 )
+			if (pos[0] > 0 && pos[1] > 0)
 			{
 				color = my_mlx_pixel_get(&d_list->mlx[SP + d_list->rc->frame], (int)i[0], (int)i[1]);
 				if (color != 0XFF000000)
@@ -66,9 +63,11 @@ void    draw_sprite(t_common *d_list, double center[2], double scale)
 
 void	sprite(t_common *d_list)
 {
-	double  scale;
-	double  pos[2];
-	if (fabs(d_list->rc->sprite[3]) > 0.25 || (d_list->rc->frame != 12 &&  d_list->rc->sprite[2] > 5))
+	double	scale;
+	double	pos[2];
+
+	if (fabs(d_list->rc->sprite[3]) > 0.25
+		|| (d_list->rc->frame != 12 && d_list->rc->sprite[2] > 5))
 		return ;
 	scale = 1.5 / d_list->rc->sprite[2];
 	pos[1] = (HEIGHT + (HEIGHT / d_list->rc->sprite[2])) / 2;

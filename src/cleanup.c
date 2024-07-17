@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:55 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 16:30:41 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:52:11 by fmarggra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	cleanup(t_common *d_list)
 {
-	//cleanup_mlx(d_list->mlx);
+	cleanup_mlx(d_list->mlx);
 	cleanup_map(d_list->map);
 	close (d_list->map->fd);
 	cleanup_d_list(d_list);
@@ -22,7 +22,7 @@ int	cleanup(t_common *d_list)
 	return (0);
 }
 
-void    cleanup_rc(t_rc *rc)
+void	cleanup_rc(t_rc *rc)
 {
 	if (rc)
 	{
@@ -31,9 +31,9 @@ void    cleanup_rc(t_rc *rc)
 	}
 }
 
-void    cleanup_mlx(t_mlx *mlx)
+void	cleanup_mlx(t_mlx *mlx)
 {
-	int i;
+	int	i;
 
 	if (mlx->win)
 		mlx_destroy_window(mlx->ptr, mlx->win);
@@ -57,8 +57,7 @@ void    cleanup_mlx(t_mlx *mlx)
 	}
 }
 
-void    cleanup_map(t_map *map)
-{
+void	cleanup_map(t_map *map)
 {
 	if (map && map->raw_map)
 	{
@@ -89,9 +88,8 @@ void    cleanup_map(t_map *map)
 	if (map && map->file)
 		free(map->file);
 }
-}
 
-void    cleanup_d_list(t_common *d_list)
+void	cleanup_d_list(t_common *d_list)
 {
 	if (d_list->map)
 	{

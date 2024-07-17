@@ -26,7 +26,7 @@ void	respone_ninja(t_common *d_list)
 			{
 				d_list->rc->sprite[0] = i[0] + 0.5;
 				d_list->rc->sprite[1] = i[1] + 0.5;
-				return;
+				return ;
 			}
 			i[1]++;
 		}
@@ -40,7 +40,7 @@ void	ninja(t_common *d_list)
 {
 	if (d_list->rc->ninja_found < 4 && d_list->rc->sprite[2] < 5)
 	{
-		while(d_list->rc->frame < 9)
+		while (d_list->rc->frame < 9)
 		{
 			d_list->rc->frame++;
 			put_image(d_list, d_list->mlx);
@@ -57,8 +57,8 @@ void	ninja(t_common *d_list)
 		{
 			put_image(d_list, d_list->mlx);
 			d_list->rc->frame++;
+			//take out
 			usleep(100000);
-
 		}
 		d_list->rc->frame = 12;
 	}

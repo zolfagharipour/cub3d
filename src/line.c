@@ -12,12 +12,12 @@
 
 #include "cubid.h"
 
-void    line(t_common *d_list, double p1[2], double p2[2], int color)
+void	line(t_common *d_list, double p1[2], double p2[2], int color)
 {
 	int		step;
 	int		i;
 	double	delta[2];
-	
+
 	delta[0] = p2[0] - p1[0];
 	delta[1] = p2[1] - p1[1];
 	if (fabs(delta[0]) >= fabs(delta[1]))
@@ -35,5 +35,3 @@ void    line(t_common *d_list, double p1[2], double p2[2], int color)
 		i++;
 	}
 }
-
-

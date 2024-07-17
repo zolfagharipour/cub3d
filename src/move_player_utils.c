@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_parsing_utils.c                               :+:      :+:    :+:   */
+/*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 16:53:09 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 16:53:11 by fmarggra         ###   ########.fr       */
+/*   Created: 2024/07/17 16:54:00 by fmarggra          #+#    #+#             */
+/*   Updated: 2024/07/17 16:54:01 by fmarggra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubid.h"
 
-int	is_texture(int i, char *line, char id, char id2)
+double	calc_dir(double dir)
 {
-	if (line[i] && line[i + 1] && line [i + 2] && line[i] == id
-		&& line[i + 1] == id2 && line[i + 2] == ' ')
-		return (1);
-	return (0);
-}
+	double	rdir;
 
-int	all_ids_found(t_common *d_list)
-{
-	int	i;
-
-	i = 0;
-	while (i < 6)
-	{
-		if (d_list->map->val_aspects[i] == NOT_FOUND)
-			return (0);
-		i++;
-	}
-	return (1);
+	if (dir >= 2)
+		rdir -= 2;
+	else if (dir < 0)
+		rdir += 2;
+	if (dir < 0.5)
+		rdir = dir;
+	else if (dir < 1.0)
+		rdir = 1.0 - dir;
+	else if (dir < 1.5)
+		rdir = dir - 1;
+	else if (dir < 2.0)
+		rdir = 2 - dir;
+	return (rdir);
 }

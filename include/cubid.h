@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cubid.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 17:02:25 by fmarggra          #+#    #+#             */
+/*   Updated: 2024/07/17 17:02:27 by fmarggra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBID_H
 # define CUBID_H
 
@@ -48,8 +60,8 @@
 # define RESIDUUM 6
 # define SMALL_ANGLE 1e-2
 # ifndef M_PI
-# define M_PI 3.14159265358979323846
-#endif
+#  define M_PI 3.14159265358979323846
+# endif
 
 typedef struct s_mlx
 {
@@ -122,7 +134,6 @@ typedef struct s_common
 
 //setup
 int		main(int argc, char **argv);
-
 int		init_structs(t_common *d_list, char *file);
 void	init_mlx(t_mlx *mlx);
 void	init_map(t_map *map, char *file);
@@ -143,7 +154,7 @@ int		find_texture(char *line, t_common *d_list, int identifyer, int start);
 void	find_color(char *line, t_common *d_list, int identifier, int start);
 int		suitable_color_range(int *store_location, char *r, char *g, char *b);
 int		fill_raw_map(t_common *d_list);
-void	determine_content_of_coordinates(t_common *d_list, char *line, int x, int y);
+void	content_of_coordinates(t_common *d_list, char *line, int x, int y);
 void	flush_initial_values(t_common *d_list, int y);
 void	check_map_scale_factor(t_common *d_list);
 int		line_empty(char *line);
@@ -161,6 +172,7 @@ int		determine_map_size_and_val(t_common *d_list);
 int		read_map_from_file(t_common *d_list);
 int		fill_raw_map(t_common *d_list);
 void	find_the_players_position(t_common *d_list);
+void	def_player_params(t_common *d_list, char *line, int x, int y);
 int		extract_color(char **color, char *line, int *s, int i);
 int		cut_lines(t_common *d_list, char *line, int s, int identifier);
 int		all_ids_found(t_common *d_list);
@@ -173,10 +185,8 @@ int		has_been_printed_before(t_common *d_list, int err_macro, int i);
 void	print_map_error(t_common *d_list, int error);
 
 //testing
-int		test_map(t_common *d_list);
 int		malloc_raw_map(t_common *d_list);
 void	print_map(t_map *map);
-void	find_the_players_position(t_common *d_list);
 
 //image
 void	draw_image(t_common *d_list);
@@ -188,6 +198,7 @@ void	cleanup_map(t_map *map);
 void	cleanup_d_list(t_common *d_list);
 void	cleanup_rc(t_rc *rc);
 void	p_error(char *str, t_common *d_list);
+void	fill_pixel(int ii, int jj, t_common *d_list);
 
 //events
 void	events(t_common *d_list);
@@ -196,7 +207,6 @@ void	move_window(int keycode, t_common *d_list);
 void	rotate_player(int keycode, t_common *d_list);
 int		key_release(int keycode, t_common *d_list);
 int		mouse_track(int x, int y, t_common *d_list);
-
 
 //mohamad
 int		minimap(t_common *d_list);
@@ -213,7 +223,7 @@ void	find_sprite(t_common *d_list);
 void	sprite(t_common *d_list);
 void	floor_ceiling(t_common *d_list);
 void	ninja(t_common *d_list);
-void	door (t_common *d_list);
+void	door(t_common *d_list);
 int		light_adjust(int rgb, double light);
 int		wall_lighting(t_common *d_list, int color, int x);
 void	shuriken(t_common *d_list);
@@ -224,7 +234,7 @@ void	get_half_data(t_common *d_list, t_mlx *mlx);
 void	second_half_data(t_common *d_list, t_mlx *mlx);
 
 // caster
-void    caster(t_common *d_list);
+void	caster(t_common *d_list);
 void	step_x(t_rc *rc, int i);
 void	step_y(t_rc *rc, int i);
 double	length_x(t_rc *rc);

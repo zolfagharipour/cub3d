@@ -34,12 +34,12 @@ int	light_adjust(int rgb, double light)
 int	wall_lighting(t_common *d_list, int color, int x)
 {
 	if (d_list->rc->hit[x][3] == N)
-		return(color);
+		return (color);
 	if (d_list->rc->hit[x][3] == S)
-		return(light_adjust(color, 0.1));
+		return (light_adjust(color, 0.1));
 	if (d_list->rc->hit[x][3] == E)
-		return(light_adjust(color, 0.3));
+		return (light_adjust(color, 0.3));
 	if (d_list->rc->hit[x][3] == W)
-		return(light_adjust(color, 0.7));
+		return (light_adjust(color, 0.7));
 	return (color);
 }

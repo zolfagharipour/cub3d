@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:11 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 17:33:25 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:36:59 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void	find_the_players_position(t_common *d_list)
 	}
 }
 
-void	print_map(t_map *map)
-{
-	for (int y = 0; y < map->raw_height; y++)
-	{
-		for (int x = 0; x < map->raw_length; x++)
-			ft_printf("%d", map->raw_map[x][y]);
-		ft_printf("\n");
-	}
-}
+// void	print_map(t_map *map)
+// {
+// 	for (int y = 0; y < map->raw_height; y++)
+// 	{
+// 		for (int x = 0; x < map->raw_length; x++)
+// 			ft_printf("%d", map->raw_map[x][y]);
+// 		ft_printf("\n");
+// 	}
+// }
 
 int	malloc_raw_map(t_common *d_list)
 {
@@ -117,4 +117,3 @@ void	check_map_scale_factor(t_common *d_list)
 			map->s_square = 1;
 	}
 }
-

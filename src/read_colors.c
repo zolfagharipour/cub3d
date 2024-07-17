@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_colors.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 16:54:08 by fmarggra          #+#    #+#             */
+/*   Updated: 2024/07/17 16:54:10 by fmarggra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubid.h"
 
 void	find_color(char *line, t_common *d_list, int id, int s)
@@ -73,6 +85,5 @@ int	suitable_color_range(int *store_location, char *r, char *g, char *b)
 		return (0);
 	color = (red << 16) | (green << 8) | blue;
 	*store_location = color;
-
 	return (1);
 }

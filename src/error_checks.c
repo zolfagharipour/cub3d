@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:31 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 16:31:23 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:52:54 by fmarggra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int	error_arguments(int argc, char **argv)
 	int	fd;
 
 	fd = 0;
-	//opens the file and checks if it exists
-	//if it does not exist, return 0
-	//if it does exist, close file and return 1
 	if (argc != 2 || !argv[1])
 		return (0);
 	fd = open(argv[1], O_RDONLY);

@@ -6,7 +6,11 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/17 18:29:45 by mzolfagh         ###   ########.fr       */
+=======
+/*   Updated: 2024/07/17 16:53:29 by fmarggra         ###   ########.fr       */
+>>>>>>> efdb6dbecee381703cfd1288b96deafade3f3d62
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +19,27 @@
 int	init_structs(t_common *d_list, char *file)
 {
 	int	i;
-	
+
 	d_list->map = (t_map *)malloc(sizeof(t_map));
 	d_list->mlx = (t_mlx *)malloc(sizeof(t_mlx) * 20);
 	d_list->rc = (t_rc *)malloc(sizeof(t_rc));
 	if (!d_list->map || !d_list->mlx || !d_list->rc)
-		return 0;
+		return (0);
 	init_map(d_list->map, file);
 	init_rc(d_list->rc);
 	i = -1;
 	while (i++ < 19)
 		init_mlx(&d_list->mlx[i]);
-	return 1;
+	load_textures(d_list->mlx);
+	return (1);
 }
 
 void	init_map(t_map *map, char *file)
 {
 	int	i;
-	map->raw_map = NULL,
-	map->minimap = NULL,
+
+	map->raw_map = NULL;
+	map->minimap = NULL;
 	map->raw_length = 0;
 	map->raw_height = 0;
 	map->player_x = 0;
@@ -106,4 +112,3 @@ int	init_mlx_functions(t_common *d_list, t_mlx *mlx)
 		return (cleanup(d_list), 0);
 	return (1);
 }
-

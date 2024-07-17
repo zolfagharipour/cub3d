@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 16:53:35 by fmarggra          #+#    #+#             */
+/*   Updated: 2024/07/17 16:53:37 by fmarggra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubid.h"
 
 char	*valid_map_boundaries(t_common *d_list)
@@ -34,6 +46,7 @@ char	*valid_map_boundaries(t_common *d_list)
 //     }
 //     y++;
 // }
+
 int	minimap_vertical_boundaries(t_common *d_list)
 {
 	int		x;
