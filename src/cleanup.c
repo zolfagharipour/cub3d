@@ -14,7 +14,7 @@
 
 int	cleanup(t_common *d_list)
 {
-	cleanup_mlx(d_list->mlx);
+	//cleanup_mlx(d_list->mlx);
     cleanup_map(d_list->map);
     close (d_list->map->fd);
     cleanup_d_list(d_list);

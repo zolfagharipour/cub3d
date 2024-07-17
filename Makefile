@@ -1,19 +1,21 @@
 NAME = cub3d
 CC = cc
+MLXFLAG = -g
 MLXFLAG	=	-lmlx -lXext -lX11 -g -lm
-#CFLAGS = -Wall -Wextra -Werror -g -I include/
 CFLAGS = -g -I include/
 
 RM = rm -rf
 # ***************************************************************************
 
-SRCS = 	src/image_utils.c src/events.c src/image.c src/init_structs.c \
-		src/main.c src/cleanup.c  src/minimap.c \
-		src/caster.c src/line.c src/draw_walls.c src/move_player.c \
-		src/error_checks.c src/read_from_file.c  src/texture.c \
-		src/sprite.c src/math.c src/floor_ceiling.c src/door.c \
-		src/ninja.c src/light.c src/draw_icon.c src/mouse.c src/caster_utils.c \
-		src/shoot_ray.c
+SRCS = 	src/caster.c src/events.c src/image_utils.c src/minimap.c \
+		src/cleanup.c src/file_parsing.c src/init_structs.c \
+		src/move_player.c src/sprite.c src/door.c src/file_parsing_utils.c \
+		src/line.c src/ninja.c src/texture.c src/draw_walls.c \
+		src/fill_minimap.c src/main.c src/read_colors.c src/time.c \
+		src/floor_ceiling.c src/map_parsing.c src/read_from_file.c \
+		src/error_checks.c src/image.c src/math.c \
+		src/read_from_file_utils.c src/validate_map.c
+
 
 OBJDIR = ./obj
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))

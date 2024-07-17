@@ -12,7 +12,7 @@
 
 #include "cubid.h"
 
-static int		free_mmap(int **minimap)
+static int	free_mmap(int **minimap)
 {
 	int		i;
 
@@ -25,16 +25,18 @@ static int		free_mmap(int **minimap)
 
 static void	scale_mmap(t_common *dlist, int i, int j, int scale)
 {
-	int	ii;
-	int	jj;
+	int		ii;
+	int		jj;
+	t_map	*map;
 
+	map = dlist->map;
 	ii = 0;
 	while (ii < scale)
 	{
 		jj = 0;
 		while (jj < scale)
 		{
-			dlist->map->minimap[scale * i + ii][scale * j + jj] = dlist->map->raw_map[i][j];
+			map->minimap[scale * i + ii][scale * j + jj] = map->raw_map[i][j];
 			jj++;
 		}
 		ii++;
@@ -52,33 +54,31 @@ static void	fill_mmap(t_common *dlist, int scale)
 		j = 0;
 		while (j < dlist->map->raw_height)
 		{
-			scale_mmap(dlist, i , j, scale);
+			scale_mmap(dlist, i, j, scale);
 			j++;
 		}
 		i++;
 	}
 }
 
-int		minimap(t_common *dlist)
+int	minimap(t_common *dlist)
 {
 	int		i;
 	int		j;
 	t_map	*map;
 
 	map = dlist->map;
-
-    map->minimap = (int **)malloc(map->raw_length * sizeof(int *) * dlist->map->scale);
-    if (!map->minimap)
-        return (cleanup(dlist), 0);
-
+	map->minimap = (int **)malloc(map->raw_length * sizeof(int *) * map->scale);
+	if (!map->minimap)
+		return (cleanup(dlist), 0);
 	i = 0;
-    while (i < dlist->map->scale * map->raw_length)
-    {
-        map->minimap[i] = (int *)malloc(dlist->map->scale * map->raw_height * sizeof(int));
-        if (map->minimap[i] == NULL)
-            return (cleanup(dlist), 0);
-        i++;
-    }
+	while (i < dlist->map->scale * map->raw_length)
+	{
+		map->minimap[i] = (int *)malloc(map->scale * map->raw_height * 4);
+		if (map->minimap[i] == NULL)
+			return (cleanup(dlist), 0);
+		i++;
+	}
 	fill_mmap(dlist, dlist->map->scale);
 	return (1);
 }
