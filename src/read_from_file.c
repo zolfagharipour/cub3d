@@ -23,7 +23,6 @@ int	read_map_from_file(t_common *d_list)
 	check_all_parts_found_and_valid(d_list);
 	// print_map(d_list->map);
 	load_textures(d_list, d_list->mlx);
-	
 	return (1);
 }
 
@@ -94,7 +93,6 @@ int	malloc_raw_map(t_common *d_list)
 void	check_map_scale_factor(t_common *d_list)
 {
 	t_map	*map;
-	int		scale;
 	int		reduction;
 
 	//!!!

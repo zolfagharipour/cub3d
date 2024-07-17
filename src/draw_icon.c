@@ -21,7 +21,7 @@ void	smoke_icon(t_common *d_list, int start[2])
 	i[0] = 0;
 	scale[0] = d_list->mlx[SMOKE].tex_d[0] / 50.0;
 	scale[1] = d_list->mlx[SMOKE].tex_d[1] / 50.0;
-	while(i[0] < 51)
+	while (i[0] < 51)
 	{
 		i[1] = 0;
 		while (i[1] < 52)

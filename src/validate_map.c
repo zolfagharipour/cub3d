@@ -69,7 +69,7 @@ void	catch_invalid_map(int *amt_errors, t_common *d_list, int i)
 		{
 			if (*amt_errors < 1)
 				ft_printf("Error\n");
-			print_map_error(d_list, i);
+			print_map_error(i);
 			(*amt_errors)++;
 		}
 	}
@@ -89,7 +89,7 @@ void	catch_invalid_map(int *amt_errors, t_common *d_list, int i)
 	}
 }
 
-void	print_map_error(t_common *d_list, int error)
+void	print_map_error(int error)
 {
 	if (error == MULTIPLE_PLAYERS)
 		write(1, "Multiple players found\n", 24);

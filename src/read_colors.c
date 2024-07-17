@@ -14,14 +14,13 @@
 
 int	find_color(char *line, t_common *d_list, int id, int s)
 {
-	int		i;
 	int		rgb;
 
 	while (line[s] && line[s] == ' ')
 		s++;
 	if (cut_lines(d_list, line, s, id) == 0)
 		return (0);
-	rgb = decipher_colors(d_list, s, id, line);
+	rgb = decipher_colors(d_list, s, line);
 	if (rgb == -1)
 		return (0);
 	d_list->map->color[id] = rgb;
@@ -29,7 +28,7 @@ int	find_color(char *line, t_common *d_list, int id, int s)
 	return (1);
 }
 
-int	decipher_colors(t_common *d_list, int s, int id, char *line)
+int	decipher_colors(t_common *d_list, int s, char *line)
 {
 	int	red;
 	int	green;

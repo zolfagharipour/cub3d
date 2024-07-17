@@ -50,7 +50,8 @@ void	draw_sprite(t_common *d_list, double center[2], double scale)
 			if (pos[0] > 0 && pos[1] > 0)
 			{
 				color = my_mlx_pixel_get(&d_list->mlx[SP + d_list->rc->frame], (int)i[0], (int)i[1]);
-				if (color != 0XFF000000)
+				//changed color black to rbg format
+				if (color != 000000)
 					my_mlx_pixel_put(&d_list->mlx[0], pos[0], pos[1], color);
 			}
 			i[1] += steps;

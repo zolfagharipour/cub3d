@@ -29,13 +29,11 @@
 # define TRUE 1
 # define FALSE 0
 //definition square size can be amended
-# define SQUARE 10
+# define SQUARE 8
 # define MOVING_DIS 0.2
 # define ORANGE 0xec956c
-# define RED 0xFF0000
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
-# define DDBLUE 0x0
 # define D  1
 # define N  2
 # define S  3
@@ -139,6 +137,7 @@ void	init_mlx(t_mlx *mlx);
 void	init_map(t_map *map, char *file);
 void	init_rc(t_rc *rc);
 int		init_mlx_functions(t_common *d_list, t_mlx *mlx);
+void	init_validity_params(t_map *map);
 void	put_red_square(t_common *d_list);
 void	put_image(t_common *d_list, t_mlx *mlx);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
@@ -174,7 +173,7 @@ int		fill_raw_map(t_common *d_list);
 void	find_the_players_position(t_common *d_list);
 void	def_player_params(t_common *d_list, char *line, int x, int y);
 int		extract_color(t_common *d_list, char *line, int *s);
-int		decipher_colors(t_common *d_list, int s, int id, char *line);
+int		decipher_colors(t_common *d_list, int s, char *line);
 int		cut_lines(t_common *d_list, char *line, int s, int identifier);
 int		all_ids_found(t_common *d_list);
 
@@ -183,7 +182,7 @@ void	check_all_parts_found_and_valid(t_common *d_list);
 void	catch_invalid_map(int *amt_errors, t_common *d_list, int i);
 void	print_color_texture_error(t_common *d_list, int i);
 int		has_been_printed_before(t_common *d_list, int err_macro, int i);
-void	print_map_error(t_common *d_list, int error);
+void	print_map_error(int error);
 
 //testing
 int		malloc_raw_map(t_common *d_list);
@@ -198,6 +197,7 @@ void	cleanup_mlx(t_mlx *mlx);
 void	cleanup_map(t_map *map);
 void	cleanup_d_list(t_common *d_list);
 void	cleanup_rc(t_rc *rc);
+void    cleanup_minimap(t_map *map);
 void	p_error(char *str, t_common *d_list);
 void	fill_pixel(int ii, int jj, t_common *d_list);
 
@@ -242,6 +242,8 @@ double	length_x(t_rc *rc);
 double	length_y(t_rc *rc);
 double	pyth(double b, double c);
 void	shoot_ray(t_common *d_list, t_rc *rc, int pixel);
+void	horizontal(t_rc *rc, int pixel, double angle);
+
 
 // math
 double	dot_product(double p1[2], double p2[2]);

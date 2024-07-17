@@ -31,8 +31,6 @@ int	init_structs(t_common *d_list, char *file)
 
 void	init_map(t_map *map, char *file)
 {
-	int	i;
-
 	map->raw_map = NULL;
 	map->minimap = NULL;
 	map->raw_length = 0;
@@ -40,7 +38,7 @@ void	init_map(t_map *map, char *file)
 	map->player_x = 0;
 	map->player_y = 0;
 	map->player_size = 0;
-	map->s_square = 10;
+	map->s_square = SQUARE;
 	map->scale = 25;
 	map->player_size = map->scale / 2;
 	map->file = ft_strdup(file);
@@ -50,12 +48,7 @@ void	init_map(t_map *map, char *file)
 	map->close_door[1] = -1;
 	map->map_started = 0;
 	map->file_length = 0;
-	i = -1;
-	while (++i < 6)
-		map->val_aspects[i] = NOT_FOUND;
-	i = -1;
-	while (++i < 6)
-		map->val_map[i] = 0;
+	init_validity_params(map);
 	if (!map->file)
 		return ;
 }

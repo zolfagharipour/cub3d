@@ -52,7 +52,7 @@ void	gnl_loop(t_common *d_list, char *line)
 		if (d_list->map->map_started == 1)
 		{
 			validate_map_line(line, d_list);
-			if (ft_strlen(line) - 1 > map->raw_length)
+			if ((int)ft_strlen(line) - 1 > map->raw_length)
 				map->raw_length = ft_strlen(line) - 1;
 			map->raw_height++;
 		}

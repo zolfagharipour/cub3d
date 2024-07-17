@@ -16,7 +16,7 @@ SRCS = 	src/caster.c src/events.c src/image_utils.c src/minimap.c \
 		src/error_checks.c src/image.c src/math.c \
 		src/read_from_file_utils.c src/validate_map.c src/caster_utils.c \
 		src/shoot_ray.c src/mouse.c src/light.c src/draw_icon.c src/texture_open.c \
-		src/move_player_utils.c
+		src/move_player_utils.c src/cleanup_utils.c src/init_structs_utils.c \
 
 
 OBJDIR = ./obj

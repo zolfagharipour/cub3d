@@ -12,17 +12,6 @@
 
 #include "cubid.h"
 
-static int	free_mmap(int **minimap)
-{
-	int		i;
-
-	i = 0;
-	while (minimap[i])
-		free(minimap[i++]);
-	free(minimap);
-	return (0);
-}
-
 static void	scale_mmap(t_common *dlist, int i, int j, int scale)
 {
 	int		ii;
@@ -64,7 +53,6 @@ static void	fill_mmap(t_common *dlist, int scale)
 int	minimap(t_common *dlist)
 {
 	int		i;
-	int		j;
 	t_map	*map;
 
 	map = dlist->map;

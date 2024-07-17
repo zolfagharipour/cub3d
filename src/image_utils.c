@@ -22,7 +22,7 @@ void	fill_pixel(int ii, int jj, t_common *d_list)
 	if (d_list->map->raw_map[d_list->mlx->x][d_list->mlx->y] == 1)
 		my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DBLUE);
 	else if (d_list->map->raw_map[d_list->mlx->x][d_list->mlx->y] == RESIDUUM)
-		my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, DDBLUE);
+		my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, ORANGE);
 	else
 		my_mlx_pixel_put(d_list->mlx, pixel_x, pixel_y, LBLUE);
 }

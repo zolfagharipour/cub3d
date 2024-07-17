@@ -29,7 +29,7 @@ void	vertical(t_common *d_list, t_rc *rc, int pixel, double angle)
 	d_list->rc->hit[pixel][2] = d_list->rc->hit[pixel][5] * (2 * cos(angle));
 }
 
-void	horizontal(t_common *d_list, t_rc *rc, int pixel, double angle)
+void	horizontal(t_rc *rc, int pixel, double angle)
 {
 	rc->hit[pixel][3] = rc->tmp[1];
 	if (rc->dir < 1.0)
@@ -57,7 +57,7 @@ void	where_hit(t_common *d_list, t_rc *rc, int pixel)
 			&& length_x(rc) < length_y(rc)))
 		vertical(d_list, rc, pixel, angle);
 	else
-		horizontal(d_list, rc, pixel, angle);
+		horizontal(rc, pixel, angle);
 	if (rc->hit[pixel][3] == S)
 		rc->hit[pixel][4] = modf(rc->hit[pixel][0], &angle);
 	else if (rc->hit[pixel][3] == N)

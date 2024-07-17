@@ -9,7 +9,7 @@ WE   ./images/west.xpm
 EA   ./images/east.xpm
 
 
-C  255,103   
+C  255,103,2
 
 F  0,100,255
 

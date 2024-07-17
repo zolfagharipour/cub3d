@@ -65,15 +65,3 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
 	*(unsigned int *)dst = color;
 }
-
-// int my_mlx_pixel_get(t_mlx *mlx, int x, int y)
-// {
-// 	char	*src;
-// 	unsigned int color;
-
-// 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-// 		return 0; 
-// 	src = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
-// 	color = *(unsigned int *)src;
-// 	return color;
-// }
