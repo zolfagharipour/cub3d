@@ -15,6 +15,7 @@
 void	events(t_common *d_list)
 {
 	t_mlx	*mlx;
+
 	mlx = &d_list->mlx[0];
 	mlx_hook(mlx->win, 2, 1L << 0, (key_press), d_list);
 	mlx_hook(mlx->win, 17, 1L << 8, (cleanup), d_list);
@@ -25,8 +26,7 @@ int	key_press(int keycode, t_common *d_list)
 {
 	if (keycode == XK_Escape)
 		cleanup(d_list);
-
-    else if (keycode == XK_w || keycode == XK_s || keycode == XK_a
+	else if (keycode == XK_w || keycode == XK_s || keycode == XK_a
 		|| keycode == XK_d)
 	{
 		move_window(keycode, d_list);

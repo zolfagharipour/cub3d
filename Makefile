@@ -8,9 +8,15 @@ CFLAGS = -g -I include/
 RM = rm -rf
 # ***************************************************************************
 
-SRCS = 	src/init_structs.c src/validate_map.c src/file_parsing.c\
-		src/main.c src/cleanup.c src/map_parsing.c src/fill_minimap.c \
-		src/error_checks.c src/read_from_file.c src/read_from_file_utils.c \
+SRCS = 	src/caster.c src/events.c src/image_utils.c src/minimap.c \
+		src/cleanup.c src/file_parsing.c src/init_structs.c \
+		src/move_player.c src/sprite.c src/door.c src/file_parsing_utils.c \
+		src/line.c src/ninja.c src/texture.c src/draw_walls.c \
+		src/fill_minimap.c src/main.c src/read_colors.c src/time.c \
+		src/floor_ceiling.c src/map_parsing.c src/read_from_file.c \
+		src/error_checks.c src/image.c src/math.c \
+		src/read_from_file_utils.c src/validate_map.c
+
 
 OBJDIR = ./obj
 OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))

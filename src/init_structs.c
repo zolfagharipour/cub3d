@@ -26,7 +26,7 @@ int	init_structs(t_common *d_list, char *file)
 	i = -1;
 	while (i++ < 12)
 		init_mlx(&d_list->mlx[i]);
-	//load_textures(d_list->mlx);
+	load_textures(d_list->mlx);
 	return 1;
 }
 
@@ -88,21 +88,21 @@ void	init_rc(t_rc *rc)
 	rc->smoke = 0;
 }
 
-// int	init_mlx_functions(t_common *d_list, t_mlx *mlx)
-// {
-// 	mlx->ptr = mlx_init();
-// 	if (!mlx->ptr)
-// 		return (0);
-// 	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, "MINIMAP");
-// 	if (!mlx->win)
-// 		return (cleanup(d_list), 0);
-// 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
-// 	if (!mlx->img)
-// 		return (cleanup(d_list), 0);
-// 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp,
-// 			&mlx->line_length, &mlx->endian);
-// 	if (!mlx->addr)
-// 		return (cleanup(d_list), 0);
-// 	return (1);
-// }
+int	init_mlx_functions(t_common *d_list, t_mlx *mlx)
+{
+	mlx->ptr = mlx_init();
+	if (!mlx->ptr)
+		return (0);
+	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, "MINIMAP");
+	if (!mlx->win)
+		return (cleanup(d_list), 0);
+	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+	if (!mlx->img)
+		return (cleanup(d_list), 0);
+	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp,
+			&mlx->line_length, &mlx->endian);
+	if (!mlx->addr)
+		return (cleanup(d_list), 0);
+	return (1);
+}
 

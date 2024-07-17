@@ -28,15 +28,13 @@ void	put_image(t_common *d_list, t_mlx *mlx)
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp,
 			&mlx->line_length, &mlx->endian);
 	if (mlx->addr == NULL)
-		cleanup(d_list);	
+		cleanup(d_list);
 	floor_ceiling(d_list);
 	caster(d_list);
 	find_sprite(d_list);
 	draw_walls(d_list);
 	draw_image(d_list);
-
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
-
 }
 
 void	move_window(int keycode, t_common *d_list)
@@ -46,8 +44,6 @@ void	move_window(int keycode, t_common *d_list)
 
 	mlx = d_list->mlx;
 	px_move = 10;
-
-
 	if (keycode == XK_w)
 		move_player(d_list, d_list->rc->look);
 	else if (keycode == XK_s)
@@ -76,9 +72,7 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 
 // 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 // 		return 0; 
-	
 // 	src = mlx->addr + (y * mlx->line_length + x * (mlx->bpp / 8));
 // 	color = *(unsigned int *)src;
-	
 // 	return color;
 // }
