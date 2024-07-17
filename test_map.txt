@@ -12,3 +12,4 @@ EA   ./images/east.xpm
 C  3,0,255
 
 F  25,0,133
+

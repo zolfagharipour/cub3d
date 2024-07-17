@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_minimap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 16:53:16 by fmarggra          #+#    #+#             */
+/*   Updated: 2024/07/17 16:53:20 by fmarggra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubid.h"
 
 int	fill_raw_map(t_common *d_list)
@@ -68,4 +80,9 @@ void	flush_initial_values(t_common *d_list, int y)
 		d_list->map->raw_map[x][y] = RESIDUUM;
 		x++;
 	}
+}
+
+void	set_look(char *line, t_common *d_list)
+{
+	
 }
