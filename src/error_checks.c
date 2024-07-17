@@ -31,7 +31,7 @@ int	error_arguments(int argc, char **argv)
 
 void	p_error(char *str, t_common *d_list)
 {
-	ft_printf("Error\n%s\n", str);
+	ft_printf("%s\n", str);
 	cleanup(d_list);
 	exit(0);
 }

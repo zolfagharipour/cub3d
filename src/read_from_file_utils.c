@@ -19,7 +19,7 @@ int	determine_map_size_and_val(t_common *d_list)
 		line = get_next_line(map->fd);
 	}
 	if (d_list->map->map_started == 0)
-		p_error("Error\nNo map found\n", d_list);
+		p_error("Error\nNo map found", d_list);
 	check_map_scale_factor(d_list);
 	close(map->fd);
 	return (1);
@@ -36,8 +36,8 @@ void	gnl_loop(t_common *d_list, char *line)
 	{
 		if (d_list->map->map_started == 0)
 			evaluate_line(line, d_list);
-		else
-		// if (d_list->map->map_started == 1)
+		//else
+		if (d_list->map->map_started == 1)
 		{
 			validate_map_line(line, d_list);
 			if (ft_strlen(line) - 1 > map->raw_length)

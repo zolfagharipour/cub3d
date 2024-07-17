@@ -21,16 +21,11 @@ void	evaluate_line(char *line, t_common *d_list)
 		find_color(line, d_list, CEILING, i + 2);
 	else if (line[i] && line[i + 1] && line[i] == 'F' && line[i + 1] == ' ')
 		find_color(line, d_list, FLOOR_N, i + 2);
-	// else if ((line[i] && line[i] == '1' || line[i] == '0' || line[i] == '3'
-	// 		|| line[i] == '4') && all_ids_found(d_list))
-	// 		else if ((line[i] && line[i] == '1' || line[i] == '0' || line[i] == '3'
-	// 		|| line[i] == '4') && all_ids_found(d_list))
-	else if (line[i] && line[i] == '1' || line[i] == '0' || line[i] == 'S'
-		|| line[i] == 'W' || line[i] == 'E' || line[i] == 'N'
-		|| line[i] == '3' || line[i] == '4')
+	else if ((line[i] && line[i] == '1' || line[i] == '0' || line[i] == '3'
+		|| line[i] == '4') && all_ids_found(d_list))
 		d_list->map->map_started = 1;
 	else
-		p_error("Invalid identifier in the map file", d_list);
+		p_error("Error\nInvalid identifier in the map file", d_list);
 }
 
 int	find_texture(char *line, t_common *d_list, int identifyer, int start)
@@ -48,7 +43,7 @@ int	find_texture(char *line, t_common *d_list, int identifyer, int start)
 		i++;
 	d_list->map->textures[identifyer - 2] = ft_substr(line, start, i);
 	if (d_list->map->textures[identifyer - 2] == NULL)
-		return (p_error("Malloc failed", d_list), 0);
+		return (p_error("Error\nMalloc failed", d_list), 0);
 	d_list->map->val_aspects[identifyer] = FOUND;
 	while (line[start + i] && line[start + i] == ' ')
 		i++;

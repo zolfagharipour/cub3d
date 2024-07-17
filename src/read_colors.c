@@ -72,7 +72,6 @@ int	suitable_color_range(int store_location, char *r, char *g, char *b)
 	if (blue < 0 || blue > 255)
 		return (0);
 	color = (red << 16) | (green << 8) | blue;
-	ft_printf("color: %d\n", color);
 	store_location = color;
 	return (1);
 }
