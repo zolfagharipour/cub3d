@@ -37,7 +37,7 @@ void	find_color(char *line, t_common *d_list, int id, int s)
 		if (line[s] != ' ' && line[s] != '\n' && line[s] != '\0')
 			return ;
 	}
-	if (suitable_color_range(d_list->map->color[id], red, green, blue))
+	if (suitable_color_range(&d_list->map->color[id], red, green, blue))
 		d_list->map->val_aspects[id] = FOUND;
 }
 
@@ -67,7 +67,7 @@ int	extract_color(char **color, char *line, int *s, int i)
 		return (0);
 }
 
-int	suitable_color_range(int store_location, char *r, char *g, char *b)
+int	suitable_color_range(int *store_location, char *r, char *g, char *b)
 {
 	int	red;
 	int	blue;
@@ -84,6 +84,7 @@ int	suitable_color_range(int store_location, char *r, char *g, char *b)
 	if (blue < 0 || blue > 255)
 		return (0);
 	color = (red << 16) | (green << 8) | blue;
-	store_location = color;
+	*store_location = color;
+
 	return (1);
 }

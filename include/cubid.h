@@ -36,8 +36,6 @@
 # define LBLUE 0xADD8E6
 # define DBLUE 0x547eae
 # define DDBLUE 0x0
-# define SKY 0X87CEEB
-# define FLOOR 0x013220
 # define D  1
 # define N  2
 # define S  3
@@ -46,7 +44,7 @@
 # define SMOKE 6
 # define SP 7
 # define BL 17
-# define FLOOR_N 0
+# define FLOOR 0
 # define CEILING 1
 # define DW 6
 # define SP 7
@@ -155,7 +153,7 @@ void	validate_map_line(char *line, t_common *d_list);
 int		line_empty(char *line);
 int		find_texture(char *line, t_common *d_list, int identifyer, int start);
 void	find_color(char *line, t_common *d_list, int identifier, int start);
-int		suitable_color_range(int store_location, char *r, char *g, char *b);
+int		suitable_color_range(int *store_location, char *r, char *g, char *b);
 int		fill_raw_map(t_common *d_list);
 void	determine_content_of_coordinates(t_common *d_list, char *line, int x, int y);
 void	flush_initial_values(t_common *d_list, int y);
