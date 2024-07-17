@@ -20,7 +20,7 @@ void	evaluate_line(char *line, t_common *d_list)
 	else if (line[i] && line[i + 1] && line[i] == 'C' && line[i + 1] == ' ')
 		find_color(line, d_list, CEILING, i + 2);
 	else if (line[i] && line[i + 1] && line[i] == 'F' && line[i + 1] == ' ')
-		find_color(line, d_list, FLOOR_N, i + 2);
+		find_color(line, d_list, FLOOR, i + 2);
 	else if ((line[i] && line[i] == '1' || line[i] == '0' || line[i] == '3'
 		|| line[i] == '4') && all_ids_found(d_list))
 		d_list->map->map_started = 1;

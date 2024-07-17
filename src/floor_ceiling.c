@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:17:35 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 16:32:20 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:54:51 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    floor_ceiling(t_common *d_list)
 		i[1] = 0;
 		while (i[1] < HEIGHT / 2)
 		{
-			my_mlx_pixel_put(d_list->mlx, i[0], i[1], SKY);
+			my_mlx_pixel_put(d_list->mlx, i[0], i[1], d_list->map->color[CEILING]);
 			i[1]++;
 		}
 		i[0]++;
@@ -33,7 +33,7 @@ void    floor_ceiling(t_common *d_list)
 		i[1] = HEIGHT / 2;
 		while (i[1] < HEIGHT)
 		{
-			my_mlx_pixel_put(d_list->mlx, i[0], i[1], FLOOR);
+			my_mlx_pixel_put(d_list->mlx, i[0], i[1], d_list->map->color[FLOOR]);
 			i[1]++;
 		}
 		i[0]++;
