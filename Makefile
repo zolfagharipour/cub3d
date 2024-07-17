@@ -1,8 +1,7 @@
 NAME = cub3d
 CC = cc
 MLXFLAG = -g
-//MLXFLAG	=	-lmlx -lXext -lX11 -g -lm
-#CFLAGS = -Wall -Wextra -Werror -g -I include/
+MLXFLAG	=	-lmlx -lXext -lX11 -g -lm
 CFLAGS = -g -I include/
 
 RM = rm -rf

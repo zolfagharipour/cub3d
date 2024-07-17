@@ -1,4 +1,4 @@
-N O ./images/north.xpm 
+NO ./images/north.xpm 
 
 
 

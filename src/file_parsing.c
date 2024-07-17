@@ -21,8 +21,13 @@ void	evaluate_line(char *line, t_common *d_list)
 		find_color(line, d_list, CEILING, i + 2);
 	else if (line[i] && line[i + 1] && line[i] == 'F' && line[i + 1] == ' ')
 		find_color(line, d_list, FLOOR_N, i + 2);
-	else if ((line[i] && line[i] == '1' || line[i] == '0' || line[i] == '3'
-			|| line[i] == '4') && all_ids_found(d_list))
+	// else if ((line[i] && line[i] == '1' || line[i] == '0' || line[i] == '3'
+	// 		|| line[i] == '4') && all_ids_found(d_list))
+	// 		else if ((line[i] && line[i] == '1' || line[i] == '0' || line[i] == '3'
+	// 		|| line[i] == '4') && all_ids_found(d_list))
+	else if (line[i] && line[i] == '1' || line[i] == '0' || line[i] == 'S'
+		|| line[i] == 'W' || line[i] == 'E' || line[i] == 'N'
+		|| line[i] == '3' || line[i] == '4')
 		d_list->map->map_started = 1;
 	else
 		p_error("Invalid identifier in the map file", d_list);
