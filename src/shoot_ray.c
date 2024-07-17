@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:18:43 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/08 17:32:05 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:34:03 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	shoot_ray(t_common *d_list, t_rc *rc, int pixel)
 	first_step(rc);
 	second_step(rc);
 	move_ray(rc);
-    i = 0;
+	i = 0;
 	while(d_list->map->raw_map[rc->ray[0]][rc->ray[1]] != 1 && d_list->map->raw_map[rc->ray[0]][rc->ray[1]] != 4)
 	{
 		
