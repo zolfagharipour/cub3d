@@ -68,7 +68,7 @@ typedef struct s_mlx
 	int			x;
 	int			shift_x;
 	int			shift_y;
-	int			tex_dim[2];
+	int			tex_d[2];
 	//int		player_running;
 }	t_mlx;
 
@@ -90,7 +90,7 @@ typedef struct s_map
 	int		map_started;
 	int		val_aspects[6];
 	int		val_map[6];
-	char	*textures[4];
+	char	*textures[19];
 	int		color[2];
 	int		fd;
 	int		close_door[2];
@@ -208,7 +208,7 @@ void	move_player(t_common *d_list, double move_dir);
 int		my_mlx_pixel_get(t_mlx *mlx, int x, int y);
 void	south(t_common *d_list);
 void	wall(t_common *d_list, double p1[2], double p2[2], int x);
-void	load_textures(t_mlx *mlx);
+void	load_textures(t_common *d_list, t_mlx *mlx);
 void	find_sprite(t_common *d_list);
 void	sprite(t_common *d_list);
 void	floor_ceiling(t_common *d_list);
@@ -218,6 +218,10 @@ int		light_adjust(int rgb, double light);
 int		wall_lighting(t_common *d_list, int color, int x);
 void	shuriken(t_common *d_list);
 void	draw_icon(t_common *d_list);
+void	open_texture(t_common *d_list, t_mlx *mlx);
+void	open_animation(t_mlx *mlx);
+void	get_half_data(t_common *d_list, t_mlx *mlx);
+void	second_half_data(t_common *d_list, t_mlx *mlx);
 
 // caster
 void    caster(t_common *d_list);

@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:28:42 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 16:32:49 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:29:45 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	init_structs(t_common *d_list, char *file)
 	i = -1;
 	while (i++ < 19)
 		init_mlx(&d_list->mlx[i]);
-	load_textures(d_list->mlx);
 	return 1;
 }
 
@@ -72,8 +71,8 @@ void	init_mlx(t_mlx *mlx)
 	mlx->y = 0;
 	mlx->shift_x = 0;
 	mlx->shift_y = 0;
-	mlx->tex_dim[0] = 0;
-	mlx->tex_dim[1] = 0;
+	mlx->tex_d[0] = 0;
+	mlx->tex_d[1] = 0;
 }
 
 void	init_rc(t_rc *rc)

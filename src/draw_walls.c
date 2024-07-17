@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:50:02 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 16:31:09 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:29:45 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void    wall(t_common *d_list, double p1[2], double p2[2], int x)
 	double	len;
 	double	step;
 	
-	step = d_list->mlx[(int)d_list->rc->hit[x][3]].tex_dim[1] / (p1[1] - p2[1]);
+	step = d_list->mlx[(int)d_list->rc->hit[x][3]].tex_d[1] / (p1[1] - p2[1]);
 	check_boundries(p1[0]);
 	len = 0;
 	i = p2[1];
 	while (i < fabs(p1[1]))
 	{
 		modf(len, &w);
-		color = my_mlx_pixel_get(&d_list->mlx[(int)d_list->rc->hit[x][3]], d_list->rc->hit[x][4] * d_list->mlx[(int)d_list->rc->hit[x][3]].tex_dim[0], w);
+		color = my_mlx_pixel_get(&d_list->mlx[(int)d_list->rc->hit[x][3]], d_list->rc->hit[x][4] * d_list->mlx[(int)d_list->rc->hit[x][3]].tex_d[0], w);
 		color = wall_lighting(d_list, color, x);
 		len += step;
 		my_mlx_pixel_put(d_list->mlx, p1[0], i, color);

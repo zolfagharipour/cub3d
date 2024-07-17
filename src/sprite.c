@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 12:39:49 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 16:34:07 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:29:45 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ void    draw_sprite(t_common *d_list, double center[2], double scale)
 	double  steps;
 	int     color;
 
-	dim[0] = d_list->mlx[SP + d_list->rc->frame].tex_dim[0] * scale;
-	dim[1] = d_list->mlx[SP + d_list->rc->frame].tex_dim[1] * scale;
+	dim[0] = d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale;
+	dim[1] = d_list->mlx[SP + d_list->rc->frame].tex_d[1] * scale;
 	steps = 1.0 / scale;
-	pos[0] = (int)center[0] - ((d_list->mlx[SP + d_list->rc->frame].tex_dim[0] * scale) / 2);
+	pos[0] = (int)center[0] - ((d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale) / 2);
 	i[0] = 0;
-	while (i[0] < d_list->mlx[SP + d_list->rc->frame].tex_dim[0])
+	while (i[0] < d_list->mlx[SP + d_list->rc->frame].tex_d[0])
 	{
 		i[1] = 0;
-		pos[1] = (int)center[1] - ((d_list->mlx[SP + d_list->rc->frame].tex_dim[0] * scale) / 2);
-		while (i[1] < d_list->mlx[SP + d_list->rc->frame].tex_dim[1] && pos[1] < HEIGHT && pos[0] < WIDTH)
+		pos[1] = (int)center[1] - ((d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale) / 2);
+		while (i[1] < d_list->mlx[SP + d_list->rc->frame].tex_d[1] && pos[1] < HEIGHT && pos[0] < WIDTH)
 		{
 			if (pos[0] > 0  && pos[1] > 0 )
 			{
