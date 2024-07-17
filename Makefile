@@ -14,7 +14,8 @@ SRCS = 	src/caster.c src/events.c src/image_utils.c src/minimap.c \
 		src/fill_minimap.c src/main.c src/read_colors.c src/time.c \
 		src/floor_ceiling.c src/map_parsing.c src/read_from_file.c \
 		src/error_checks.c src/image.c src/math.c \
-		src/read_from_file_utils.c src/validate_map.c
+		src/read_from_file_utils.c src/validate_map.c src/caster_utils.c \
+		src/shoot_ray.c src/mouse.c src/light.c src/draw_icon.c
 
 
 OBJDIR = ./obj
