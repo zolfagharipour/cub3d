@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:27:59 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 16:30:34 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:50:08 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ void	vertical(t_common *d_list, t_rc *rc, int pixel, double angle)
 	else
 		d_list->rc->hit[pixel][0] = rc->ray[0] + 1;
 	if (rc->dir < 1.0)
-		d_list->rc->hit[pixel][1] = rc->pos[1] - pyth(rc->steps[0], length_x(rc));
+		d_list->rc->hit[pixel][1]
+			= rc->pos[1] - pyth(rc->steps[0], length_x(rc));
 	else
-		d_list->rc->hit[pixel][1] = rc->pos[1] + pyth(rc->steps[0], length_x(rc));
+		d_list->rc->hit[pixel][1]
+			= rc->pos[1] + pyth(rc->steps[0], length_x(rc));
 	d_list->rc->hit[pixel][5] = length_x(rc);
 	d_list->rc->hit[pixel][2] = d_list->rc->hit[pixel][5] * (2 * cos(angle));
 }

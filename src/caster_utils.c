@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:09:21 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 16:30:21 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:48:30 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ double	length_y(t_rc *rc)
 	if (rc->dir < 0.5)
 		dir = rc->dir * M_PI;
 	else if (rc->dir < 1.0)
-		dir = (1.0 - rc->dir) * M_PI;    
+		dir = (1.0 - rc->dir) * M_PI;
 	else if (rc->dir < 1.5)
 		dir = (rc->dir - 1.0) * M_PI;
 	else if (rc->dir < 2.0)
 		dir = (2.0 - rc->dir) * M_PI;
-	return fabs(rc->steps[1] / sin(dir));
+	return (fabs(rc->steps[1] / sin(dir)));
 }
 
 double	pyth(double b, double c)
 {
-	double  a;
+	double	a;
 
 	a = pow(c, 2) - pow(b, 2);
 	return (sqrt(a));
