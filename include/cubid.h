@@ -151,7 +151,7 @@ int		determine_map_size_and_val(t_common *d_list);
 void	validate_map_line(char *line, t_common *d_list);
 int		line_empty(char *line);
 int		find_texture(char *line, t_common *d_list, int identifyer, int start);
-void	find_color(char *line, t_common *d_list, int identifier, int start);
+int		find_color(char *line, t_common *d_list, int id, int s);
 int		suitable_color_range(int *store_location, char *r, char *g, char *b);
 int		fill_raw_map(t_common *d_list);
 void	content_of_coordinates(t_common *d_list, char *line, int x, int y);
@@ -173,7 +173,8 @@ int		read_map_from_file(t_common *d_list);
 int		fill_raw_map(t_common *d_list);
 void	find_the_players_position(t_common *d_list);
 void	def_player_params(t_common *d_list, char *line, int x, int y);
-int		extract_color(char **color, char *line, int *s, int i);
+int		extract_color(t_common *d_list, char *line, int *s);
+int		decipher_colors(t_common *d_list, int s, int id, char *line);
 int		cut_lines(t_common *d_list, char *line, int s, int identifier);
 int		all_ids_found(t_common *d_list);
 

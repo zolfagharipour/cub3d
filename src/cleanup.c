@@ -59,6 +59,8 @@ void	cleanup_mlx(t_mlx *mlx)
 
 void	cleanup_map(t_map *map)
 {
+    int i;
+
 	if (map && map->raw_map)
 	{
 		for (int i = 0; i < map->raw_length; i++)
@@ -87,6 +89,13 @@ void	cleanup_map(t_map *map)
 	}
 	if (map && map->file)
 		free(map->file);
+    i = 0;
+    while (i < 4)
+    {
+        free(map->textures[i]);
+        map->textures[i] = NULL;
+        i++;
+    }
 }
 
 void	cleanup_d_list(t_common *d_list)

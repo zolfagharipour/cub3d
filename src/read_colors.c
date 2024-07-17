@@ -12,33 +12,70 @@
 
 #include "cubid.h"
 
-void	find_color(char *line, t_common *d_list, int id, int s)
+int	find_color(char *line, t_common *d_list, int id, int s)
 {
 	int		i;
-	char	*red;
-	char	*green;
-	char	*blue;
+	int		rgb;
 
-	i = 0;
 	while (line[s] && line[s] == ' ')
 		s++;
 	if (cut_lines(d_list, line, s, id) == 0)
-		return ;
-	if (extract_color(&red, line, &s, i) == 0)
-		return ;
-	if (extract_color(&green, line, &s, i) == 0)
-		return ;
-	while (ft_isdigit(line[s + i]))
-		i++;
-	blue = ft_substr(line, s, i);
-	s = s + i - 1;
+		return (0);
+	rgb = decipher_colors(d_list, s, id, line);
+	if (rgb == -1)
+		return (0);
+	d_list->map->color[id] = rgb;
+	d_list->map->val_aspects[id] = FOUND;
+	return (1);
+}
+
+int	decipher_colors(t_common *d_list, int s, int id, char *line)
+{
+	int	red;
+	int	green;
+	int	blue;
+	int	rgb;
+
+	red = extract_color(d_list, line, &s);
+	if (line[s] && line[s + 1] && line[s] == ',' && ft_isdigit(line[s + 1]))
+		s++;
+	green = extract_color(d_list, line, &s);
+	if (line[s] && line[s + 1] && line[s] == ',' && ft_isdigit(line[s + 1]))
+		s++;
+	blue = extract_color(d_list, line, &s);
+	s = s - 1;
+	if (red == -1 || green == -1 || blue == -1)
+		return (-1);
 	while (line[++s])
 	{
 		if (line[s] != ' ' && line[s] != '\n' && line[s] != '\0')
-			return ;
+			return (-1);
 	}
-	if (suitable_color_range(&d_list->map->color[id], red, green, blue))
-		d_list->map->val_aspects[id] = FOUND;
+	rgb = (red << 16) | (green << 8) | blue;
+	return (rgb);
+}
+
+int	extract_color(t_common *d_list, char *line, int *s)
+{
+	char	*color;
+	int		rgb;
+	int		i;
+
+	color = NULL;
+	i = 0;
+	while (ft_isdigit(line[*s + i]))
+		i++;
+	if (i == 0)
+		return (-1);
+	color = ft_substr(line, *s, i);
+	if (!color)
+		p_error("Error\nMalloc failed", d_list);
+	*s += i;
+	rgb = ft_atoi(color);
+	free(color);
+	if (rgb < 0 || rgb > 255)
+		return (-1);
+	return (rgb);
 }
 
 int	cut_lines(t_common *d_list, char *line, int s, int identifier)
@@ -46,44 +83,5 @@ int	cut_lines(t_common *d_list, char *line, int s, int identifier)
 	d_list->map->val_aspects[identifier] = INV_FORMAT;
 	if (line[s] == '\0' || line[s] == '\n' || ft_isdigit(line[s]) == 0)
 		return (0);
-	return (1);
-}
-
-int	extract_color(char **color, char *line, int *s, int i)
-{
-	while (ft_isdigit(line[*s + i]))
-		i++;
-	if (i == 0)
-		return (0);
-	*color = ft_substr(line, *s, i);
-	*s += i;
-	i = 0;
-	if (line[*s] && line[*s] && line[*s] == ',' && ft_isdigit(line[*s + 1]))
-	{
-		(*s)++;
-		return (1);
-	}
-	else
-		return (0);
-}
-
-int	suitable_color_range(int *store_location, char *r, char *g, char *b)
-{
-	int	red;
-	int	blue;
-	int	green;
-	int	color;
-
-	red = ft_atoi(r);
-	if (red < 0 || red > 255)
-		return (0);
-	green = ft_atoi(g);
-	if (green < 0 || green > 255)
-		return (0);
-	blue = ft_atoi(b);
-	if (blue < 0 || blue > 255)
-		return (0);
-	color = (red << 16) | (green << 8) | blue;
-	*store_location = color;
 	return (1);
 }
