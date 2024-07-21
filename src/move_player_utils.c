@@ -16,6 +16,7 @@ double	calc_dir(double dir)
 {
 	double	rdir;
 
+	rdir = 0;
 	if (dir >= 2)
 		rdir -= 2;
 	else if (dir < 0)

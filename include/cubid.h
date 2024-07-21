@@ -160,7 +160,6 @@ int		line_empty(char *line);
 int		is_texture(int i, char *line, char id, char id2);
 int		is_color(int i, char *line, char id);
 
-
 //map parsing
 char	*valid_map_boundaries(t_common *d_list);
 int		minimap_vertical_boundaries(t_common *d_list);
@@ -199,7 +198,7 @@ void	cleanup_mlx(t_mlx *mlx);
 void	cleanup_map(t_map *map);
 void	cleanup_d_list(t_common *d_list);
 void	cleanup_rc(t_rc *rc);
-void    cleanup_minimap(t_map *map);
+void	cleanup_minimap(t_map *map);
 void	p_error(char *str, t_common *d_list);
 void	fill_pixel(int ii, int jj, t_common *d_list);
 
@@ -233,19 +232,18 @@ void	shuriken(t_common *d_list);
 void	draw_icon(t_common *d_list);
 void	open_texture(t_common *d_list, t_mlx *mlx);
 void	open_animation(t_mlx *mlx);
-void	get_half_data(t_common *d_list, t_mlx *mlx);
-void	second_half_data(t_common *d_list, t_mlx *mlx);
+void	get_half_data(t_mlx *mlx);
+void	second_half_data(t_mlx *mlx);
 
 // caster
 void	caster(t_common *d_list);
-void	step_x(t_rc *rc, int i);
-void	step_y(t_rc *rc, int i);
+void	step_x(t_rc *rc);
+void	step_y(t_rc *rc);
 double	length_x(t_rc *rc);
 double	length_y(t_rc *rc);
 double	pyth(double b, double c);
-void	shoot_ray(t_common *d_list, t_rc *rc, int pixel);
+void	shoot_ray(t_common *d_list, t_rc *rc);
 void	horizontal(t_rc *rc, int pixel, double angle);
-
 
 // math
 double	dot_product(double p1[2], double p2[2]);

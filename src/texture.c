@@ -27,8 +27,8 @@ void	load_textures(t_common *d_list, t_mlx *mlx)
 		if (!mlx[i].texture)
 			cleanup(d_list);
 	}
-	get_half_data(d_list, mlx);
-	second_half_data(d_list, mlx);
+	get_half_data(mlx);
+	second_half_data(mlx);
 	i = 0;
 	while (i++ < 19)
 	{

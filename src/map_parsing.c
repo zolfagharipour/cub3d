@@ -104,7 +104,6 @@ int	minimap_door_check(t_common *d_list)
 	int	x;
 	int	y;
 
-//door placement also not before a wall
 	y = 0;
 	while (++y < d_list->map->raw_height - 1)
 	{

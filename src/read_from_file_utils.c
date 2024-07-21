@@ -48,7 +48,6 @@ void	gnl_loop(t_common *d_list, char *line)
 	{
 		if (d_list->map->map_started == 0)
 			evaluate_line(line, d_list);
-		//else
 		if (d_list->map->map_started == 1)
 		{
 			validate_map_line(line, d_list);

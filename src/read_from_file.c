@@ -21,7 +21,6 @@ int	read_map_from_file(t_common *d_list)
 	if (!fill_raw_map(d_list))
 		return (0);
 	check_all_parts_found_and_valid(d_list);
-	// print_map(d_list->map);
 	load_textures(d_list, d_list->mlx);
 	return (1);
 }
@@ -52,16 +51,6 @@ void	find_the_players_position(t_common *d_list)
 	}
 }
 
-// void	print_map(t_map *map)
-// {
-// 	for (int y = 0; y < map->raw_height; y++)
-// 	{
-// 		for (int x = 0; x < map->raw_length; x++)
-// 			ft_printf("%d", map->raw_map[x][y]);
-// 		ft_printf("\n");
-// 	}
-// }
-
 int	malloc_raw_map(t_common *d_list)
 {
 	t_map	*map;
@@ -87,15 +76,11 @@ int	malloc_raw_map(t_common *d_list)
 	return (1);
 }
 
-//calculates if the minimap exceedes the bounds
-//reduces the scale factor if it does
-//- scale/2 because the minimap is placed sale/2 to the right and down
 void	check_map_scale_factor(t_common *d_list)
 {
 	t_map	*map;
 	int		reduction;
-
-	//!!!
+//!!
 	reduction = 0;
 	map = d_list->map;
 	if (map->raw_length * map->scale >= WIDTH / 2

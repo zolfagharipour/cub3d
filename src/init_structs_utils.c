@@ -22,4 +22,7 @@ void	init_validity_params(t_map *map)
 	i = -1;
 	while (++i < 6)
 		map->val_map[i] = 0;
+	i = -1;
+	while (++i < 19)
+		map->textures[i] = NULL;
 }

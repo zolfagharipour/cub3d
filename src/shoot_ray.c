@@ -76,7 +76,7 @@ void	move_ray(t_rc *rc)
 	}
 }
 
-void	shoot_ray(t_common *d_list, t_rc *rc, int pixel)
+void	shoot_ray(t_common *d_list, t_rc *rc)
 {
 	int	i;
 
@@ -89,9 +89,9 @@ void	shoot_ray(t_common *d_list, t_rc *rc, int pixel)
 	{
 		if (rc->steps[1] > 1000.0
 			|| (rc->steps[0] < 1000.0 && length_x(rc) < length_y(rc)))
-			step_x(rc, pixel);
+			step_x(rc);
 		else
-			step_y(rc, pixel);
+			step_y(rc);
 		move_ray(rc);
 		i++;
 	}

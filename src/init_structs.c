@@ -81,6 +81,7 @@ void	init_rc(t_rc *rc)
 	rc->frame = 0;
 	rc->ninja_found = 0;
 	rc->shuriken = 0;
+	rc->dir = 0;
 }
 
 int	init_mlx_functions(t_common *d_list, t_mlx *mlx)

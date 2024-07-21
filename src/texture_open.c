@@ -60,7 +60,7 @@ void	open_animation(t_mlx *mlx)
 			"images/blood3.xpm", &mlx[BL + 2].tex_d[0], &mlx[BL + 2].tex_d[1]);
 }
 
-void	get_half_data(t_common *d_list, t_mlx *mlx)
+void	get_half_data(t_mlx *mlx)
 {
 	mlx[N].tex_data = mlx_get_data_addr(mlx[N].texture,
 			&mlx[N].bpp, &mlx[N].line_length, &mlx[N].endian);
@@ -84,7 +84,7 @@ void	get_half_data(t_common *d_list, t_mlx *mlx)
 			&mlx[SP + 3].bpp, &mlx[SP + 3].line_length, &mlx[SP + 3].endian);
 }
 
-void	second_half_data(t_common *d_list, t_mlx *mlx)
+void	second_half_data(t_mlx *mlx)
 {
 	mlx[SP + 4].tex_data = mlx_get_data_addr(mlx[SP + 4].texture,
 			&mlx[SP + 4].bpp, &mlx[SP + 4].line_length, &mlx[SP + 4].endian);

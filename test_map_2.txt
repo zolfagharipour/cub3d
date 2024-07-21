@@ -1,7 +1,6 @@
 
 NO ./images/north.xpm 
 
-NO ./images/north.xpm
 
 SO   ./images/south.xpm 
 

@@ -12,7 +12,7 @@
 
 #include "cubid.h"
 
-void	step_x(t_rc *rc, int i)
+void	step_x(t_rc *rc)
 {
 	if (rc->steps[0] > 0)
 	{
@@ -26,7 +26,7 @@ void	step_x(t_rc *rc, int i)
 	}
 }
 
-void	step_y(t_rc *rc, int i)
+void	step_y(t_rc *rc)
 {
 	if (rc->steps[1] < 0)
 	{
@@ -44,6 +44,7 @@ double	length_x(t_rc *rc)
 {
 	double	dir;
 
+	dir = 0.0;
 	if (rc->dir < 0.5)
 		dir = rc->dir * M_PI;
 	else if (rc->dir < 1.0)
@@ -59,6 +60,7 @@ double	length_y(t_rc *rc)
 {
 	double	dir;
 
+	dir = 0.0;
 	if (rc->dir < 0.5)
 		dir = rc->dir * M_PI;
 	else if (rc->dir < 1.0)

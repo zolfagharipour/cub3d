@@ -33,7 +33,7 @@ void	cleanup_map(t_map *map)
 	if (map && map->file)
 		free(map->file);
 	i = -1;
-	while (++i < 4)
+	while (++i < 19)
 	{
 		free(map->textures[i]);
 		map->textures[i] = NULL;

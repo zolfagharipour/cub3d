@@ -89,7 +89,7 @@ void	caster(t_common *d_list)
 			d_list->rc->dir += 2;
 		else if (d_list->rc->dir >= 2.0)
 			d_list->rc->dir -= 2.0;
-		shoot_ray(d_list, d_list->rc, i);
+		shoot_ray(d_list, d_list->rc);
 		where_hit(d_list, d_list->rc, i);
 		i++;
 	}

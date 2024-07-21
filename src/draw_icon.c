@@ -14,9 +14,9 @@
 
 void	smoke_icon(t_common *d_list, int start[2])
 {
-	int		i[2];
-	int		color;
-	double	scale[2];
+	int					i[2];
+	unsigned int		color;
+	double				scale[2];
 
 	i[0] = 0;
 	scale[0] = d_list->mlx[SMOKE].tex_d[0] / 50.0;
@@ -38,7 +38,6 @@ void	smoke_icon(t_common *d_list, int start[2])
 void	draw_icon(t_common *d_list)
 {
 	int	p[2];
-	int	end[2];
 	int	i;
 
 	p[0] = WIDTH - 60;
