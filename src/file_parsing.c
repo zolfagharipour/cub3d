@@ -36,7 +36,7 @@ void	evaluate_line(char *line, t_common *d_list)
 	else if (line[i] && (line[i] == '1' || line[i] == '0' || line[i] == '3'
 			|| line[i] == '4') && all_ids_found(d_list))
 		d_list->map->map_started = 1;
-	elsemake f
+	else
 		p_error("Error\nInvalid or missing identifier in the map file", d_list);
 }
 
