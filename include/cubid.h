@@ -158,6 +158,8 @@ void	flush_initial_values(t_common *d_list, int y);
 void	check_map_scale_factor(t_common *d_list);
 int		line_empty(char *line);
 int		is_texture(int i, char *line, char id, char id2);
+int		is_color(int i, char *line, char id);
+
 
 //map parsing
 char	*valid_map_boundaries(t_common *d_list);

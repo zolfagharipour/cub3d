@@ -21,23 +21,23 @@ void	evaluate_line(char *line, t_common *d_list)
 		i++;
 	if (line[i] == '\0' || line[i] == '\n')
 		return ;
-	if (is_texture(i, line, 'N', 'O'))
+	if (is_texture(i, line, 'N', 'O') && d_list->map->val_aspects[N] == 6)
 		find_texture(line, d_list, N, i + 2);
-	else if (is_texture(i, line, 'S', 'O'))
+	else if (is_texture(i, line, 'S', 'O') && d_list->map->val_aspects[S] == 6)
 		find_texture(line, d_list, S, i + 2);
-	else if (is_texture(i, line, 'E', 'A'))
+	else if (is_texture(i, line, 'E', 'A') && d_list->map->val_aspects[E] == 6)
 		find_texture(line, d_list, E, i + 2);
-	else if (is_texture(i, line, 'W', 'E'))
+	else if (is_texture(i, line, 'W', 'E') && d_list->map->val_aspects[W] == 6)
 		find_texture(line, d_list, W, i + 2);
-	else if (line[i] && line[i + 1] && line[i] == 'C' && line[i + 1] == ' ')
+	else if (is_color(i, line, 'C') && d_list->map->val_aspects[CEILING] == 6)
 		find_color(line, d_list, CEILING, i + 2);
-	else if (line[i] && line[i + 1] && line[i] == 'F' && line[i + 1] == ' ')
+	else if (is_color(i, line, 'F') && d_list->map->val_aspects[FLOOR] == 6)
 		find_color(line, d_list, FLOOR, i + 2);
 	else if (line[i] && (line[i] == '1' || line[i] == '0' || line[i] == '3'
 			|| line[i] == '4') && all_ids_found(d_list))
 		d_list->map->map_started = 1;
-	else
-		p_error("Error\nInvalid identifier in the map file", d_list);
+	elsemake f
+		p_error("Error\nInvalid or missing identifier in the map file", d_list);
 }
 
 int	find_texture(char *line, t_common *d_list, int identifyer, int start)

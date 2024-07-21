@@ -20,6 +20,13 @@ int	is_texture(int i, char *line, char id, char id2)
 	return (0);
 }
 
+int	is_color(int i, char *line, char id)
+{
+	if (line[i] && line[i + 1] && line[i] == id && line[i + 1] == ' ')
+		return (1);
+	return (0);
+}
+
 int	all_ids_found(t_common *d_list)
 {
 	int	i;
