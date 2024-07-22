@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:53:16 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 16:53:20 by fmarggra         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:54:09 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	def_player_params(t_common *d_list, char *line, int x, int y)
 	if (line[x] == 'N')
 		d_list->rc->look = 0.5;
 	else if (line[x] == 'S')
-		d_list->rc->look = 1;
-	else if (line[x] == 'W')
 		d_list->rc->look = 1.5;
+	else if (line[x] == 'W')
+		d_list->rc->look = 1;
 	else if (line[x] == 'E')
 		d_list->rc->look = 0;
 	d_list->map->raw_map[x][y] = 0;
