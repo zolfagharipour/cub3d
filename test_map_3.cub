@@ -1,17 +1,10 @@
-NO 
+NO ./images/north.xpm 
+SO ./images/south.xpm 
+WE ./images/west.xpm           
+EA ./images/east.xpm 
 
-
-
-
-SO   ./images/south.xpm 
-
-WE   ./images/west.xpm           
-
-EA   ./images/east.xpm 
-
-C  0,0,255
-
-F  255,0,0
+C 0,0,255
+F 255,0,0
 
           1
        111111111111111111111111111111111111111111111111111111

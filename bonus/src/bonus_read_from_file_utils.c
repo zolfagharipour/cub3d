@@ -76,8 +76,7 @@ void	validate_map_line(char *line, t_common *d_list)
 				d_list->map->player_found = 1;
 		}
 		else if (line[i] != '0' && line[i] != '1' && line[i] != '3'
-			&& line[i] != '4'
-			&& line[i] != ' ')
+			&& line[i] != '4' && line[i] != ' ')
 			d_list->map->val_map[INV_CHAR] = 1;
 		i++;
 	}

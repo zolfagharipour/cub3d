@@ -19,7 +19,7 @@ void	events(t_common *d_list)
 	mlx = &d_list->mlx[0];
 	// mlx_mouse_hide(mlx->ptr, mlx->win);
 	mlx_hook(mlx->win, 2, 1L << 0, (key_press), d_list);
-	mlx_hook(mlx->win, 6, 1L << 6, mouse_track, d_list);
+	//mlx_hook(mlx->win, 6, 1L << 6, mouse_track, d_list);
 	mlx_hook(mlx->win, 17, 1L << 8, (cleanup), d_list);
 	mlx_loop(mlx->ptr);
 }
@@ -39,15 +39,15 @@ int	key_press(int keycode, t_common *d_list)
 		rotate_player(keycode, d_list);
 		return (0);
 	}
-	else if (keycode == XK_e)
-	{
-		ninja(d_list);
-		return (0);
-	}
-	else if (keycode == XK_space)
-	{
-		door(d_list);
-		return (0);
-	}
+	// else if (keycode == XK_e)
+	// {
+	// 	ninja(d_list);
+	// 	return (0);
+	// }
+	// else if (keycode == XK_space)
+	// {
+	// 	door(d_list);
+	// 	return (0);
+	// }
 	return (0);
 }
