@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:02:25 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/22 16:30:10 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:04:35 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <time.h>
 # include "../libft/libft.h"
 
-# define HEIGHT 1000
-# define WIDTH 1000
+# define HEIGHT 500
+# define WIDTH 500
 # define TRUE 1
 # define FALSE 0
 //definition square size can be amended
