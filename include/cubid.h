@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:02:25 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/22 13:05:23 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:27:13 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,6 +233,7 @@ void	draw_icon(t_common *d_list);
 void	open_texture(t_common *d_list, t_mlx *mlx);
 void	open_animation(t_mlx *mlx);
 void	get_half_data(t_mlx *mlx);
+void	respone_ninja(t_common *d_list);
 void	second_half_data(t_mlx *mlx);
 
 // caster

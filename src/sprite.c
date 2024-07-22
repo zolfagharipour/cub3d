@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 12:39:49 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/22 13:07:00 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:24:14 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	set_colors(t_common *d_list, int pos[2], double i[2], double *steps)
 		{
 			color = my_mlx_pixel_get(&d_list->mlx[SP + d_list->rc->frame],
 					(int)i[0], (int)i[1]);
-			if (color != 000000)
+			if ((unsigned int)color != 0xFF000000)
 				my_mlx_pixel_put(&d_list->mlx[0], pos[0], pos[1], color);
 		}
 		i[1] += *steps;
