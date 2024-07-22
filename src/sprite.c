@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 12:39:49 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 18:29:45 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:07:00 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,44 @@ void	find_sprite(t_common *d_list)
 	d_list->rc->sprite[2] = magnitudes(delta);
 }
 
+static void	set_colors(t_common *d_list, int pos[2], double i[2], double *steps)
+{
+	int		color;
+
+	while (i[1] < d_list->mlx[SP + d_list->rc->frame].tex_d[1]
+		&& pos[1] < HEIGHT && pos[0] < WIDTH)
+	{
+		if (pos[0] > 0 && pos[1] > 0)
+		{
+			color = my_mlx_pixel_get(&d_list->mlx[SP + d_list->rc->frame],
+					(int)i[0], (int)i[1]);
+			if (color != 000000)
+				my_mlx_pixel_put(&d_list->mlx[0], pos[0], pos[1], color);
+		}
+		i[1] += *steps;
+		pos[1]++;
+	}
+}
+
 void	draw_sprite(t_common *d_list, double center[2], double scale)
 {
 	double	i[2];
 	double	dim[2];
 	int		pos[2];
 	double	steps;
-	int		color;
 
 	dim[0] = d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale;
 	dim[1] = d_list->mlx[SP + d_list->rc->frame].tex_d[1] * scale;
 	steps = 1.0 / scale;
-	pos[0] = (int)center[0] - ((d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale) / 2);
+	pos[0] = (int)center[0]
+		- ((d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale) / 2);
 	i[0] = 0;
 	while (i[0] < d_list->mlx[SP + d_list->rc->frame].tex_d[0])
 	{
 		i[1] = 0;
-		pos[1] = (int)center[1] - ((d_list->mlx[SP + d_list->rc->frame].tex_d[0] * scale) / 2);
-		while (i[1] < d_list->mlx[SP + d_list->rc->frame].tex_d[1] && pos[1] < HEIGHT && pos[0] < WIDTH)
-		{
-			if (pos[0] > 0 && pos[1] > 0)
-			{
-				color = my_mlx_pixel_get(&d_list->mlx[SP + d_list->rc->frame], (int)i[0], (int)i[1]);
-				//changed color black to rbg format
-				if (color != 000000)
-					my_mlx_pixel_put(&d_list->mlx[0], pos[0], pos[1], color);
-			}
-			i[1] += steps;
-			pos[1]++;
-		}
+		pos[1] = (int)center[1] - ((d_list->mlx[SP
+					+ d_list->rc->frame].tex_d[0] * scale) / 2);
+		set_colors(d_list, pos, i, &steps);
 		i[0] += steps;
 		pos[0]++;
 	}

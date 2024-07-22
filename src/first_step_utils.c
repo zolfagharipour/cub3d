@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor_ceiling.c                                    :+:      :+:    :+:   */
+/*   first_step_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 15:17:35 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/22 13:17:38 by mzolfagh         ###   ########.fr       */
+/*   Created: 2024/07/22 12:33:39 by mzolfagh          #+#    #+#             */
+/*   Updated: 2024/07/22 13:18:44 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubid.h"
 
-void	floor_ceiling(t_common *d_list)
+void	first_quarter(t_rc *rc)
 {
-	int		i[2];
+	double	trash;
 
-	i[0] = 0;
-	while (i[0] < WIDTH)
-	{
-		i[1] = 0;
-		while (i[1] < HEIGHT / 2)
-		{
-			my_mlx_pixel_put(d_list->mlx,
-				i[0], i[1], d_list->map->color[CEILING]);
-			i[1]++;
-		}
-		i[0]++;
-	}
-	i[0] = 0;
-	while (i[0] < WIDTH)
-	{
-		i[1] = HEIGHT / 2;
-		while (i[1] < HEIGHT)
-			my_mlx_pixel_put(d_list->mlx,
-				i[0], i[1]++, d_list->map->color[FLOOR]);
-		i[0]++;
-	}
+	trash = 0;
+	rc->steps[0] = 1 - modf(rc->pos[0], &trash);
+	rc->steps[1] = -modf(rc->pos[1], &trash);
+	rc->tmp[0] = W;
+	rc->tmp[1] = S;
+}
+
+void	second_quarter(t_rc *rc)
+{
+	double	trash;
+
+	trash = 0;
+	rc->steps[0] = -modf(rc->pos[0], &trash);
+	rc->steps[1] = -modf(rc->pos[1], &trash);
+	rc->tmp[0] = E;
+	rc->tmp[1] = S;
 }

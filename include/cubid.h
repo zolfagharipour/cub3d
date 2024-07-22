@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubid.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:02:25 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 17:02:27 by fmarggra         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:05:23 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,8 @@ double	length_x(t_rc *rc);
 double	length_y(t_rc *rc);
 double	pyth(double b, double c);
 void	shoot_ray(t_common *d_list, t_rc *rc);
+void	first_quarter(t_rc *rc);
+void	second_quarter(t_rc *rc);
 void	horizontal(t_rc *rc, int pixel, double angle);
 
 // math

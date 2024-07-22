@@ -1,5 +1,5 @@
 
-NO ./images/south.xpm 
+NO ./images/north.xpm 
 
 
 SO   ./images/south.xpm 

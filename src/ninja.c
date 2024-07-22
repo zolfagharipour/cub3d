@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:45:34 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 16:33:39 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:18:29 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	respone_ninja(t_common *d_list)
 		i[1] = 0;
 		while (i[1] < d_list->map->raw_height)
 		{
-			if (d_list->map->raw_map[i[0]][i[1]] == 0 && rand() / (float)RAND_MAX > 0.97)
+			if (d_list->map->raw_map[i[0]][i[1]] == 0
+				&& rand() / (float)RAND_MAX > 0.97)
 			{
 				d_list->rc->sprite[0] = i[0] + 0.5;
 				d_list->rc->sprite[1] = i[1] + 0.5;

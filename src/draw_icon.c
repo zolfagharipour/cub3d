@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 13:12:39 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 18:36:14 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:39:52 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	smoke_icon(t_common *d_list, int start[2])
 		i[1] = 0;
 		while (i[1] < 52)
 		{
-			color = my_mlx_pixel_get(&d_list->mlx[SMOKE], i[0] * (int)scale[0], i[1] * (int)scale[1]);
+			color = my_mlx_pixel_get(&d_list->mlx[SMOKE],
+					i[0] * (int)scale[0], i[1] * (int)scale[1]);
 			if (color != 0XFF000000)
-				my_mlx_pixel_put(d_list->mlx, start[0] + i[0], start[1] + i[1], color);
+				my_mlx_pixel_put(d_list->mlx, start[0] + i[0],
+					start[1] + i[1], color);
 			i[1]++;
 		}
 		i[0]++;

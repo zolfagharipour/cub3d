@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:18:43 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/17 16:34:03 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:37:15 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,9 @@ static void	first_step(t_rc *rc)
 
 	trash = 0;
 	if (rc->dir < 0.5)
-	{
-		rc->steps[0] = 1 - modf(rc->pos[0], &trash);
-		rc->steps[1] = -modf(rc->pos[1], &trash);
-		rc->tmp[0] = W;
-		rc->tmp[1] = S;
-	}
+		first_quarter(rc);
 	else if (rc->dir < 1)
-	{
-		rc->steps[0] = -modf(rc->pos[0], &trash);
-		rc->steps[1] = -modf(rc->pos[1], &trash);
-		rc->tmp[0] = E;
-		rc->tmp[1] = S;
-	}
+		second_quarter(rc);
 	else if (rc->dir < 1.5)
 	{
 		rc->steps[0] = -modf(rc->pos[0], &trash);
