@@ -6,7 +6,7 @@
 #    By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 13:31:28 by mzolfagh          #+#    #+#              #
-#    Updated: 2024/07/22 13:31:29 by mzolfagh         ###   ########.fr        #
+#    Updated: 2024/07/22 16:36:39 by mzolfagh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,15 @@ RM = rm -rf
 
 # ***************************************************************************
 
-SRCS = 	src/caster.c src/events.c src/image_utils.c src/minimap.c \
+SRCS = 	src/caster.c src/events.c src/image_utils.c \
 		src/cleanup.c src/file_parsing.c src/init_structs.c \
-		src/move_player.c src/sprite.c src/door.c src/file_parsing_utils.c \
-		src/line.c src/ninja.c src/texture.c src/draw_walls.c \
+		src/move_player.c src/file_parsing_utils.c \
+		src/texture.c src/draw_walls.c \
 		src/fill_minimap.c src/main.c src/read_colors.c \
 		src/floor_ceiling.c src/map_parsing.c src/read_from_file.c \
 		src/error_checks.c src/image.c src/math.c \
 		src/read_from_file_utils.c src/validate_map.c src/caster_utils.c \
-		src/shoot_ray.c src/mouse.c src/light.c src/draw_icon.c src/texture_open.c \
+		src/shoot_ray.c src/light.c src/texture_open.c \
 		src/move_player_utils.c src/cleanup_utils.c src/init_structs_utils.c \
 		src/first_step_utils.c
 
