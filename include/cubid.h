@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:02:25 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/22 14:22:08 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:30:10 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <sys/time.h>
+# include <time.h>
 # include "../libft/libft.h"
 
 # define HEIGHT 1000
