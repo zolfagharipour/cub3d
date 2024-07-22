@@ -95,10 +95,10 @@ void	print_map_error(int error)
 		write(1, "Multiple players found\n", 24);
 	else if (error == INV_CHAR)
 		write(1, "Invalid character in map\n", 26);
-	else if (error == INV_FORMAT)
-		write(1, "Invalid format\n", 16);
 	else if (error == INV_NL)
 		write(1, "Invalid new line in the map\n", 29);
+	else if (error == INV_FORMAT)
+		write(1, "Invalid format\n", 16);
 }
 
 int	has_been_printed_before(t_common *d_list, int err_macro, int i)

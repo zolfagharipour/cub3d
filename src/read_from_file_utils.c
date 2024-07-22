@@ -27,7 +27,6 @@ int	determine_map_size_and_val(t_common *d_list)
 	{
 		gnl_loop(d_list, line);
 		free(line);
-		line = NULL;
 		line = get_next_line(map->fd);
 	}
 	if (d_list->map->map_started == 0)

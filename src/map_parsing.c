@@ -14,6 +14,8 @@
 
 char	*valid_map_boundaries(t_common *d_list)
 {
+	if (d_list->map->val_map[INV_NL] == 1)
+		return (NULL);
 	if (minimap_vertical_boundaries(d_list) == 0)
 		return ("Invalid map boundaries\n");
 	if (minimap_horizontal_boundaries(d_list) == 0)
@@ -24,28 +26,6 @@ char	*valid_map_boundaries(t_common *d_list)
 		return ("Invalid placement of doors in the map\n");
 	return (NULL);
 }
-
-//player checking
-//why was that necessary?
-// x = 1;
-// y = 1;
-// while (y < map->raw_height - 1)
-// {
-//     x = 1;
-//     while (x < map->raw_length - 1)
-//     {
-//         if (x == d_list->rc->pos[0] - 0.5 && y == d_list->rc->pos[1] - 0.5)
-//         {
-//             if (map->raw_map[x + 1][y] == ft_atoi("6")
-//                 || map->raw_map[x - 1][y] == ft_atoi("6")
-//                 || map->raw_map[x][y + 1] == ft_atoi("6")
-//                 || map->raw_map[x][y - 1] == ft_atoi("6"))
-//                 return("Player ist outside of the map\n");
-//         }
-//         x++;
-//     }
-//     y++;
-// }
 
 int	minimap_vertical_boundaries(t_common *d_list)
 {

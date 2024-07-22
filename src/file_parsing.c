@@ -37,7 +37,7 @@ void	evaluate_line(char *line, t_common *d_list)
 			|| line[i] == '4') && all_ids_found(d_list))
 		d_list->map->map_started = 1;
 	else
-		p_error("Error\nInvalid or missing identifier in the map file", d_list);
+		(free(line), p_error("Error\nInvalid or missing identifier", d_list));
 }
 
 int	find_texture(char *line, t_common *d_list, int identifyer, int start)

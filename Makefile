@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 CC = cc
 MLXFLAG	= -lmlx -lXext -lX11 -lm
 CFLAGS = -Wall -Wextra -Werror -g -I include/
