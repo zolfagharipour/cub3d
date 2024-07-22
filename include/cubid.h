@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:02:25 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/22 13:27:13 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:22:08 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ void	wall(t_common *d_list, double p1[2], double p2[2], int x);
 void	load_textures(t_common *d_list, t_mlx *mlx);
 void	find_sprite(t_common *d_list);
 void	sprite(t_common *d_list);
-void	floor_ceiling(t_common *d_list);
+void	floor_ceiling(t_common *d_list, double p1[2], double p2[2]);
 void	ninja(t_common *d_list);
 void	door(t_common *d_list);
 int		light_adjust(int rgb, double light);

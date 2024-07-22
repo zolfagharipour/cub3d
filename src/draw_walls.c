@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:50:02 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/22 13:14:47 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:21:15 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	draw_line(t_common *d_list, int i[2])
 	p1[0] = i[0];
 	p2[0] = i[0];
 	wall (d_list, p1, p2, i[0]);
+	floor_ceiling(d_list, p1, p2);
 }
 
 void	draw_walls(t_common *d_list)
