@@ -16,6 +16,7 @@ int	determine_map_size_and_val(t_common *d_list)
 {
 	char	*line;
 	t_map	*map;
+	int		last;
 
 	map = d_list->map;
 	map->fd = open(d_list->map->file, O_RDONLY);
@@ -25,9 +26,11 @@ int	determine_map_size_and_val(t_common *d_list)
 	line = get_next_line(map->fd);
 	while (line)
 	{
-		gnl_loop(d_list, line);
+		gnl_loop(d_list, line, &last);
 		free(line);
 		line = get_next_line(map->fd);
+		if (!line && last == TRUE)
+			d_list->map->val_map[INV_NL] = 1;
 	}
 	if (d_list->map->map_started == 0)
 		p_error("Error\nNo map found", d_list);
@@ -36,11 +39,15 @@ int	determine_map_size_and_val(t_common *d_list)
 	return (1);
 }
 
-void	gnl_loop(t_common *d_list, char *line)
+void	gnl_loop(t_common *d_list, char *line, int *last)
 {
 	t_map	*map;
 
+	*last = FALSE;
 	map = d_list->map;
+	if (d_list->map->map_started == 1
+		&& line[ft_strlen(line) - 1] == '\n')
+			*last = TRUE;
 	if (line_empty(line) && d_list->map->map_started == 1)
 		d_list->map->val_map[INV_NL] = 1;
 	if (!line_empty(line))
@@ -77,7 +84,7 @@ void	validate_map_line(char *line, t_common *d_list)
 		}
 		else if (line[i] != '0' && line[i] != '1'
 			&& line[i] != ' ')
-			d_list->map->val_map[INV_CHAR] = 1;
+			(free(line), p_error("Error\nInvalid character in map", d_list));
 		i++;
 	}
 }
@@ -87,9 +94,17 @@ int	line_empty(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i] && line[i] == ' ')
-		i++;
 	if (line[i] == '\n')
 		return (1);
 	return (0);
+}
+
+void cut_ws(char *line, int *s)
+{
+	while (line[*s] && line[*s] == ' ')
+		(*s)++;
+	if (line[*s] && line[*s + 1] && line[*s] == ',')
+		(*s)++;
+	while (line[*s] && line[*s] == ' ')
+		(*s)++;
 }

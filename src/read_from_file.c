@@ -80,7 +80,7 @@ void	check_map_scale_factor(t_common *d_list)
 {
 	t_map	*map;
 	int		reduction;
-//!!
+
 	reduction = 0;
 	map = d_list->map;
 	if (map->raw_length * map->scale >= WIDTH / 2

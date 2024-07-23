@@ -29,7 +29,6 @@
 # define WIDTH 500
 # define TRUE 1
 # define FALSE 0
-//definition square size can be amended
 # define SQUARE 8
 # define MOVING_DIS 0.2
 # define ORANGE 0xec956c
@@ -80,7 +79,6 @@ typedef struct s_mlx
 	int			shift_x;
 	int			shift_y;
 	int			tex_d[2];
-	//int		player_running;
 }	t_mlx;
 
 typedef struct s_map
@@ -146,7 +144,7 @@ int		error_arguments(int argc, char **argv);
 
 //file processing
 void	evaluate_line(char *line, t_common *d_list);
-void	gnl_loop(t_common *d_list, char *line);
+void	gnl_loop(t_common *d_list, char *line, int *last);
 int		determine_map_size_and_val(t_common *d_list);
 void	validate_map_line(char *line, t_common *d_list);
 int		line_empty(char *line);
@@ -176,6 +174,7 @@ void	find_the_players_position(t_common *d_list);
 void	def_player_params(t_common *d_list, char *line, int x, int y);
 int		extract_color(t_common *d_list, char *line, int *s);
 int		decipher_colors(t_common *d_list, int s, char *line);
+void	cut_ws(char *line, int *s);
 int		cut_lines(t_common *d_list, char *line, int s, int identifier);
 int		all_ids_found(t_common *d_list);
 
@@ -185,10 +184,7 @@ void	catch_invalid_map(int *amt_errors, t_common *d_list, int i);
 void	print_color_texture_error(t_common *d_list, int i);
 int		has_been_printed_before(t_common *d_list, int err_macro, int i);
 void	print_map_error(int error);
-
-//testing
 int		malloc_raw_map(t_common *d_list);
-void	print_map(t_map *map);
 
 //image
 void	draw_image(t_common *d_list);

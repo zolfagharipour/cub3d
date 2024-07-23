@@ -36,11 +36,9 @@ int	decipher_colors(t_common *d_list, int s, char *line)
 	int	rgb;
 
 	red = extract_color(d_list, line, &s);
-	if (line[s] && line[s + 1] && line[s] == ',' && ft_isdigit(line[s + 1]))
-		s++;
+	cut_ws(line, &s);
 	green = extract_color(d_list, line, &s);
-	if (line[s] && line[s + 1] && line[s] == ',' && ft_isdigit(line[s + 1]))
-		s++;
+	cut_ws(line, &s);
 	blue = extract_color(d_list, line, &s);
 	s = s - 1;
 	if (red == -1 || green == -1 || blue == -1)
