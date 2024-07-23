@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite.c                                           :+:      :+:    :+:   */
+/*   bonus_sprite.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 12:39:49 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/22 13:24:14 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:01:18 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	sprite(t_common *d_list)
 	if (fabs(d_list->rc->sprite[3]) > 0.25
 		|| (d_list->rc->frame != 12 && d_list->rc->sprite[2] > 5))
 		return ;
-	scale = 1.5 / d_list->rc->sprite[2];
+	scale = 1 / d_list->rc->sprite[2];
 	pos[1] = (HEIGHT + (HEIGHT / d_list->rc->sprite[2])) / 2;
 	if (d_list->rc->frame == 12)
 		pos[1] *= 1.01;

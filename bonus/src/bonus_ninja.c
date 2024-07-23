@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:45:34 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/22 16:29:57 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:54:19 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ninja(t_common *d_list)
 		d_list->rc->frame = 0;
 		d_list->rc->ninja_found++;
 	}
-	else if (d_list->rc->frame != 12)
+	else if (d_list->rc->frame != 12 && d_list->rc->sprite[2] < 5)
 	{
 		d_list->rc->frame = 10;
 		while (d_list->rc->frame < 13)
