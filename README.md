@@ -2,7 +2,7 @@
 
 ## Overview
 
-cub3D is a project that implements a first-person perspective 3D maze game using raycasting techniques, inspired by Wolfenstein 3D. Developed in C, it uses the MiniLibX library to handle graphics and interactions. This project is implemented as part of the 42 school curriculum by Franziska Marggraf and Mohamad Zolfaghari.
+cub3D is a project that implements a first-person perspective 3D maze game using raycasting techniques, inspired by Wolfenstein 3D. Developed in C, it uses the **MiniLibX** library to handle graphics and interactions. This project is implemented as part of the 42 school curriculum by Franziska Marggraf and Mohamad Zolfaghari.
 
 ## Warning for 42 Students
 
