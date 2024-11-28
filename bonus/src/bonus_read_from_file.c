@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_from_file.c                                   :+:      :+:    :+:   */
+/*   bonus_read_from_file.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:29:11 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 18:49:03 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:52:30 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	check_map_scale_factor(t_common *d_list)
 {
 	t_map	*map;
 	int		reduction;
-//!!
+
 	reduction = 0;
 	map = d_list->map;
 	if (map->raw_length * map->scale >= WIDTH / 2

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_from_file_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmarggra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:54:28 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/17 16:54:30 by fmarggra         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:51:11 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	gnl_loop(t_common *d_list, char *line, int *last)
 	map = d_list->map;
 	if (d_list->map->map_started == 1
 		&& line[ft_strlen(line) - 1] == '\n')
-			*last = TRUE;
+		*last = TRUE;
 	if (line_empty(line) && d_list->map->map_started == 1)
 		d_list->map->val_map[INV_NL] = 1;
 	if (!line_empty(line))
@@ -99,7 +99,7 @@ int	line_empty(char *line)
 	return (0);
 }
 
-void cut_ws(char *line, int *s)
+void	cut_ws(char *line, int *s)
 {
 	while (line[*s] && line[*s] == ' ')
 		(*s)++;

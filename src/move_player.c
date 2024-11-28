@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:54:00 by fmarggra          #+#    #+#             */
-/*   Updated: 2024/07/22 13:17:58 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:50:02 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	check_entire_square(t_common *d_list, int new_x, int new_y)
 	int		x;
 	t_map	*map;
 
-	//draw the square smaller
 	map = d_list->map;
 	up_left_x = new_x - SQUARE / 2;
 	up_left_y = new_y - SQUARE / 2;

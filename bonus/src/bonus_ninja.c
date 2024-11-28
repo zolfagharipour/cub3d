@@ -6,7 +6,7 @@
 /*   By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:45:34 by mzolfagh          #+#    #+#             */
-/*   Updated: 2024/07/23 13:54:19 by mzolfagh         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:54:40 by mzolfagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	ninja(t_common *d_list)
 		{
 			put_image(d_list, d_list->mlx);
 			d_list->rc->frame++;
-			//take out
 			usleep(100000);
 		}
 		d_list->rc->frame = 12;

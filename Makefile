@@ -6,7 +6,7 @@
 #    By: mzolfagh <mzolfagh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 13:31:28 by mzolfagh          #+#    #+#              #
-#    Updated: 2024/07/22 16:36:39 by mzolfagh         ###   ########.fr        #
+#    Updated: 2024/07/23 15:11:05 by mzolfagh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,3 +86,5 @@ fclean: clean
 	@$(RM) $(NAME) $(NAME2)
 
 re: fclean all
+
+bonusre: fclean bonus
